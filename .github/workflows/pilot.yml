@@ -1,0 +1,91 @@
+name: pilot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - config/pilot-cpu.yaml
+      - .github/workflows/pilot.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pilot
+  cancel-in-progress: false
+
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: apertus-8b
+            repo: bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF
+            file: swiss-ai_Apertus-8B-Instruct-2509-Q4_K_M.gguf
+          - name: krikri-8b
+            repo: ilsp/Llama-Krikri-8B-Instruct-GGUF
+            file: llama-krikri-8b-instruct-q4_k_m.gguf
+          - name: llama-3.1-8b
+            repo: bartowski/Meta-Llama-3.1-8B-Instruct-GGUF
+            file: Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+          - name: meltemi-7b
+            repo: mradermacher/Meltemi-7B-Instruct-v1.5-GGUF
+            file: Meltemi-7B-Instruct-v1.5.Q4_K_M.gguf
+          - name: qwen2.5-7b
+            repo: bartowski/Qwen2.5-7B-Instruct-GGUF
+            file: Qwen2.5-7B-Instruct-Q4_K_M.gguf
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[analysis]"
+      - name: Download model
+        run: |
+          mkdir -p models
+          curl -fsSL --retry 5 -o models/model.gguf "https://huggingface.co/${{ matrix.repo }}/resolve/main/${{ matrix.file }}"
+          ls -lh models
+      - name: Start llama.cpp server
+        run: |
+          docker run -d --name llm -v "$PWD/models:/models" -p 8080:8080 ghcr.io/ggml-org/llama.cpp:server -m /models/model.gguf --host 0.0.0.0 --port 8080 -c 4096 -t 4 --jinja
+          for i in $(seq 1 120); do curl -sf http://localhost:8080/health && break; sleep 5; done
+          curl -sf http://localhost:8080/health
+      - name: Run the pilot cases
+        run: whf run --config config/pilot-cpu.yaml --model ${{ matrix.name }}
+      - name: Server log
+        if: always()
+        run: docker logs llm 2>&1 | tail -n 40
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: raw-${{ matrix.name }}
+          path: results/pilot-cpu/raw/${{ matrix.name }}.jsonl
+          if-no-files-found: warn
+
+  report:
+    needs: model
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[analysis]"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: raw-*
+          path: results/pilot-cpu/raw
+          merge-multiple: true
+      - run: whf analyze --config config/pilot-cpu.yaml
+      - name: Commit the results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/pilot-cpu
+          git commit -m "Pilot results: five cases on five open models (CPU, 4-bit)" || echo "nothing to commit"
+          git push

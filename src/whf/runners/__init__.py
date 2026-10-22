@@ -15,6 +15,7 @@ def make_runner(spec: dict):
             api_key_env=spec.get("api_key_env"),
             revision=spec.get("revision"),
             send_seed=bool(spec.get("send_seed", True)),
+            timeout=int(spec.get("timeout", 180)),
         )
     if kind == "hf":
         from .hf import HFRunner

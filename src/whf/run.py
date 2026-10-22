@@ -25,6 +25,11 @@ def load_study(cfg: Config):
     attributes.check()
     prompts = Prompts.load(cfg.prompts)
     cases = load_cases(cfg.cases)
+    if cfg.case_ids is not None:
+        missing = sorted(set(cfg.case_ids) - {c.id for c in cases})
+        if missing:
+            raise CaseError("unknown case ids in configuration: " + ", ".join(missing))
+        cases = [c for c in cases if c.id in set(cfg.case_ids)]
     for c in cases:
         attributes.check_case(c)
     pending = attributes.pending_sources()

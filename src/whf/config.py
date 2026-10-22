@@ -19,6 +19,7 @@ class Config:
     models: list
     languages: list = field(default_factory=lambda: list(LANGS))
     paraphrases: list | None = None
+    case_ids: list | None = None
     roles: list | None = None
     runs: int = 5
     temperature: float = 0.7
@@ -46,7 +47,7 @@ def load_config(path: Path) -> Config:
     for lang in raw.get("languages", LANGS):
         if lang not in LANGS:
             raise ValueError(f"{path}: unknown language {lang}")
-    kw = {k: raw[k] for k in ("languages", "paraphrases", "roles", "runs", "temperature", "max_tokens",
+    kw = {k: raw[k] for k in ("languages", "paraphrases", "case_ids", "roles", "runs", "temperature", "max_tokens",
                               "allow_pending_sources", "allow_template_cases", "bootstrap",
                               "share_flip_tolerance", "smallest_effect", "min_clusters", "seed") if k in raw}
     return Config(

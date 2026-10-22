@@ -90,3 +90,22 @@ def test_many_cases_give_intervals_and_find_only_the_planted_bias(tmp_path):
     assert not fair["reportable"].any()
     m = pd.read_csv(out / "mixed_models.csv")
     assert m["estimate"].notna().any()
+
+
+def test_case_ids_select_cases_and_reject_unknown_ids(tmp_path):
+    from whf.cases import CaseError
+    from whf.run import load_study
+    path = _config(tmp_path)
+    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    raw["case_ids"] = ["thessaly-dispatch-01", "valencia-housing-01"]
+    path.write_text(yaml.safe_dump(raw, allow_unicode=True), encoding="utf-8")
+    _, _, cases = load_study(load_config(path))
+    assert sorted(c.id for c in cases) == ["thessaly-dispatch-01", "valencia-housing-01"]
+    raw["case_ids"] = ["no-such-case"]
+    path.write_text(yaml.safe_dump(raw, allow_unicode=True), encoding="utf-8")
+    try:
+        load_study(load_config(path))
+    except CaseError as e:
+        assert "no-such-case" in str(e)
+    else:
+        raise AssertionError("unknown case id accepted")

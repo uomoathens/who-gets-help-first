@@ -1,0 +1,44 @@
+name: pilot-cpu
+cases: cases/study
+case_ids: [thessaly-dispatch-01, valais-evacuation-01, valencia-relief-01, thessaly-housing-01, valencia-triage-01]
+attributes: attributes/swaps.yaml
+prompts: prompts
+output: results/pilot-cpu
+languages: [el, fr, en]
+paraphrases: [0]
+roles: [officer]
+runs: 1
+temperature: 0.7
+max_tokens: 300
+bootstrap: 1000
+models:
+  - name: apertus-8b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: swiss-ai/Apertus-8B-Instruct-2509
+    revision: bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF:Q4_K_M
+    timeout: 900
+  - name: krikri-8b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: ilsp/Llama-Krikri-8B-Instruct
+    revision: ilsp/Llama-Krikri-8B-Instruct-GGUF:q4_k_m
+    timeout: 900
+  - name: llama-3.1-8b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: meta-llama/Llama-3.1-8B-Instruct
+    revision: bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M
+    timeout: 900
+  - name: meltemi-7b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: ilsp/Meltemi-7B-Instruct-v1.5
+    revision: mradermacher/Meltemi-7B-Instruct-v1.5-GGUF:Q4_K_M
+    timeout: 900
+  - name: qwen2.5-7b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: Qwen/Qwen2.5-7B-Instruct
+    revision: bartowski/Qwen2.5-7B-Instruct-GGUF:Q4_K_M
+    timeout: 900
