@@ -73,6 +73,7 @@ cases/templates/        five short examples used by the tests
 config/                 study configurations
 prompts/                instructions, role framings and answer formats in el, fr, en
 src/whf/                cases, counterfactual expansion, prompts, runners, parsing, metrics, analysis
+templates/              chat template for Apertus, used by llama.cpp in the CPU pilot
 tests/                  unit, metric and end-to-end tests
 ```
 

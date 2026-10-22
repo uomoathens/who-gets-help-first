@@ -7,6 +7,7 @@ on:
     paths:
       - config/pilot-cpu.yaml
       - .github/workflows/pilot.yml
+      - templates/**
 
 permissions:
   contents: write
@@ -26,6 +27,7 @@ jobs:
           - name: apertus-8b
             repo: bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF
             file: swiss-ai_Apertus-8B-Instruct-2509-Q4_K_M.gguf
+            template: apertus.jinja
           - name: krikri-8b
             repo: ilsp/Llama-Krikri-8B-Instruct-GGUF
             file: llama-krikri-8b-instruct-q4_k_m.gguf
@@ -40,27 +42,44 @@ jobs:
             file: Qwen2.5-7B-Instruct-Q4_K_M.gguf
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Check for earlier results
+        id: done
+        run: |
+          if [ -f "results/pilot-cpu/raw/${{ matrix.name }}.jsonl" ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/setup-python@v5
+        if: steps.done.outputs.skip != 'true'
         with:
           python-version: "3.12"
-      - run: pip install -e ".[analysis]"
+      - if: steps.done.outputs.skip != 'true'
+        run: pip install -e ".[analysis]"
       - name: Download model
+        if: steps.done.outputs.skip != 'true'
         run: |
           mkdir -p models
           curl -fsSL --retry 5 -o models/model.gguf "https://huggingface.co/${{ matrix.repo }}/resolve/main/${{ matrix.file }}"
           ls -lh models
       - name: Start llama.cpp server
+        if: steps.done.outputs.skip != 'true'
         run: |
-          docker run -d --name llm -v "$PWD/models:/models" -p 8080:8080 ghcr.io/ggml-org/llama.cpp:server -m /models/model.gguf --host 0.0.0.0 --port 8080 -c 4096 -t 4 --jinja
-          for i in $(seq 1 120); do curl -sf http://localhost:8080/health && break; sleep 5; done
+          EXTRA=""
+          if [ -n "${{ matrix.template }}" ]; then EXTRA="--chat-template-file /tpl/${{ matrix.template }}"; fi
+          docker run -d --name llm -v "$PWD/models:/models" -v "$PWD/templates:/tpl" -p 8080:8080 ghcr.io/ggml-org/llama.cpp:server -m /models/model.gguf --host 0.0.0.0 --port 8080 -c 4096 -t 4 --jinja $EXTRA
+          for i in $(seq 1 120); do
+            curl -sf http://localhost:8080/health && break
+            if [ "$(docker inspect -f '{{.State.Running}}' llm)" != "true" ]; then docker logs llm 2>&1 | tail -n 40; exit 1; fi
+            sleep 5
+          done
           curl -sf http://localhost:8080/health
       - name: Run the pilot cases
+        if: steps.done.outputs.skip != 'true'
         run: whf run --config config/pilot-cpu.yaml --model ${{ matrix.name }}
       - name: Server log
-        if: always()
+        if: always() && steps.done.outputs.skip != 'true'
         run: docker logs llm 2>&1 | tail -n 40
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.done.outputs.skip != 'true'
         with:
           name: raw-${{ matrix.name }}
           path: results/pilot-cpu/raw/${{ matrix.name }}.jsonl
@@ -72,6 +91,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -88,4 +109,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add results/pilot-cpu
           git commit -m "Pilot results: five cases on five open models (CPU, 4-bit)" || echo "nothing to commit"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
