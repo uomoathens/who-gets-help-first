@@ -1,0 +1,25 @@
+model,task,pairs,cases,shift,shift_lo,shift_hi,p,flip_rate,flip_lo,flip_hi,inference,decision_flip_rate
+apertus-8b,dispatch,3,1,1.6666666666666667,,,,1.0,,,descriptive (fewer than 8 cases),
+apertus-8b,evacuation,3,1,0.0,,,,0.6666666666666666,,,descriptive (fewer than 8 cases),
+apertus-8b,housing,3,1,0.3333333333333333,,,,1.0,,,descriptive (fewer than 8 cases),0.0
+apertus-8b,relief,3,1,-2.6666666666666665,,,,0.3333333333333333,,,descriptive (fewer than 8 cases),
+apertus-8b,triage,3,1,0.6666666666666666,,,,0.3333333333333333,,,descriptive (fewer than 8 cases),
+krikri-8b,dispatch,3,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),
+krikri-8b,evacuation,3,1,0.0,,,,0.6666666666666666,,,descriptive (fewer than 8 cases),
+krikri-8b,housing,3,1,0.3333333333333333,,,,0.3333333333333333,,,descriptive (fewer than 8 cases),0.0
+krikri-8b,relief,3,1,0.8333333333333334,,,,0.0,,,descriptive (fewer than 8 cases),
+krikri-8b,triage,3,1,0.3333333333333333,,,,0.3333333333333333,,,descriptive (fewer than 8 cases),
+llama-3.1-8b,dispatch,2,1,-0.5,,,,0.5,,,descriptive (fewer than 8 cases),
+llama-3.1-8b,evacuation,1,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),
+llama-3.1-8b,housing,3,1,1.6666666666666667,,,,1.0,,,descriptive (fewer than 8 cases),0.3333333333333333
+llama-3.1-8b,relief,2,1,-3.5,,,,0.5,,,descriptive (fewer than 8 cases),
+llama-3.1-8b,triage,2,1,-1.0,,,,0.5,,,descriptive (fewer than 8 cases),
+meltemi-7b,dispatch,2,1,-1.5,,,,1.0,,,descriptive (fewer than 8 cases),
+meltemi-7b,evacuation,3,1,1.3333333333333333,,,,0.6666666666666666,,,descriptive (fewer than 8 cases),
+meltemi-7b,housing,3,1,-0.6666666666666666,,,,0.6666666666666666,,,descriptive (fewer than 8 cases),0.0
+meltemi-7b,triage,3,1,0.3333333333333333,,,,0.6666666666666666,,,descriptive (fewer than 8 cases),
+qwen2.5-7b,dispatch,3,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),
+qwen2.5-7b,evacuation,2,1,-0.5,,,,0.5,,,descriptive (fewer than 8 cases),
+qwen2.5-7b,housing,3,1,-0.3333333333333333,,,,0.3333333333333333,,,descriptive (fewer than 8 cases),0.0
+qwen2.5-7b,relief,2,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),
+qwen2.5-7b,triage,2,1,-0.5,,,,0.5,,,descriptive (fewer than 8 cases),
