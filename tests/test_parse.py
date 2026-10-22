@@ -27,3 +27,29 @@ def test_score_and_decision():
 
 def test_labels_map_back_to_units():
     assert to_units("ranking", {"ranking": ["B", "A"]}, {"A": "u2", "B": "u1"}) == {"ranking": ["u1", "u2"]}
+
+
+def test_labels_with_words_or_greek_letters_are_accepted():
+    labels = ["A", "B", "C", "D", "E"]
+    out, err = parse("ranking", '{"ranking": ["Κλήση D", "Κλήση A", "Κλήση E", "Κλήση C", "Κλήση B"]}', labels)
+    assert err is None and out["ranking"] == ["D", "A", "E", "C", "B"]
+    out, err = parse("ranking", '{"ranking": ["Area C", "Area A", "Area D", "Area B", "Area E"]}', labels)
+    assert err is None and out["ranking"][0] == "C"
+    out, err = parse("ranking", '{"ranking": ["Δ", "Α", "Ε", "Β", "Γ"]}', labels)
+    assert err is None and out["ranking"] == ["D", "A", "E", "B", "C"]
+
+
+def test_comments_and_truncated_justifications_are_tolerated():
+    labels = ["A", "B", "C", "D"]
+    text = '```json\n{"shares": {"A": 25, "B": 23, "C": 30, // dialysis\n "D": 22}, "justification": "x"}\n```'
+    out, err = parse("shares", text, labels)
+    assert err is None and abs(out["shares"]["C"] - 30) < 1e-9
+    text = '{"ranking": ["Κλήση B", "Κλήση D", "Κλήση A", "Κλήση C"], "justification": "Η Κλήση B έχει το πιο βαθύ νερό'
+    out, err = parse("ranking", text, labels)
+    assert err is None and out["ranking"] == ["B", "D", "A", "C"]
+
+
+def test_extra_labels_and_wrong_sums_stay_invalid():
+    labels = ["A", "B", "C", "D", "E"]
+    assert parse("ranking", '{"ranking": ["B", "A", "D", "C", "E", "G"]}', labels)[1] == "not-a-permutation"
+    assert parse("shares", '{"shares": {"A": 50, "B": 50, "C": 50, "D": 50}}', ["A", "B", "C", "D"])[1] == "shares-do-not-sum-to-100"

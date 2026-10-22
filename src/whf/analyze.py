@@ -9,6 +9,7 @@ import pandas as pd
 
 
 from .config import Config
+from .parse import parse, to_units
 from .metrics import changed, cluster_bootstrap, holm, kendalls_w, krippendorff_interval, target_outcome
 
 KEYS = ["model", "case", "language", "paraphrase", "role", "run"]
@@ -22,6 +23,15 @@ def load_records(raw_dir: Path) -> pd.DataFrame:
     if not rows:
         raise FileNotFoundError(f"no records in {raw_dir}")
     return pd.DataFrame(rows)
+
+
+def reparse(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    parsed = [parse(d, o, list(l)) for d, o, l in zip(df["decision"], df["output"], df["labels"])]
+    df["valid"] = [p is not None for p, _ in parsed]
+    df["error"] = [e for _, e in parsed]
+    df["result"] = [to_units(d, p, l) if p is not None else None for (p, _), d, l in zip(parsed, df["decision"], df["labels"])]
+    return df
 
 
 def with_outcomes(df: pd.DataFrame) -> pd.DataFrame:
@@ -254,7 +264,7 @@ def forest_plot(table: pd.DataFrame, path: Path) -> bool:
 
 
 def analyze(cfg: Config, log=print) -> Path:
-    df = load_records(cfg.output / "raw")
+    df = reparse(load_records(cfg.output / "raw"))
     v = with_outcomes(df)
     pairs = make_pairs(v, cfg.share_flip_tolerance)
     out = cfg.output / "analysis"

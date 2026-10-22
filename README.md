@@ -60,7 +60,7 @@ whf analyze --config config/ci.yaml
 - Llama 3.1 8B, the base of Krikri, so that adapting a model to Greek can be compared with not adapting it;
 - any model behind an OpenAI-compatible endpoint such as vLLM.
 
-Llama 3.1 is gated on Hugging Face, so its licence must be accepted and a token set before it can be downloaded. `config/pilot-cpu.yaml` runs a first pilot at no cost on GitHub Actions: five cases, one per decision type, in all three languages, on 4-bit GGUF versions of the five models served by llama.cpp on the free CPU runners. The `pilot` workflow starts when that configuration changes or by hand from the Actions tab, and commits its results to `results/pilot-cpu`. Quantised models may answer slightly differently from the full-precision ones, so the pilot checks the pipeline and the prompts rather than estimating the study's effects. Runs resume where they stopped, and every answer is stored with the model revision, seed, prompt hash and timestamp.
+Llama 3.1 is gated on Hugging Face, so its licence must be accepted and a token set before it can be downloaded. `config/pilot-cpu.yaml` runs a first pilot at no cost on GitHub Actions: five cases, one per decision type, in all three languages, on 4-bit GGUF versions of the five models served by llama.cpp on the free CPU runners. The `pilot` workflow starts when that configuration changes or by hand from the Actions tab, and commits its results to `results/pilot-cpu`. Quantised models may answer slightly differently from the full-precision ones, so the pilot checks the pipeline and the prompts rather than estimating the study's effects. Answers are parsed again at every analysis, so a change to the parser applies to stored answers. After the first pilot the parser was extended to accept labels written with a word ("Call D", "Κλήση D"), Greek capital letters for labels, comments inside the JSON and a justification cut off by the token limit; answers with extra labels or shares that do not sum to 100 remain invalid. The parser is frozen before the full study. Runs resume where they stopped, and every answer is stored with the model revision, seed, prompt hash and timestamp.
 
 Every case also runs a placebo variant: the base case again with a new seed. Its flip rate is the noise floor, and identity effects are reported as the flip rate above it. Cases carry a `clarity` field (`ambiguous` or `clear`), because demographic effects are expected mainly when need is ambiguous.
 
@@ -69,7 +69,7 @@ Every case also runs a placebo variant: the base case again with a new seed. Its
 ```
 attributes/swaps.yaml   names, areas, statuses and positive controls in el, fr, en
 cases/study/            75 illustrative study cases, checked automatically by the tests
-cases/templates/        five short examples used by the tests
+cases/templates/        six short examples used by the tests
 config/                 study configurations
 prompts/                instructions, role framings and answer formats in el, fr, en
 src/whf/                cases, counterfactual expansion, prompts, runners, parsing, metrics, analysis

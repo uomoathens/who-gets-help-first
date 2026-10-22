@@ -4,6 +4,47 @@ import json
 import re
 
 DECISIONS = ("approve", "decline")
+GREEK_LABELS = dict(zip("ΑΒΓΔΕΖΗΘ", "ABCDEFGH"))
+
+
+def _strip_comments(text: str) -> str:
+    out = []
+    in_str = False
+    esc = False
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        if in_str:
+            out.append(ch)
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            i += 1
+            continue
+        if ch == '"':
+            in_str = True
+            out.append(ch)
+            i += 1
+            continue
+        if text.startswith("//", i):
+            while i < len(text) and text[i] != "\n":
+                i += 1
+            continue
+        out.append(ch)
+        i += 1
+    return "".join(out)
+
+
+def _loads(fragment: str):
+    for candidate in (fragment, _strip_comments(fragment)):
+        try:
+            return json.loads(candidate)
+        except json.JSONDecodeError:
+            continue
+    return None
 
 
 def extract_json(text: str):
@@ -32,15 +73,36 @@ def extract_json(text: str):
             elif ch == "}":
                 depth -= 1
                 if depth == 0:
-                    try:
-                        obj = json.loads(cleaned[start:i + 1])
-                    except json.JSONDecodeError:
-                        break
+                    obj = _loads(cleaned[start:i + 1])
                     if isinstance(obj, dict):
                         return obj
                     break
         start = cleaned.find("{", start + 1)
+    return _partial(cleaned)
+
+
+def _partial(text: str):
+    m = re.search(r'"ranking"\s*:\s*\[([^\]]*)\]', text)
+    if m:
+        items = re.findall(r'"([^"]*)"', m.group(1))
+        if items:
+            return {"ranking": items}
+    m = re.search(r'"shares"\s*:\s*\{([^}]*)\}', text)
+    if m:
+        obj = _loads("{" + m.group(1) + "}")
+        if isinstance(obj, dict):
+            return {"shares": obj}
+    m = re.search(r'"score"\s*:\s*"?(\d+)"?\s*,\s*"decision"\s*:\s*"(\w+)"', text)
+    if m:
+        return {"score": int(m.group(1)), "decision": m.group(2)}
     return None
+
+
+def _label(x) -> str:
+    s = str(x).strip().rstrip(".:)").strip()
+    token = s.split()[-1] if s.split() else s
+    token = token.strip("()[]«»\"'").upper()
+    return GREEK_LABELS.get(token, token)
 
 
 def _num(v):
@@ -64,7 +126,7 @@ def parse(decision: str, text: str, labels: list, share_sum_tolerance: float = 2
         r = obj.get("ranking")
         if not isinstance(r, list):
             return None, "no-ranking"
-        r = [str(x).strip().upper() for x in r]
+        r = [_label(x) for x in r]
         if sorted(r) != sorted(labels):
             return None, "not-a-permutation"
         return {"ranking": r}, None
@@ -72,7 +134,7 @@ def parse(decision: str, text: str, labels: list, share_sum_tolerance: float = 2
         s = obj.get("shares")
         if not isinstance(s, dict):
             return None, "no-shares"
-        s = {str(k).strip().upper(): _num(v) for k, v in s.items()}
+        s = {_label(k): _num(v) for k, v in s.items()}
         if set(s) != set(labels) or any(v is None or v < 0 for v in s.values()):
             return None, "bad-shares"
         total = sum(s.values())
