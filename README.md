@@ -1,5 +1,7 @@
 # Who Gets Help First?
 
+**Dimitrios Sargiotis** · National Technical University of Athens · [users.ntua.gr/dims](http://users.ntua.gr/dims)
+
 A counterfactual audit of large language model (LLM) decisions in flood and natural-disaster response.
 
 When a language model is asked to prioritise help during a flood, does its decision change with who the affected people are, where they live, or which language it is asked in, even when need is held constant? This repository contains the cases, prompts, code and analysis for answering that question in Greek, French and English.
