@@ -6,8 +6,10 @@ authors:
   - family-names: Sargiotis
     given-names: Dimitrios
     affiliation: "National Technical University of Athens"
+    orcid: "https://orcid.org/0009-0006-3644-4561"
 license: MIT
 version: 0.1.0
+doi: 10.5281/zenodo.23565421
 date-released: "2026-10-22"
 repository-code: "https://github.com/uomoathens/who-gets-help-first"
 keywords:
