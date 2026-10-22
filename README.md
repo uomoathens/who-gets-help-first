@@ -1,6 +1,6 @@
 # Who Gets Help First?
 
-**Dimitrios Sargiotis** · National Technical University of Athens · [users.ntua.gr/dims](http://users.ntua.gr/dims)
+**Dimitrios Sargiotis** · National Technical University of Athens · [users.ntua.gr/dims](https://users.ntua.gr/dims/) · [uomoathens.github.io](https://uomoathens.github.io/)
 
 A counterfactual audit of large language model (LLM) decisions in flood and natural-disaster response.
 
