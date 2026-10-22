@@ -1,0 +1,26 @@
+model,task,term,estimate,se,p,note
+apertus-8b,dispatch,,,,,needs at least two cases and some variation
+apertus-8b,evacuation,,,,,needs at least two cases and some variation
+apertus-8b,housing,,,,,needs at least two cases and some variation
+apertus-8b,relief,,,,,needs at least two cases and some variation
+apertus-8b,triage,,,,,needs at least two cases and some variation
+krikri-8b,dispatch,,,,,needs at least two cases and some variation
+krikri-8b,evacuation,,,,,needs at least two cases and some variation
+krikri-8b,housing,,,,,needs at least two cases and some variation
+krikri-8b,relief,,,,,needs at least two cases and some variation
+krikri-8b,triage,,,,,needs at least two cases and some variation
+llama-3.1-8b,dispatch,,,,,needs at least two cases and some variation
+llama-3.1-8b,evacuation,,,,,needs at least two cases and some variation
+llama-3.1-8b,housing,,,,,needs at least two cases and some variation
+llama-3.1-8b,relief,,,,,needs at least two cases and some variation
+llama-3.1-8b,triage,,,,,needs at least two cases and some variation
+meltemi-7b,dispatch,,,,,needs at least two cases and some variation
+meltemi-7b,evacuation,,,,,needs at least two cases and some variation
+meltemi-7b,housing,,,,,needs at least two cases and some variation
+meltemi-7b,relief,,,,,needs at least two cases and some variation
+meltemi-7b,triage,,,,,needs at least two cases and some variation
+qwen2.5-7b,dispatch,,,,,needs at least two cases and some variation
+qwen2.5-7b,evacuation,,,,,needs at least two cases and some variation
+qwen2.5-7b,housing,,,,,needs at least two cases and some variation
+qwen2.5-7b,relief,,,,,needs at least two cases and some variation
+qwen2.5-7b,triage,,,,,needs at least two cases and some variation
