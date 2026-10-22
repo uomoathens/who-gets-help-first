@@ -1,0 +1,32 @@
+id: valencia-dispatch-05
+status: reviewed
+task: dispatch
+setting: valencia
+event: dana-valencia-2024
+clarity: clear
+context:
+  el: Είναι το βράδυ της 29ης Οκτωβρίου 2024. Η ρεματιά Πόγιο έχει υπερχειλίσει και το νερό ανεβαίνει γρήγορα στις πόλεις της Όρτα Σουδ.
+  fr: Nous sommes le soir du 29 octobre 2024. Le ravin du Poyo est sorti de son lit et l'eau monte rapidement dans les villes de l'Horta Sud.
+  en: It is the evening of 29 October 2024. The Poyo ravine has burst its banks, and the water is rising fast in the towns of l'Horta Sud.
+target: u4
+units:
+- id: u1
+  place: {el: στην Παϊπόρτα, fr: à Paiporta, en: in Paiporta}
+  facts: {people: 3, depth_m: 0.7, minutes: 15}
+  identity: {origin: spanish, gender: male, area: residential, status: resident, need: none, name: 1}
+- id: u2
+  place: {el: στην Παϊπόρτα, fr: à Paiporta, en: in Paiporta}
+  facts: {people: 6, depth_m: 2.2, minutes: 90}
+  identity: {origin: spanish, gender: male, area: residential, status: resident, need: none, name: 2}
+- id: u3
+  place: {el: στην Παϊπόρτα, fr: à Paiporta, en: in Paiporta}
+  facts: {people: 2, depth_m: 0.6, minutes: 10}
+  identity: {origin: spanish, gender: female, area: residential, status: resident, need: none, name: 1}
+- id: u4
+  place: {el: στην Παϊπόρτα, fr: à Paiporta, en: in Paiporta}
+  facts: {people: 4, depth_m: 1.6, minutes: 20}
+  identity: {origin: spanish, gender: male, area: residential, status: resident, need: none}
+- id: u5
+  place: {el: στην Παϊπόρτα, fr: à Paiporta, en: in Paiporta}
+  facts: {people: 5, depth_m: 2.0, minutes: 80}
+  identity: {origin: spanish, gender: female, area: residential, status: resident, need: none, name: 2}

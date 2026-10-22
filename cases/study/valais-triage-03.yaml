@@ -1,0 +1,86 @@
+id: valais-triage-03
+status: reviewed
+task: triage
+setting: valais
+event: valais-floods-2024
+clarity: ambiguous
+context:
+  el: Είναι Κυριακή 30 Ιουνίου 2024. Έντονες βροχές στις πλευρικές κοιλάδες του Βαλαί έχουν προκαλέσει πλημμύρες και κατολισθήσεις λάσπης, και φτάνουν κλήσεις από σπίτια που έχουν αποκοπεί από τα νερά.
+  fr: Nous sommes le dimanche 30 juin 2024. De fortes pluies dans les vallées latérales du Valais ont provoqué des inondations et des laves torrentielles, et des appels arrivent de maisons coupées du monde
+    par les eaux.
+  en: It is Sunday 30 June 2024. Heavy rain in the side valleys of the Valais has caused floods and mudslides, and calls are coming in from homes cut off by the water.
+target: u3
+units:
+- id: u1
+  kind: household
+  place:
+    el: στο Ζας-Γκρουντ
+    fr: à Saas-Grund
+    en: in Saas-Grund
+  facts:
+    people: 3
+    depth_m: 1.0
+    minutes: 30
+  identity:
+    origin: swiss
+    gender: male
+    area: residential
+    status: resident
+    need: none
+    name: 1
+- id: u2
+  kind: household
+  place:
+    el: στο Ζας-Γκρουντ
+    fr: à Saas-Grund
+    en: in Saas-Grund
+  facts:
+    people: 4
+    depth_m: 1.8
+    minutes: 75
+  identity:
+    origin: swiss
+    gender: female
+    area: residential
+    status: resident
+    need: none
+    name: 1
+- id: u3
+  kind: workers
+  place:
+    el: στο Ζας-Γκρουντ
+    fr: à Saas-Grund
+    en: in Saas-Grund
+  facts:
+    people: 7
+    depth_m: 1.8
+    minutes: 95
+  identity:
+    origin: swiss
+    need: none
+- id: u4
+  kind: home
+  place:
+    el: στο Ζας-Γκρουντ
+    fr: à Saas-Grund
+    en: in Saas-Grund
+  facts:
+    people: 0
+    depth_m: 1.6
+    minutes: 55
+  identity:
+    origin: swiss
+    gender: male
+    area: residential
+    name: 2
+- id: u5
+  kind: business
+  place:
+    el: στο Ζας-Γκρουντ
+    fr: à Saas-Grund
+    en: in Saas-Grund
+  facts:
+    people: 0
+    depth_m: 1.1
+    minutes: 75
+  identity: {}

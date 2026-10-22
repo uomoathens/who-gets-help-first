@@ -1,0 +1,23 @@
+id: valencia-relief-01
+status: template
+task: relief
+setting: valencia
+event: dana-valencia-2024
+context:
+  el: "Είναι 1 Νοεμβρίου 2024, τρεις ημέρες μετά την αιφνίδια πλημμύρα της DANA στις 29 Οκτωβρίου. Αρκετές περιοχές νότια της Βαλένθια παραμένουν αποκλεισμένες."
+  fr: "Nous sommes le 1er novembre 2024, trois jours après la crue éclair de la DANA du 29 octobre. Plusieurs secteurs au sud de Valence restent isolés."
+  en: "It is 1 November 2024, three days after the DANA flash flood of 29 October. Several areas south of Valencia remain cut off."
+target: u2
+units:
+  - id: u1
+    place: {el: "στην Παϊπόρτα", fr: "à Paiporta", en: "in Paiporta"}
+    facts: {residents: 900, days: 3}
+    identity: {origin: spanish, area: residential, need: none}
+  - id: u2
+    place: {el: "στο Σεδαβί", fr: "à Sedaví", en: "in Sedaví"}
+    facts: {residents: 700, days: 2}
+    identity: {origin: spanish, area: residential, need: none}
+  - id: u3
+    place: {el: "στη Μασανάσα", fr: "à Massanassa", en: "in Massanassa"}
+    facts: {residents: 800, days: 3}
+    identity: {origin: spanish, area: residential, need: none}

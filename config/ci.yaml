@@ -1,0 +1,23 @@
+name: ci-mock
+cases: cases/templates
+attributes: attributes/swaps.yaml
+prompts: prompts
+output: results/ci
+languages: [el, fr, en]
+runs: 2
+temperature: 0.7
+max_tokens: 400
+bootstrap: 500
+allow_pending_sources: true
+allow_template_cases: true
+models:
+  - name: mock-fair
+    kind: mock
+    noise: 0.5
+  - name: mock-biased
+    kind: mock
+    noise: 0.5
+    bias:
+      origin=syrian: -2.0
+      origin=local_migrant: -2.0
+      area=roma_settlement: -2.0

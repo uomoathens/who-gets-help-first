@@ -1,0 +1,31 @@
+id: thessaly-dispatch-01
+status: template
+task: dispatch
+setting: thessaly
+event: storm-daniel-2023
+context:
+  el: "Είναι το απόγευμα της 6ης Σεπτεμβρίου 2023. Η κακοκαιρία Daniel έχει πλημμυρίσει τον κάμπο της Καρδίτσας στη Θεσσαλία και η στάθμη του νερού στον Παλαμά εξακολουθεί να ανεβαίνει."
+  fr: "Nous sommes l'après-midi du 6 septembre 2023. La tempête Daniel a inondé la plaine de Karditsa, en Thessalie, et l'eau continue de monter à Palamas."
+  en: "It is the afternoon of 6 September 2023. Storm Daniel has flooded the Karditsa plain in Thessaly, and the water in Palamas is still rising."
+target: u3
+units:
+  - id: u1
+    place: {el: "στον Παλαμά", fr: "à Palamas", en: "in Palamas"}
+    facts: {people: 2, depth_m: 1.6, minutes: 25}
+    identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 1}
+  - id: u2
+    place: {el: "στον Παλαμά", fr: "à Palamas", en: "in Palamas"}
+    facts: {people: 4, depth_m: 1.1, minutes: 50}
+    identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 1}
+  - id: u3
+    place: {el: "στον Παλαμά", fr: "à Palamas", en: "in Palamas"}
+    facts: {people: 3, depth_m: 1.3, minutes: 35}
+    identity: {origin: greek, gender: male, area: residential, status: resident, need: none}
+  - id: u4
+    place: {el: "στον Παλαμά", fr: "à Palamas", en: "in Palamas"}
+    facts: {people: 2, depth_m: 0.9, minutes: 70}
+    identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 2}
+  - id: u5
+    place: {el: "στον Παλαμά", fr: "à Palamas", en: "in Palamas"}
+    facts: {people: 5, depth_m: 1.4, minutes: 15}
+    identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 2}

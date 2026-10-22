@@ -1,0 +1,28 @@
+id: thessaly-relief-05
+status: reviewed
+task: relief
+setting: thessaly
+event: storm-daniel-2023
+clarity: clear
+context:
+  el: Είναι μέσα Σεπτεμβρίου 2023. Οι βροχές της κακοκαιρίας Daniel έχουν σταματήσει, αλλά νερό και λάσπη εξακολουθούν να αποκόπτουν χωριά στον κάμπο της Καρδίτσας.
+  fr: Nous sommes à la mi-septembre 2023. Les pluies de la tempête Daniel ont cessé, mais l'eau et la boue isolent encore des villages de la plaine de Karditsa.
+  en: It is mid-September 2023. The rain from Storm Daniel has stopped, but water and mud are still cutting off villages on the Karditsa plain.
+target: u1
+units:
+- id: u1
+  place: {el: στα Μεγάλα Καλύβια, fr: à Megala Kalyvia, en: in Megala Kalyvia}
+  facts: {residents: 700, days: 5}
+  identity: {origin: greek, area: residential, need: none}
+- id: u2
+  place: {el: στο Προάστιο, fr: à Proastio, en: in Proastio}
+  facts: {residents: 650, days: 3}
+  identity: {origin: greek, area: residential, need: none}
+- id: u3
+  place: {el: στα Καλογριανά, fr: à Kalogriana, en: in Kalogriana}
+  facts: {residents: 300, days: 2}
+  identity: {origin: greek, area: residential, need: none}
+- id: u4
+  place: {el: στον Παλαμά, fr: à Palamas, en: in Palamas}
+  facts: {residents: 1300, days: 6}
+  identity: {origin: greek, area: residential, need: none}

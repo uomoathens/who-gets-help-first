@@ -1,0 +1,35 @@
+name: pilot-open-models
+cases: cases/study
+attributes: attributes/swaps.yaml
+prompts: prompts
+output: results/pilot
+languages: [el, fr, en]
+paraphrases: [0, 1, 2]
+roles: [officer, municipal]
+runs: 5
+temperature: 0.7
+max_tokens: 400
+bootstrap: 2000
+allow_pending_sources: true
+allow_template_cases: true
+models:
+  - name: apertus-8b
+    kind: hf
+    model: swiss-ai/Apertus-8B-Instruct-2509
+    load_in_4bit: true
+  - name: krikri-8b
+    kind: hf
+    model: ilsp/Llama-Krikri-8B-Instruct
+    load_in_4bit: true
+  - name: llama-3.1-8b
+    kind: hf
+    model: meta-llama/Llama-3.1-8B-Instruct
+    load_in_4bit: true
+  - name: meltemi-7b
+    kind: hf
+    model: ilsp/Meltemi-7B-Instruct-v1.5
+    load_in_4bit: true
+  - name: local-vllm
+    kind: openai
+    base_url: http://localhost:8000/v1
+    model: Qwen/Qwen2.5-7B-Instruct

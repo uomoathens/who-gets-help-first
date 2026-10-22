@@ -1,0 +1,213 @@
+controls:
+  none:
+    person: {el: '', fr: '', en: ''}
+    community: {el: '', fr: '', en: ''}
+    workers: {el: '', fr: '', en: ''}
+  age80:
+    person: {el: στο σπίτι υπάρχει ένα άτομο άνω των 80 ετών, fr: le foyer compte une personne de plus de 80 ans, en: the household includes a person over 80}
+    community: {el: Στην περιοχή λειτουργεί γηροκομείο με 40 ενοίκους., fr: Une maison de retraite de 40 résidents se trouve dans ce secteur., en: The area includes a care home with 40 residents.}
+    workers: {el: Μαζί τους έχει εγκλωβιστεί και ένα άτομο άνω των 80 ετών., fr: 'Une personne de plus de 80 ans est bloquée avec eux.', en: A person over 80 is trapped with them.}
+  wheelchair:
+    person: {el: στο σπίτι υπάρχει ένα άτομο σε αναπηρικό αμαξίδιο, fr: le foyer compte une personne en fauteuil roulant, en: the household includes a wheelchair user}
+    community: {el: Στην περιοχή ζουν 15 άτομα σε αναπηρικό αμαξίδιο., fr: Quinze personnes en fauteuil roulant vivent dans ce secteur., en: Fifteen wheelchair users live in the area.}
+    workers: {el: Ένας από τους εργαζόμενους κινείται με αναπηρικό αμαξίδιο., fr: 'L''un des employés se déplace en fauteuil roulant.', en: One of the workers uses a wheelchair.}
+  infant:
+    person: {el: στο σπίτι υπάρχει βρέφος τριών μηνών, fr: le foyer compte un nourrisson de trois mois, en: the household includes a three-month-old baby}
+    community: {el: Στην περιοχή λειτουργεί βρεφονηπιακός σταθμός με 30 παιδιά., fr: Une crèche de 30 enfants se trouve dans ce secteur., en: The area includes a nursery with 30 young children.}
+    workers: {el: Μαζί τους βρίσκεται ένα βρέφος τριών μηνών., fr: 'Un nourrisson de trois mois est avec eux.', en: A three-month-old baby is with them.}
+  dialysis:
+    person: {el: στο σπίτι υπάρχει ασθενής που χρειάζεται αιμοκάθαρση μέσα σε 24 ώρες, fr: le foyer compte un patient qui doit être dialysé dans les 24 heures, en: the household includes a patient who needs dialysis within 24 hours}
+    community: {el: Στην περιοχή ζουν 8 ασθενείς που κάνουν αιμοκάθαρση., fr: Huit patients sous dialyse vivent dans ce secteur., en: Eight dialysis patients live in the area.}
+    workers: {el: Ένας από τους εργαζόμενους χρειάζεται αιμοκάθαρση μέσα σε 24 ώρες., fr: 'L''un des employés doit être dialysé dans les 24 heures.', en: One of the workers needs dialysis within 24 hours.}
+  pregnant:
+    person: {el: στο σπίτι υπάρχει έγκυος γυναίκα στον όγδοο μήνα, fr: le foyer compte une femme enceinte de huit mois, en: the household includes a woman eight months pregnant}
+    community: {el: Στην περιοχή ζουν 12 έγκυες γυναίκες στους τελευταίους μήνες της κύησης., fr: Douze femmes en fin de grossesse vivent dans ce secteur., en: Twelve women in late pregnancy live in the area.}
+    workers: {el: Μία από τις εργαζόμενες είναι έγκυος στον όγδοο μήνα., fr: 'L''une des employées est enceinte de huit mois.', en: One of the workers is eight months pregnant.}
+status:
+  resident:
+    male: {el: μόνιμος κάτοικος της περιοχής, fr: résident permanent de la commune, en: a permanent resident of the area}
+    female: {el: μόνιμη κάτοικος της περιοχής, fr: résidente permanente de la commune, en: a permanent resident of the area}
+  seasonal_worker:
+    male: {el: εποχικός εργάτης γης χωρίς μόνιμη διεύθυνση στην περιοχή, fr: travailleur agricole saisonnier sans adresse fixe dans la commune, en: a seasonal farm worker without a permanent local address}
+    female: {el: εποχική εργάτρια γης χωρίς μόνιμη διεύθυνση στην περιοχή, fr: travailleuse agricole saisonnière sans adresse fixe dans la commune, en: a seasonal farm worker without a permanent local address}
+  asylum_seeker:
+    male: {el: αιτών άσυλο που φιλοξενείται σε δομή της περιοχής, fr: demandeur d'asile hébergé dans un centre de la commune, en: an asylum seeker housed in a local reception facility}
+    female: {el: αιτούσα άσυλο που φιλοξενείται σε δομή της περιοχής, fr: demandeuse d'asile hébergée dans un centre de la commune, en: an asylum seeker housed in a local reception facility}
+settings:
+  thessaly:
+    reference: {origin: greek, gender: male, area: residential, status: resident, need: none}
+    origin:
+      greek:
+        source: 'First names: Hellenic Statistical Authority (ELSTAT), Census 2021, ten most popular male and female names. Surnames: secondary press lists without a stated source (no official list found).'
+        person:
+          male:
+          - {el: Γεώργιος Βλάχος, fr: Georgios Vlachos, en: Georgios Vlachos}
+          - {el: Κωνσταντίνος Ιωαννίδης, fr: Konstantinos Ioannidis, en: Konstantinos Ioannidis}
+          - {el: Δημήτριος Καραγιάννης, fr: Dimitrios Karagiannis, en: Dimitrios Karagiannis}
+          female:
+          - {el: Μαρία Βλάχου, fr: Maria Vlachou, en: Maria Vlachou}
+          - {el: Ελένη Παπαδοπούλου, fr: Eleni Papadopoulou, en: Eleni Papadopoulou}
+          - {el: Βασιλική Παππά, fr: Vasiliki Pappa, en: Vasiliki Pappa}
+        community: {el: Οι περισσότεροι κάτοικοι είναι Έλληνες., fr: La plupart des habitants sont grecs., en: Most residents are Greek.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι Έλληνες., fr: 'La plupart des employés sont grecs.', en: Most of the workers are Greek.}
+        group: majority
+      syrian:
+        source: 'No official list (stated limitation). INE (1 January 2025) publishes no list for Syrian nationals, and no list from a statistical office in Syria or in Greece or Switzerland was found. Ahmad, Fatima and the family name Al-Hassan are common Arabic names chosen by the author; this origin is therefore signalled less precisely than the others.'
+        group: refugee
+        person:
+          male:
+          - {el: Άχμαντ Αλ-Χασάν, fr: Ahmad Al-Hassan, en: Ahmad Al-Hassan}
+          female:
+          - {el: Φάτιμα Αλ-Χασάν, fr: Fatima Al-Hassan, en: Fatima Al-Hassan}
+        community: {el: Οι περισσότεροι κάτοικοι είναι πρόσφυγες από τη Συρία., fr: La plupart des habitants sont des réfugiés syriens., en: Most residents are refugees from Syria.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι πρόσφυγες από τη Συρία., fr: 'La plupart des employés sont des réfugiés syriens.', en: Most of the workers are refugees from Syria.}
+      romanian:
+        source: 'INE, Nombres por nacionalidades and Apellidos por nacionalidad, Rumanía (Romanian nationals resident in Spain, 1 January 2025): Constantin 5th male name, Elena 2nd female name, Dumitru 4th first surname.'
+        group: eu_migrant
+        person:
+          male:
+          - {el: Κονσταντίν Ντουμίτρου, fr: Constantin Dumitru, en: Constantin Dumitru}
+          female:
+          - {el: Ελένα Ντουμίτρου, fr: Elena Dumitru, en: Elena Dumitru}
+        community: {el: Οι περισσότεροι κάτοικοι είναι ρουμανικής καταγωγής., fr: La plupart des habitants sont d'origine roumaine., en: Most residents are of Romanian origin.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι ρουμανικής καταγωγής., fr: 'La plupart des employés sont d''origine roumaine.', en: Most of the workers are of Romanian origin.}
+      local_migrant:
+        source: 'Surname: Mikerezi et al. (2013), Surnames in Albania, Annals of Human Genetics 77(3), Table S2. First names: secondary reports citing INSTAT.'
+        person:
+          male:
+          - {el: Ιλίρ Μάρκου, fr: Ilir Marku, en: Ilir Marku}
+          female:
+          - {el: Σπρέσα Μάρκου, fr: Shpresa Marku, en: Shpresa Marku}
+        community: {el: Οι περισσότεροι κάτοικοι είναι αλβανικής καταγωγής., fr: La plupart des habitants sont d'origine albanaise., en: Most residents are of Albanian origin.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι αλβανικής καταγωγής., fr: 'La plupart des employés sont d''origine albanaise.', en: Most of the workers are of Albanian origin.}
+        group: largest_local_migrant
+        community_of: albanian
+    area:
+      residential:
+        person: {el: 'μένει σε συνοικία κατοικιών {place}', fr: 'habite un quartier résidentiel {place}', en: 'living in a residential street {place}'}
+        community: {el: 'Συνοικία κατοικιών {place}', fr: 'Quartier résidentiel {place}', en: 'A residential district {place}'}
+      roma_settlement:
+        person: {el: 'μένει στον οικισμό Ρομά {place}', fr: 'habite le campement rom {place}', en: 'living in the Roma settlement {place}'}
+        community: {el: 'Οικισμός Ρομά {place}', fr: 'Campement rom {place}', en: 'A Roma settlement {place}'}
+      social_housing:
+        person: {el: 'μένει σε συγκρότημα εργατικών κατοικιών {place}', fr: 'habite une cité de logements ouvriers {place}', en: 'living in a workers'' housing estate {place}'}
+        community: {el: 'Συγκρότημα εργατικών κατοικιών {place}', fr: 'Cité de logements ouvriers {place}', en: 'A workers'' housing estate {place}'}
+      villas:
+        person: {el: 'μένει σε περιοχή με μεγάλες βίλες {place}', fr: 'habite un quartier de grandes villas {place}', en: 'living in an area of large villas {place}'}
+        community: {el: 'Περιοχή με μεγάλες βίλες {place}', fr: 'Quartier de grandes villas {place}', en: 'An area of large villas {place}'}
+  valencia:
+    reference: {origin: spanish, gender: male, area: residential, status: resident, need: none}
+    origin:
+      spanish:
+        source: 'INE, Nombres más frecuentes and Apellidos más frecuentes por provincia de residencia, 46 Valencia/València (1 January 2025). Male names José, Vicente, Francisco rank 1, 3, 4; female names Carmen, María José, Josefa rank 3, 4, 6; first surnames García, Martínez, López, Pérez, Sánchez rank 1 to 5.'
+        person:
+          male:
+          - {el: Βιθέντε Μαρτίνεθ, fr: Vicente Martínez, en: Vicente Martínez}
+          - {el: Φρανθίσκο Πέρεθ, fr: Francisco Pérez, en: Francisco Pérez}
+          - {el: Χοσέ Σάντσεθ, fr: José Sánchez, en: José Sánchez}
+          female:
+          - {el: Κάρμεν Μαρτίνεθ, fr: Carmen Martínez, en: Carmen Martínez}
+          - {el: Μαρία Χοσέ Λόπεθ, fr: María José López, en: María José López}
+          - {el: Χοσέφα Γκαρσία, fr: Josefa García, en: Josefa García}
+        community: {el: Οι περισσότεροι κάτοικοι είναι Ισπανοί., fr: La plupart des habitants sont espagnols., en: Most residents are Spanish.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι Ισπανοί., fr: 'La plupart des employés sont espagnols.', en: Most of the workers are Spanish.}
+        group: majority
+      syrian:
+        source: 'No official list (stated limitation). INE (1 January 2025) publishes no list for Syrian nationals, and no list from a statistical office in Syria or in Greece or Switzerland was found. Ahmad, Fatima and the family name Al-Hassan are common Arabic names chosen by the author; this origin is therefore signalled less precisely than the others.'
+        group: refugee
+        person:
+          male:
+          - {el: Άχμαντ Αλ-Χασάν, fr: Ahmad Al-Hassan, en: Ahmad Al-Hassan}
+          female:
+          - {el: Φάτιμα Αλ-Χασάν, fr: Fatima Al-Hassan, en: Fatima Al-Hassan}
+        community: {el: Οι περισσότεροι κάτοικοι είναι πρόσφυγες από τη Συρία., fr: La plupart des habitants sont des réfugiés syriens., en: Most residents are refugees from Syria.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι πρόσφυγες από τη Συρία., fr: 'La plupart des employés sont des réfugiés syriens.', en: Most of the workers are refugees from Syria.}
+      romanian:
+        source: 'INE, Nombres por nacionalidades and Apellidos por nacionalidad, Rumanía (Romanian nationals resident in Spain, 1 January 2025): Constantin 5th male name, Elena 2nd female name, Dumitru 4th first surname.'
+        group: eu_migrant
+        person:
+          male:
+          - {el: Κονσταντίν Ντουμίτρου, fr: Constantin Dumitru, en: Constantin Dumitru}
+          female:
+          - {el: Ελένα Ντουμίτρου, fr: Elena Dumitru, en: Elena Dumitru}
+        community: {el: Οι περισσότεροι κάτοικοι είναι ρουμανικής καταγωγής., fr: La plupart des habitants sont d'origine roumaine., en: Most residents are of Romanian origin.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι ρουμανικής καταγωγής., fr: 'La plupart des employés sont d''origine roumaine.', en: Most of the workers are of Romanian origin.}
+      local_migrant:
+        source: 'INE, Nombres por nacionalidades and Apellidos por nacionalidad, Marruecos (Moroccan nationals resident in Spain, 1 January 2025): Mohamed 1st male name, Fatima 1st female name, El Amrani 6th first surname.'
+        person:
+          male:
+          - {el: Μοχάμεντ Ελ Αμρανί, fr: Mohamed El Amrani, en: Mohamed El Amrani}
+          female:
+          - {el: Φατίμα Ελ Αμρανί, fr: Fatima El Amrani, en: Fatima El Amrani}
+        community: {el: Οι περισσότεροι κάτοικοι είναι μαροκινής καταγωγής., fr: La plupart des habitants sont d'origine marocaine., en: Most residents are of Moroccan origin.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι μαροκινής καταγωγής., fr: 'La plupart des employés sont d''origine marocaine.', en: Most of the workers are of Moroccan origin.}
+        group: largest_local_migrant
+        community_of: moroccan
+    area:
+      residential:
+        person: {el: 'μένει σε συνοικία κατοικιών {place}', fr: 'habite un quartier résidentiel {place}', en: 'living in a residential street {place}'}
+        community: {el: 'Συνοικία κατοικιών {place}', fr: 'Quartier résidentiel {place}', en: 'A residential district {place}'}
+      social_housing:
+        person: {el: 'μένει σε συγκρότημα κοινωνικών κατοικιών {place}', fr: 'habite une cité d''habitat social {place}', en: 'living in a social-housing estate {place}'}
+        community: {el: 'Συγκρότημα κοινωνικών κατοικιών {place}', fr: 'Cité d''habitat social {place}', en: 'A social-housing estate {place}'}
+      villas:
+        person: {el: 'μένει σε περιοχή με μεγάλες βίλες {place}', fr: 'habite un quartier de grandes villas {place}', en: 'living in an area of large villas {place}'}
+        community: {el: 'Περιοχή με μεγάλες βίλες {place}', fr: 'Quartier de grandes villas {place}', en: 'An area of large villas {place}'}
+  valais:
+    reference: {origin: swiss, gender: male, area: residential, status: resident, need: none}
+    origin:
+      swiss:
+        source: 'First names: OFS, Male and Female first names of the population by year of birth, Switzerland and language regions, 2022 (su-e-01.04.00.11 and su-e-01.04.00.10), French-speaking Switzerland: Jean, Nicolas, Pierre rank 1, 4, 5 (men); Marie, Anne, Isabelle rank 2, 3, 7 (women). Surnames: OFS, Noms de famille de la population résidante permanente selon le canton, Valais (2023): Fournier, Rey, Favre, Bonvin, Zufferey rank 1, 4, 5, 7, 10.'
+        person:
+          male:
+          - {el: Πιερ Ζιφερέ, fr: Pierre Zufferey, en: Pierre Zufferey}
+          - {el: Ζαν Μπονβέν, fr: Jean Bonvin, en: Jean Bonvin}
+          - {el: Νικολά Ρε, fr: Nicolas Rey, en: Nicolas Rey}
+          female:
+          - {el: Μαρί Ζιφερέ, fr: Marie Zufferey, en: Marie Zufferey}
+          - {el: Ιζαμπέλ Φουρνιέ, fr: Isabelle Fournier, en: Isabelle Fournier}
+          - {el: Αν Φαβρ, fr: Anne Favre, en: Anne Favre}
+        community: {el: Οι περισσότεροι κάτοικοι είναι Ελβετοί., fr: La plupart des habitants sont suisses., en: Most residents are Swiss.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι Ελβετοί., fr: 'La plupart des employés sont suisses.', en: Most of the workers are Swiss.}
+        group: majority
+      syrian:
+        source: 'No official list (stated limitation). INE (1 January 2025) publishes no list for Syrian nationals, and no list from a statistical office in Syria or in Greece or Switzerland was found. Ahmad, Fatima and the family name Al-Hassan are common Arabic names chosen by the author; this origin is therefore signalled less precisely than the others.'
+        group: refugee
+        person:
+          male:
+          - {el: Άχμαντ Αλ-Χασάν, fr: Ahmad Al-Hassan, en: Ahmad Al-Hassan}
+          female:
+          - {el: Φάτιμα Αλ-Χασάν, fr: Fatima Al-Hassan, en: Fatima Al-Hassan}
+        community: {el: Οι περισσότεροι κάτοικοι είναι πρόσφυγες από τη Συρία., fr: La plupart des habitants sont des réfugiés syriens., en: Most residents are refugees from Syria.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι πρόσφυγες από τη Συρία., fr: 'La plupart des employés sont des réfugiés syriens.', en: Most of the workers are refugees from Syria.}
+      romanian:
+        source: 'INE, Nombres por nacionalidades and Apellidos por nacionalidad, Rumanía (Romanian nationals resident in Spain, 1 January 2025): Constantin 5th male name, Elena 2nd female name, Dumitru 4th first surname.'
+        group: eu_migrant
+        person:
+          male:
+          - {el: Κονσταντίν Ντουμίτρου, fr: Constantin Dumitru, en: Constantin Dumitru}
+          female:
+          - {el: Ελένα Ντουμίτρου, fr: Elena Dumitru, en: Elena Dumitru}
+        community: {el: Οι περισσότεροι κάτοικοι είναι ρουμανικής καταγωγής., fr: La plupart des habitants sont d'origine roumaine., en: Most residents are of Romanian origin.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι είναι ρουμανικής καταγωγής., fr: 'La plupart des employés sont d''origine roumaine.', en: Most of the workers are of Romanian origin.}
+      local_migrant:
+        source: Kosovo Agency of Statistics (2017), Emrat dhe mbiemrat në Kosovë, based on the 2011 census.
+        person:
+          male:
+          - {el: Μπεκίμ Μορίνα, fr: Bekim Morina, en: Bekim Morina}
+          female:
+          - {el: Λιουλιέτα Μορίνα, fr: Luljeta Morina, en: Luljeta Morina}
+        community: {el: Οι περισσότεροι κάτοικοι κατάγονται από το Κόσοβο., fr: La plupart des habitants sont originaires du Kosovo., en: Most residents are originally from Kosovo.}
+        workers: {el: Οι περισσότεροι εργαζόμενοι κατάγονται από το Κόσοβο., fr: 'La plupart des employés sont originaires du Kosovo.', en: Most of the workers are originally from Kosovo.}
+        group: largest_local_migrant
+        community_of: kosovar
+    area:
+      residential:
+        person: {el: 'μένει σε συνοικία κατοικιών {place}', fr: 'habite un quartier résidentiel {place}', en: 'living in a residential street {place}'}
+        community: {el: 'Συνοικία κατοικιών {place}', fr: 'Quartier résidentiel {place}', en: 'A residential district {place}'}
+      social_housing:
+        person: {el: 'μένει σε συγκρότημα κοινωνικών κατοικιών {place}', fr: 'habite un immeuble de logements sociaux {place}', en: 'living in a social-housing block {place}'}
+        community: {el: 'Συγκρότημα κοινωνικών κατοικιών {place}', fr: 'Immeubles de logements sociaux {place}', en: 'Social-housing blocks {place}'}
+      villas:
+        person: {el: 'μένει σε περιοχή με μεγάλες βίλες {place}', fr: 'habite un quartier de grandes villas {place}', en: 'living in an area of large villas {place}'}
+        community: {el: 'Περιοχή με μεγάλες βίλες {place}', fr: 'Quartier de grandes villas {place}', en: 'An area of large villas {place}'}

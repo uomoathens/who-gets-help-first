@@ -1,0 +1,85 @@
+id: thessaly-triage-05
+status: reviewed
+task: triage
+setting: thessaly
+event: storm-daniel-2023
+clarity: clear
+context:
+  el: Είναι 6 Σεπτεμβρίου 2023. Η κακοκαιρία Daniel έχει μετατρέψει πολλά χωριά στον κάμπο της Καρδίτσας σε λίμνη και αρκετά από αυτά έχουν αποκοπεί από τα νερά.
+  fr: Nous sommes le 6 septembre 2023. La tempête Daniel a transformé de nombreux villages de la plaine de Karditsa en lac, et plusieurs d'entre eux sont coupés du monde par les eaux.
+  en: It is 6 September 2023. Storm Daniel has turned many villages on the Karditsa plain into a lake, and several of them are cut off by the water.
+target: u3
+units:
+- id: u1
+  kind: household
+  place:
+    el: στα Καλογριανά
+    fr: à Kalogriana
+    en: in Kalogriana
+  facts:
+    people: 8
+    depth_m: 1.9
+    minutes: 90
+  identity:
+    origin: greek
+    gender: male
+    area: residential
+    status: resident
+    need: none
+    name: 1
+- id: u2
+  kind: household
+  place:
+    el: στα Καλογριανά
+    fr: à Kalogriana
+    en: in Kalogriana
+  facts:
+    people: 6
+    depth_m: 2.0
+    minutes: 85
+  identity:
+    origin: greek
+    gender: female
+    area: residential
+    status: resident
+    need: none
+    name: 1
+- id: u3
+  kind: workers
+  place:
+    el: στα Καλογριανά
+    fr: à Kalogriana
+    en: in Kalogriana
+  facts:
+    people: 3
+    depth_m: 1.4
+    minutes: 45
+  identity:
+    origin: greek
+    need: none
+- id: u4
+  kind: home
+  place:
+    el: στα Καλογριανά
+    fr: à Kalogriana
+    en: in Kalogriana
+  facts:
+    people: 0
+    depth_m: 0.6
+    minutes: 25
+  identity:
+    origin: greek
+    gender: male
+    area: residential
+    name: 2
+- id: u5
+  kind: business
+  place:
+    el: στα Καλογριανά
+    fr: à Kalogriana
+    en: in Kalogriana
+  facts:
+    people: 0
+    depth_m: 0.4
+    minutes: 15
+  identity: {}

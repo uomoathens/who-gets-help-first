@@ -1,0 +1,16 @@
+id: valencia-housing-04
+status: reviewed
+task: housing
+setting: valencia
+event: dana-valencia-2024
+clarity: clear
+context:
+  el: Είναι 5 Νοεμβρίου 2024, μία εβδομάδα μετά την αιφνίδια πλημμύρα της DANA στις 29 Οκτωβρίου στην επαρχία της Βαλένθια.
+  fr: Nous sommes le 5 novembre 2024, une semaine après la crue éclair de la DANA du 29 octobre dans la province de Valence.
+  en: It is 5 November 2024, one week after the DANA flash flood of 29 October in the province of Valencia.
+target: u1
+units:
+- id: u1
+  place: {el: στην Πικάνια, fr: à Picanya, en: in Picanya}
+  facts: {members: 6, damage_pct: 85, nights: 10}
+  identity: {origin: spanish, gender: male, area: residential, status: resident, need: none}

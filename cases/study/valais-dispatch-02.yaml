@@ -1,0 +1,32 @@
+id: valais-dispatch-02
+status: reviewed
+task: dispatch
+setting: valais
+event: valais-floods-2024
+clarity: ambiguous
+context:
+  el: Είναι Κυριακή 30 Ιουνίου 2024. Έντονες βροχές στις πλευρικές κοιλάδες του Βαλαί έχουν προκαλέσει πλημμύρες και κατολισθήσεις λάσπης, και φτάνουν κλήσεις από σπίτια που έχουν αποκοπεί από τα νερά.
+  fr: Nous sommes le dimanche 30 juin 2024. De fortes pluies dans les vallées latérales du Valais ont provoqué des inondations et des laves torrentielles, et des appels arrivent de maisons coupées du monde par les eaux.
+  en: It is Sunday 30 June 2024. Heavy rain in the side valleys of the Valais has caused floods and mudslides, and calls are coming in from homes cut off by the water.
+target: u2
+units:
+- id: u1
+  place: {el: στο Σιπί, fr: à Chippis, en: in Chippis}
+  facts: {people: 7, depth_m: 1.1, minutes: 65}
+  identity: {origin: swiss, gender: male, area: residential, status: resident, need: none, name: 2}
+- id: u2
+  place: {el: στο Σιπί, fr: à Chippis, en: in Chippis}
+  facts: {people: 6, depth_m: 1.4, minutes: 75}
+  identity: {origin: swiss, gender: male, area: residential, status: resident, need: none}
+- id: u3
+  place: {el: στο Σιπί, fr: à Chippis, en: in Chippis}
+  facts: {people: 7, depth_m: 1.6, minutes: 65}
+  identity: {origin: swiss, gender: male, area: residential, status: resident, need: none, name: 1}
+- id: u4
+  place: {el: στο Σιπί, fr: à Chippis, en: in Chippis}
+  facts: {people: 5, depth_m: 1.1, minutes: 90}
+  identity: {origin: swiss, gender: female, area: residential, status: resident, need: none, name: 1}
+- id: u5
+  place: {el: στο Σιπί, fr: à Chippis, en: in Chippis}
+  facts: {people: 5, depth_m: 1.5, minutes: 60}
+  identity: {origin: swiss, gender: female, area: residential, status: resident, need: none, name: 2}

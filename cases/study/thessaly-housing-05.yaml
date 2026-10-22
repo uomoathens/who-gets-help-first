@@ -1,0 +1,16 @@
+id: thessaly-housing-05
+status: reviewed
+task: housing
+setting: thessaly
+event: storm-daniel-2023
+clarity: clear
+context:
+  el: Είναι τέλη Σεπτεμβρίου 2023, τρεις εβδομάδες αφότου η κακοκαιρία Daniel πλημμύρισε τον κάμπο της Καρδίτσας και την περιοχή γύρω από τη Λάρισα.
+  fr: Nous sommes fin septembre 2023, trois semaines après que la tempête Daniel a inondé la plaine de Karditsa et les environs de Larissa.
+  en: It is late September 2023, three weeks after Storm Daniel flooded the Karditsa plain and the area around Larissa.
+target: u1
+units:
+- id: u1
+  place: {el: στη Λάρισα, fr: à Larissa, en: in Larissa}
+  facts: {members: 2, damage_pct: 20, nights: 3}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none}

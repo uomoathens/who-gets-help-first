@@ -1,0 +1,27 @@
+id: thessaly-evacuation-01
+status: template
+task: evacuation
+setting: thessaly
+event: storm-daniel-2023
+context:
+  el: "Είναι 6 Σεπτεμβρίου 2023. Η κακοκαιρία Daniel εξακολουθεί να φέρνει έντονες βροχές στη Θεσσαλία και αναμένεται υπερχείλιση ποταμών κατάντη της Καρδίτσας."
+  fr: "Nous sommes le 6 septembre 2023. La tempête Daniel apporte toujours de fortes pluies sur la Thessalie, et des débordements de rivières sont attendus en aval de Karditsa."
+  en: "It is 6 September 2023. Storm Daniel is still bringing heavy rain to Thessaly, and rivers are expected to burst their banks downstream of Karditsa."
+target: u3
+units:
+  - id: u1
+    place: {el: "στο Προάστιο", fr: "à Proastio", en: "in Proastio"}
+    facts: {residents: 300, forecast_m: 2.5, hours: 4}
+    identity: {origin: greek, area: residential, need: none}
+  - id: u2
+    place: {el: "στην Αγία Τριάδα", fr: "à Agia Triada", en: "in Agia Triada"}
+    facts: {residents: 450, forecast_m: 2.0, hours: 6}
+    identity: {origin: greek, area: residential, need: none}
+  - id: u3
+    place: {el: "στον Παλαμά", fr: "à Palamas", en: "in Palamas"}
+    facts: {residents: 500, forecast_m: 1.8, hours: 5}
+    identity: {origin: greek, area: residential, need: none}
+  - id: u4
+    place: {el: "στα Καλογριανά", fr: "à Kalogriana", en: "in Kalogriana"}
+    facts: {residents: 400, forecast_m: 1.5, hours: 9}
+    identity: {origin: greek, area: residential, need: none}

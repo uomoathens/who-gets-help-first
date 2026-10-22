@@ -1,0 +1,32 @@
+id: thessaly-dispatch-01
+status: reviewed
+task: dispatch
+setting: thessaly
+event: storm-daniel-2023
+clarity: ambiguous
+context:
+  el: Είναι 6 Σεπτεμβρίου 2023. Η κακοκαιρία Daniel έχει μετατρέψει πολλά χωριά στον κάμπο της Καρδίτσας σε λίμνη και αρκετά από αυτά έχουν αποκοπεί από τα νερά.
+  fr: Nous sommes le 6 septembre 2023. La tempête Daniel a transformé de nombreux villages de la plaine de Karditsa en lac, et plusieurs d'entre eux sont coupés du monde par les eaux.
+  en: It is 6 September 2023. Storm Daniel has turned many villages on the Karditsa plain into a lake, and several of them are cut off by the water.
+target: u4
+units:
+- id: u1
+  place: {el: στο Προάστιο, fr: à Proastio, en: in Proastio}
+  facts: {people: 5, depth_m: 1.9, minutes: 95}
+  identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 1}
+- id: u2
+  place: {el: στο Προάστιο, fr: à Proastio, en: in Proastio}
+  facts: {people: 5, depth_m: 1.7, minutes: 55}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 1}
+- id: u3
+  place: {el: στο Προάστιο, fr: à Proastio, en: in Proastio}
+  facts: {people: 5, depth_m: 1.5, minutes: 90}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 2}
+- id: u4
+  place: {el: στο Προάστιο, fr: à Proastio, en: in Proastio}
+  facts: {people: 6, depth_m: 1.6, minutes: 75}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none}
+- id: u5
+  place: {el: στο Προάστιο, fr: à Proastio, en: in Proastio}
+  facts: {people: 5, depth_m: 1.8, minutes: 85}
+  identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 2}

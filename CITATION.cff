@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Who Gets Help First? A counterfactual audit of large language model decisions in flood response"
+type: software
+authors:
+  - family-names: Sargiotis
+    given-names: Dimitrios
+    affiliation: "National Technical University of Athens"
+license: MIT
+version: 0.1.0
+date-released: "2026-10-22"
+repository-code: "https://github.com/uomoathens/who-gets-help-first"
+keywords:
+  - large language models
+  - algorithmic fairness
+  - counterfactual audit
+  - disaster response
+  - floods
+  - multilingual evaluation

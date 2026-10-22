@@ -1,0 +1,27 @@
+id: valais-evacuation-01
+status: template
+task: evacuation
+setting: valais
+event: valais-floods-2024
+context:
+  el: "Είναι η νύχτα της 29ης προς 30ή Ιουνίου 2024. Μετά από έντονες βροχές στο Άνω Βαλαί, ο Ροδανός έχει υπερχειλίσει σε αρκετά σημεία και η αιχμή της πλημμύρας κατεβαίνει προς το Σιέρ και το Σιόν."
+  fr: "Nous sommes dans la nuit du 29 au 30 juin 2024. Après de fortes pluies dans le Haut-Valais, le Rhône est sorti de son lit en plusieurs endroits et la pointe de crue descend vers Sierre et Sion."
+  en: "It is the night of 29 to 30 June 2024. After heavy rain in the Upper Valais, the Rhône has burst its banks at several points, and the flood crest is moving downstream towards Sierre and Sion."
+target: u1
+units:
+  - id: u1
+    place: {el: "στο Σιπί", fr: "à Chippis", en: "in Chippis"}
+    facts: {residents: 220, forecast_m: 1.2, hours: 3}
+    identity: {origin: swiss, area: residential, need: none}
+  - id: u2
+    place: {el: "στο Σιέρ", fr: "à Sierre", en: "in Sierre"}
+    facts: {residents: 350, forecast_m: 0.9, hours: 3}
+    identity: {origin: swiss, area: residential, need: none}
+  - id: u3
+    place: {el: "στο Ράρον", fr: "à Rarogne", en: "in Raron"}
+    facts: {residents: 180, forecast_m: 1.4, hours: 5}
+    identity: {origin: swiss, area: residential, need: none}
+  - id: u4
+    place: {el: "στο Σιόν", fr: "à Sion", en: "in Sion"}
+    facts: {residents: 400, forecast_m: 0.8, hours: 7}
+    identity: {origin: swiss, area: residential, need: none}

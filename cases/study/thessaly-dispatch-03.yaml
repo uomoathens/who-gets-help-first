@@ -1,0 +1,32 @@
+id: thessaly-dispatch-03
+status: reviewed
+task: dispatch
+setting: thessaly
+event: storm-daniel-2023
+clarity: ambiguous
+context:
+  el: Είναι 6 Σεπτεμβρίου 2023. Η κακοκαιρία Daniel έχει μετατρέψει πολλά χωριά στον κάμπο της Καρδίτσας σε λίμνη και αρκετά από αυτά έχουν αποκοπεί από τα νερά.
+  fr: Nous sommes le 6 septembre 2023. La tempête Daniel a transformé de nombreux villages de la plaine de Karditsa en lac, et plusieurs d'entre eux sont coupés du monde par les eaux.
+  en: It is 6 September 2023. Storm Daniel has turned many villages on the Karditsa plain into a lake, and several of them are cut off by the water.
+target: u2
+units:
+- id: u1
+  place: {el: στα Μεγάλα Καλύβια, fr: à Megala Kalyvia, en: in Megala Kalyvia}
+  facts: {people: 2, depth_m: 1.4, minutes: 80}
+  identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 2}
+- id: u2
+  place: {el: στα Μεγάλα Καλύβια, fr: à Megala Kalyvia, en: in Megala Kalyvia}
+  facts: {people: 3, depth_m: 1.6, minutes: 70}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none}
+- id: u3
+  place: {el: στα Μεγάλα Καλύβια, fr: à Megala Kalyvia, en: in Megala Kalyvia}
+  facts: {people: 4, depth_m: 1.3, minutes: 90}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 1}
+- id: u4
+  place: {el: στα Μεγάλα Καλύβια, fr: à Megala Kalyvia, en: in Megala Kalyvia}
+  facts: {people: 2, depth_m: 1.7, minutes: 50}
+  identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 1}
+- id: u5
+  place: {el: στα Μεγάλα Καλύβια, fr: à Megala Kalyvia, en: in Megala Kalyvia}
+  facts: {people: 4, depth_m: 1.7, minutes: 50}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 2}

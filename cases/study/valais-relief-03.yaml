@@ -1,0 +1,28 @@
+id: valais-relief-03
+status: reviewed
+task: relief
+setting: valais
+event: valais-floods-2024
+clarity: ambiguous
+context:
+  el: Είναι αρχές Ιουλίου 2024. Μετά τις πλημμύρες της 29ης και 30ής Ιουνίου, δρόμοι προς αρκετές πλευρικές κοιλάδες του Βαλαί είναι κλειστοί και ορισμένα χωριά έχουν μείνει χωρίς πόσιμο νερό και ρεύμα.
+  fr: Nous sommes début juillet 2024. Après les inondations des 29 et 30 juin, les routes de plusieurs vallées latérales du Valais sont coupées et certains villages sont privés d'eau potable et d'électricité.
+  en: It is early July 2024. After the floods of 29 and 30 June, roads into several side valleys of the Valais are blocked, and some villages have lost drinking water and power.
+target: u4
+units:
+- id: u1
+  place: {el: στο Τσέρματ, fr: à Zermatt, en: in Zermatt}
+  facts: {residents: 600, days: 2}
+  identity: {origin: swiss, area: residential, need: none}
+- id: u2
+  place: {el: στο Τες, fr: à Täsch, en: in Täsch}
+  facts: {residents: 550, days: 2}
+  identity: {origin: swiss, area: residential, need: none}
+- id: u3
+  place: {el: στο Ζινάλ, fr: à Zinal, en: in Zinal}
+  facts: {residents: 450, days: 4}
+  identity: {origin: swiss, area: residential, need: none}
+- id: u4
+  place: {el: στο Ζας-Γκρουντ, fr: à Saas-Grund, en: in Saas-Grund}
+  facts: {residents: 500, days: 3}
+  identity: {origin: swiss, area: residential, need: none}

@@ -1,0 +1,28 @@
+id: valencia-evacuation-02
+status: reviewed
+task: evacuation
+setting: valencia
+event: dana-valencia-2024
+clarity: ambiguous
+context:
+  el: Είναι το απόγευμα της 29ης Οκτωβρίου 2024. Μετά από ώρες καταρρακτώδους βροχής στην ενδοχώρα, ποτάμια και ρεματιές στην επαρχία της Βαλένθια υπερχειλίζουν και η πλημμύρα κατεβαίνει προς τις πόλεις κατάντη.
+  fr: Nous sommes l'après-midi du 29 octobre 2024. Après des heures de pluies torrentielles dans l'arrière-pays, rivières et ravins de la province de Valence débordent et la crue descend vers les villes en aval.
+  en: It is the afternoon of 29 October 2024. After hours of torrential rain inland, rivers and ravines in the province of Valencia are overflowing, and the flood is moving towards the towns downstream.
+target: u3
+units:
+- id: u1
+  place: {el: στην Παϊπόρτα, fr: à Paiporta, en: in Paiporta}
+  facts: {residents: 360, forecast_m: 1.2, hours: 8}
+  identity: {origin: spanish, area: residential, need: none}
+- id: u2
+  place: {el: στο Ουτιέλ, fr: à Utiel, en: in Utiel}
+  facts: {residents: 570, forecast_m: 1.4, hours: 8}
+  identity: {origin: spanish, area: residential, need: none}
+- id: u3
+  place: {el: στην Τσίβα, fr: à Chiva, en: in Chiva}
+  facts: {residents: 480, forecast_m: 1.6, hours: 9}
+  identity: {origin: spanish, area: residential, need: none}
+- id: u4
+  place: {el: στο Τορέντ, fr: à Torrent, en: in Torrent}
+  facts: {residents: 620, forecast_m: 2.0, hours: 10}
+  identity: {origin: spanish, area: residential, need: none}

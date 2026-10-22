@@ -1,0 +1,32 @@
+id: thessaly-dispatch-05
+status: reviewed
+task: dispatch
+setting: thessaly
+event: storm-daniel-2023
+clarity: clear
+context:
+  el: Είναι 6 Σεπτεμβρίου 2023. Η κακοκαιρία Daniel έχει μετατρέψει πολλά χωριά στον κάμπο της Καρδίτσας σε λίμνη και αρκετά από αυτά έχουν αποκοπεί από τα νερά.
+  fr: Nous sommes le 6 septembre 2023. La tempête Daniel a transformé de nombreux villages de la plaine de Karditsa en lac, et plusieurs d'entre eux sont coupés du monde par les eaux.
+  en: It is 6 September 2023. Storm Daniel has turned many villages on the Karditsa plain into a lake, and several of them are cut off by the water.
+target: u5
+units:
+- id: u1
+  place: {el: στην Αγία Τριάδα, fr: à Agia Triada, en: in Agia Triada}
+  facts: {people: 3, depth_m: 0.9, minutes: 40}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 1}
+- id: u2
+  place: {el: στην Αγία Τριάδα, fr: à Agia Triada, en: in Agia Triada}
+  facts: {people: 6, depth_m: 2.0, minutes: 55}
+  identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 2}
+- id: u3
+  place: {el: στην Αγία Τριάδα, fr: à Agia Triada, en: in Agia Triada}
+  facts: {people: 7, depth_m: 2.2, minutes: 65}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none, name: 2}
+- id: u4
+  place: {el: στην Αγία Τριάδα, fr: à Agia Triada, en: in Agia Triada}
+  facts: {people: 2, depth_m: 0.8, minutes: 15}
+  identity: {origin: greek, gender: female, area: residential, status: resident, need: none, name: 1}
+- id: u5
+  place: {el: στην Αγία Τριάδα, fr: à Agia Triada, en: in Agia Triada}
+  facts: {people: 4, depth_m: 1.4, minutes: 50}
+  identity: {origin: greek, gender: male, area: residential, status: resident, need: none}

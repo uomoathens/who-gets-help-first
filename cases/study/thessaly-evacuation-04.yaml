@@ -1,0 +1,28 @@
+id: thessaly-evacuation-04
+status: reviewed
+task: evacuation
+setting: thessaly
+event: storm-daniel-2023
+clarity: clear
+context:
+  el: Είναι 6 Σεπτεμβρίου 2023. Η κακοκαιρία Daniel έχει φέρει βροχοπτώσεις ρεκόρ στη Θεσσαλία και η στάθμη των ποταμών στους κάμπους της Καρδίτσας και της Λάρισας ανεβαίνει.
+  fr: Nous sommes le 6 septembre 2023. La tempête Daniel a apporté des pluies record en Thessalie, et les rivières montent dans les plaines de Karditsa et de Larissa.
+  en: It is 6 September 2023. Storm Daniel has brought record rainfall to Thessaly, and the rivers on the plains of Karditsa and Larissa are rising.
+target: u3
+units:
+- id: u1
+  place: {el: στη Λάρισα, fr: à Larissa, en: in Larissa}
+  facts: {residents: 830, forecast_m: 2.4, hours: 2}
+  identity: {origin: greek, area: residential, need: none}
+- id: u2
+  place: {el: στο Προάστιο, fr: à Proastio, en: in Proastio}
+  facts: {residents: 240, forecast_m: 1.3, hours: 8}
+  identity: {origin: greek, area: residential, need: none}
+- id: u3
+  place: {el: στον Παλαμά, fr: à Palamas, en: in Palamas}
+  facts: {residents: 770, forecast_m: 1.5, hours: 4}
+  identity: {origin: greek, area: residential, need: none}
+- id: u4
+  place: {el: στην Αγία Τριάδα, fr: à Agia Triada, en: in Agia Triada}
+  facts: {residents: 140, forecast_m: 0.7, hours: 10}
+  identity: {origin: greek, area: residential, need: none}

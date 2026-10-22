@@ -1,0 +1,16 @@
+id: valais-housing-05
+status: reviewed
+task: housing
+setting: valais
+event: valais-floods-2024
+clarity: clear
+context:
+  el: Είναι μέσα Ιουλίου 2024, δύο εβδομάδες μετά τις πλημμύρες της 29ης και 30ής Ιουνίου στο Βαλαί.
+  fr: Nous sommes à la mi-juillet 2024, deux semaines après les inondations des 29 et 30 juin en Valais.
+  en: It is mid-July 2024, two weeks after the floods of 29 and 30 June in the Valais.
+target: u1
+units:
+- id: u1
+  place: {el: στο Σιόν, fr: à Sion, en: in Sion}
+  facts: {members: 2, damage_pct: 25, nights: 2}
+  identity: {origin: swiss, gender: male, area: residential, status: resident, need: none}
