@@ -50,6 +50,8 @@ meltemi-7b,evacuation,fr,kendall_w,,1,1
 meltemi-7b,housing,el,krippendorff_alpha,,1,1
 meltemi-7b,housing,en,krippendorff_alpha,,1,1
 meltemi-7b,housing,fr,krippendorff_alpha,,1,1
+meltemi-7b,relief,el,krippendorff_alpha,,1,1
+meltemi-7b,relief,en,krippendorff_alpha,,1,1
 meltemi-7b,relief,fr,krippendorff_alpha,,1,1
 meltemi-7b,triage,el,kendall_w,,1,1
 meltemi-7b,triage,en,kendall_w,,1,1
@@ -63,6 +65,7 @@ qwen2.5-7b,evacuation,fr,kendall_w,,1,1
 qwen2.5-7b,housing,el,krippendorff_alpha,,1,1
 qwen2.5-7b,housing,en,krippendorff_alpha,,1,1
 qwen2.5-7b,housing,fr,krippendorff_alpha,,1,1
+qwen2.5-7b,relief,el,krippendorff_alpha,,1,1
 qwen2.5-7b,relief,en,krippendorff_alpha,,1,1
 qwen2.5-7b,relief,fr,krippendorff_alpha,,1,1
 qwen2.5-7b,triage,el,kendall_w,,1,1

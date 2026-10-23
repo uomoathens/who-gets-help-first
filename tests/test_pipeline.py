@@ -1,3 +1,4 @@
+import json
 import shutil
 from pathlib import Path
 
@@ -109,3 +110,38 @@ def test_case_ids_select_cases_and_reject_unknown_ids(tmp_path):
         assert "no-such-case" in str(e)
     else:
         raise AssertionError("unknown case id accepted")
+
+
+def test_shards_split_the_work_and_resume(tmp_path):
+    from whf.run import plan
+    path = _config(tmp_path)
+    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    for m in raw["models"]:
+        m["shards"] = 3
+        m["gguf"] = {"repo": "org/repo", "file": "model.gguf"}
+    path.write_text(yaml.safe_dump(raw, allow_unicode=True), encoding="utf-8")
+    cfg = load_config(path)
+    work = plan(cfg)
+    total = sum(w["left"] for w in work)
+    assert len(work) == 6 and work[0]["repo"] == "org/repo" and work[1]["tag"] == "mock-fair--01"
+    assert execute(cfg, log=lambda *_: None, only_model="mock-fair", shard=1, shards=3, limit=5) == 5
+    assert sum(w["left"] for w in plan(cfg)) == total - 5
+    for k in range(3):
+        execute(cfg, log=lambda *_: None, only_model="mock-fair", shard=k, shards=3)
+    assert {w["name"] for w in plan(cfg)} == {"mock-biased"}
+    files = sorted(p.name for p in (cfg.output / "raw").glob("mock-fair*.jsonl"))
+    assert files == ["mock-fair--00.jsonl", "mock-fair--01.jsonl", "mock-fair--02.jsonl"]
+    ids = [json.loads(line)["job_id"] for f in files for line in open(cfg.output / "raw" / f, encoding="utf-8")]
+    assert len(ids) == len(set(ids)) == total // 2
+    assert execute(cfg, log=lambda *_: None, only_model="mock-fair") == 0
+
+
+def test_a_cut_last_line_is_skipped_and_rerun(tmp_path):
+    cfg = load_config(_config(tmp_path))
+    execute(cfg, log=lambda *_: None, only_model="mock-fair", limit=3)
+    path = cfg.output / "raw" / "mock-fair.jsonl"
+    lines = path.read_text(encoding="utf-8").splitlines()
+    path.write_text("\n".join(lines[:2]) + "\n" + lines[2][:40], encoding="utf-8")
+    assert execute(cfg, log=lambda *_: None, only_model="mock-fair", limit=1) == 1
+    ids = [json.loads(x)["job_id"] for x in path.read_text(encoding="utf-8").splitlines() if x.startswith("{") and x.endswith("}")]
+    assert len(ids) == 3 and ids[2] == json.loads(lines[2])["job_id"]

@@ -1,16 +1,16 @@
-model,language,records,valid_share,errors
-apertus-8b,el,66,1.0,
-apertus-8b,en,66,0.9545454545454546,shares-do-not-sum-to-100 3
-apertus-8b,fr,66,0.9090909090909091,"shares-do-not-sum-to-100 5, not-a-permutation 1"
-krikri-8b,el,66,0.9848484848484849,not-a-permutation 1
-krikri-8b,en,66,0.9696969696969697,not-a-permutation 2
-krikri-8b,fr,66,1.0,
-llama-3.1-8b,el,66,0.803030303030303,not-a-permutation 13
-llama-3.1-8b,en,66,0.9848484848484849,bad-shares 1
-llama-3.1-8b,fr,66,0.9696969696969697,"not-a-permutation 1, shares-do-not-sum-to-100 1"
-meltemi-7b,el,66,0.7424242424242424,"shares-do-not-sum-to-100 11, no-json 5, not-a-permutation 1"
-meltemi-7b,en,66,0.8484848484848485,"shares-do-not-sum-to-100 9, no-json 1"
-meltemi-7b,fr,66,0.8787878787878788,shares-do-not-sum-to-100 8
-qwen2.5-7b,el,66,0.8181818181818182,no-shares 12
-qwen2.5-7b,en,66,0.8787878787878788,not-a-permutation 8
-qwen2.5-7b,fr,66,0.9848484848484849,not-a-permutation 1
+model,language,records,valid_share,rescaled_share,errors
+apertus-8b,el,66,1.0,0.0,
+apertus-8b,en,66,1.0,0.045454545454545456,
+apertus-8b,fr,66,0.9848484848484849,0.07575757575757576,not-a-permutation 1
+krikri-8b,el,66,0.9848484848484849,0.0,not-a-permutation 1
+krikri-8b,en,66,0.9696969696969697,0.0,not-a-permutation 2
+krikri-8b,fr,66,1.0,0.0,
+llama-3.1-8b,el,66,0.803030303030303,0.0,not-a-permutation 13
+llama-3.1-8b,en,66,0.9848484848484849,0.0,bad-shares 1
+llama-3.1-8b,fr,66,0.9848484848484849,0.015151515151515152,not-a-permutation 1
+meltemi-7b,el,66,0.9090909090909091,0.16666666666666666,"no-json 5, not-a-permutation 1"
+meltemi-7b,en,66,0.9848484848484849,0.13636363636363635,no-json 1
+meltemi-7b,fr,66,1.0,0.12121212121212122,
+qwen2.5-7b,el,66,1.0,0.0,
+qwen2.5-7b,en,66,0.8787878787878788,0.0,not-a-permutation 8
+qwen2.5-7b,fr,66,0.9848484848484849,0.0,not-a-permutation 1

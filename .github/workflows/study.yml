@@ -1,0 +1,149 @@
+name: study
+
+on:
+  workflow_dispatch:
+    inputs:
+      round:
+        description: Round number
+        required: false
+        default: "1"
+  push:
+    branches: [main]
+    paths:
+      - config/study-cpu.yaml
+      - .github/workflows/study.yml
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: study
+  cancel-in-progress: false
+
+env:
+  CONFIG: config/study-cpu.yaml
+  OUT: results/study-cpu
+  ROUND: ${{ inputs.round || '1' }}
+  MAX_ROUNDS: "6"
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      count: ${{ steps.plan.outputs.count }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - run: whf check --config "$CONFIG"
+      - run: whf plan --config "$CONFIG"
+      - id: plan
+        run: |
+          W=$(whf plan --config "$CONFIG" --json)
+          echo "matrix={\"include\":$W}" >> "$GITHUB_OUTPUT"
+          echo "count=$(echo "$W" | python -c 'import json,sys; print(len(json.load(sys.stdin)))')" >> "$GITHUB_OUTPUT"
+
+  run:
+    needs: plan
+    if: needs.plan.outputs.count != '0'
+    name: ${{ matrix.tag }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - name: Download model
+        run: |
+          mkdir -p models "$OUT/raw" "$OUT/models"
+          curl -fsSL --retry 10 --retry-delay 30 --retry-all-errors -o models/model.gguf "https://huggingface.co/${{ matrix.repo }}/resolve/main/${{ matrix.file }}"
+          echo "$(sha256sum models/model.gguf | cut -d' ' -f1)  ${{ matrix.repo }}/${{ matrix.file }}" > "$OUT/models/${{ matrix.name }}.sha256"
+          cat "$OUT/models/${{ matrix.name }}.sha256"
+      - name: Start llama.cpp server
+        run: |
+          EXTRA=""
+          if [ -n "${{ matrix.template }}" ]; then EXTRA="--chat-template-file /tpl/${{ matrix.template }}"; fi
+          docker run -d --name llm -v "$PWD/models:/models" -v "$PWD/templates:/tpl" -p 8080:8080 ghcr.io/ggml-org/llama.cpp:server -m /models/model.gguf --host 0.0.0.0 --port 8080 -c 4096 -t 4 --jinja $EXTRA
+          for i in $(seq 1 120); do
+            curl -sf http://localhost:8080/health && break
+            if [ "$(docker inspect -f '{{.State.Running}}' llm)" != "true" ]; then docker logs llm 2>&1 | tail -n 40; exit 1; fi
+            sleep 5
+          done
+          curl -sf http://localhost:8080/health
+          docker image inspect --format '{{index .RepoDigests 0}}' ghcr.io/ggml-org/llama.cpp:server > "$OUT/models/${{ matrix.tag }}.server"
+          cat "$OUT/models/${{ matrix.tag }}.server"
+      - name: Run this shard
+        id: shard
+        timeout-minutes: 320
+        continue-on-error: true
+        run: |
+          touch "$OUT/raw/${{ matrix.tag }}.jsonl"
+          whf run --config "$CONFIG" --model "${{ matrix.name }}" --shard ${{ matrix.shard }} --shards ${{ matrix.shards }}
+      - name: Server log
+        if: always()
+        run: docker logs llm 2>&1 | tail -n 40
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.shard.outcome != 'skipped'
+        with:
+          name: raw-${{ matrix.tag }}
+          path: |
+            ${{ env.OUT }}/raw/${{ matrix.tag }}.jsonl
+            ${{ env.OUT }}/models/${{ matrix.name }}.sha256
+            ${{ env.OUT }}/models/${{ matrix.tag }}.server
+          if-no-files-found: warn
+
+  report:
+    needs: [plan, run]
+    if: always() && needs.plan.result == 'success' && needs.plan.outputs.count != '0'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[analysis]"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: raw-*
+          path: ${{ env.OUT }}
+          merge-multiple: true
+      - run: whf analyze --config "$CONFIG"
+      - id: left
+        run: |
+          whf plan --config "$CONFIG"
+          echo "summary=$(whf plan --config "$CONFIG" | tail -n 1)" >> "$GITHUB_OUTPUT"
+          echo "count=$(whf plan --config "$CONFIG" --json | python -c 'import json,sys; print(len(json.load(sys.stdin)))')" >> "$GITHUB_OUTPUT"
+      - name: Commit the results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT"
+          git commit -m "Study results, round $ROUND (${{ steps.left.outputs.summary }})" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Start the next round
+        if: steps.left.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [ "$ROUND" -lt "$MAX_ROUNDS" ]; then
+            gh workflow run study.yml --ref main -f round=$((ROUND + 1))
+          else
+            echo "Stopped after $MAX_ROUNDS rounds with work left"
+          fi

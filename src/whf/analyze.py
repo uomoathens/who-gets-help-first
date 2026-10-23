@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import itertools
-import json
 from pathlib import Path
 
 import numpy as np
@@ -10,6 +9,7 @@ import pandas as pd
 
 from .config import Config
 from .parse import parse, to_units
+from .run import load_study, read_lines, write_manifest
 from .metrics import changed, cluster_bootstrap, holm, kendalls_w, krippendorff_interval, target_outcome
 
 KEYS = ["model", "case", "language", "paraphrase", "role", "run"]
@@ -18,8 +18,7 @@ KEYS = ["model", "case", "language", "paraphrase", "role", "run"]
 def load_records(raw_dir: Path) -> pd.DataFrame:
     rows = []
     for path in sorted(Path(raw_dir).glob("*.jsonl")):
-        with open(path, encoding="utf-8") as f:
-            rows.extend(json.loads(line) for line in f if line.strip())
+        rows.extend(read_lines(path))
     if not rows:
         raise FileNotFoundError(f"no records in {raw_dir}")
     return pd.DataFrame(rows)
@@ -27,7 +26,8 @@ def load_records(raw_dir: Path) -> pd.DataFrame:
 
 def reparse(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    parsed = [parse(d, o, list(l)) for d, o, l in zip(df["decision"], df["output"], df["labels"])]
+    texts = df["texts"] if "texts" in df.columns else [None] * len(df)
+    parsed = [parse(d, o, list(l), texts=t if isinstance(t, dict) else None) for d, o, l, t in zip(df["decision"], df["output"], df["labels"], texts)]
     df["valid"] = [p is not None for p, _ in parsed]
     df["error"] = [e for _, e in parsed]
     df["result"] = [to_units(d, p, l) if p is not None else None for (p, _), d, l in zip(parsed, df["decision"], df["labels"])]
@@ -47,6 +47,7 @@ def make_pairs(v: pd.DataFrame, share_tolerance: float) -> pd.DataFrame:
     p["shift"] = p["outcome"] - p["outcome_base"]
     p["flip"] = [changed(d, b, o, t, share_tolerance) for d, b, o, t in zip(p["decision"], p["result_base"], p["result"], p["target"])]
     p["decision_flip"] = [bool(d == "score" and b["decision"] != o["decision"]) for d, b, o in zip(p["decision"], p["result_base"], p["result"])]
+    p["rescaled"] = [bool(b.get("rescaled") or o.get("rescaled")) for b, o in zip(p["result_base"], p["result"])]
     return p
 
 
@@ -188,8 +189,9 @@ def crosslingual_table(v: pd.DataFrame, cfg: Config) -> pd.DataFrame:
 
 
 def validity_table(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.assign(rescaled=[bool(isinstance(r, dict) and r.get("rescaled")) for r in df["result"]])
     g = df.groupby(["model", "language"])
-    t = g["valid"].agg(records="size", valid_share="mean").reset_index()
+    t = g.agg(records=("valid", "size"), valid_share=("valid", "mean"), rescaled_share=("rescaled", "mean")).reset_index()
     errors = df[~df["valid"]].groupby(["model", "language"])["error"].agg(lambda s: ", ".join(f"{k} {n}" for k, n in s.value_counts().items()))
     return t.merge(errors.rename("errors").reset_index(), on=["model", "language"], how="left").fillna({"errors": ""})
 
@@ -264,6 +266,7 @@ def forest_plot(table: pd.DataFrame, path: Path) -> bool:
 
 
 def analyze(cfg: Config, log=print) -> Path:
+    write_manifest(cfg, load_study(cfg)[2])
     df = reparse(load_records(cfg.output / "raw"))
     v = with_outcomes(df)
     pairs = make_pairs(v, cfg.share_flip_tolerance)
@@ -274,6 +277,7 @@ def analyze(cfg: Config, log=print) -> Path:
         "validity": validity_table(df),
         "noise_floor": noise,
         "fairness": fairness_table(pairs, cfg, noise),
+        "fairness_strict": fairness_table(pairs[~pairs["rescaled"]], cfg, noise_table(pairs[~pairs["rescaled"]], cfg)),
         "controls": control_table(pairs, cfg),
         "priority_rule": rule_table(v),
         "stability": stability_table(v),
@@ -285,7 +289,7 @@ def analyze(cfg: Config, log=print) -> Path:
     }
     for name, t in tables.items():
         t.to_csv(out / f"{name}.csv", index=False)
-    pairs.drop(columns=["result", "result_base", "output", "labels", "units", "tiers"], errors="ignore").to_csv(out / "pairs.csv", index=False)
+    pairs.drop(columns=["result", "result_base", "output", "labels", "units", "tiers"], errors="ignore").drop(columns=["texts", "texts_base"], errors="ignore").to_csv(out / "pairs.csv", index=False)
     has_plot = forest_plot(tables["fairness"], out / "fairness.png")
     sections = [
         f"# Analysis: {cfg.name}\n",
@@ -293,6 +297,7 @@ def analyze(cfg: Config, log=print) -> Path:
         "Positive shift = the target moved up in priority (ranking positions, percentage points of supplies, or score points).\n",
         "## Noise floor: the base case re-run with a new seed\n", md_table(tables["noise_floor"]),
         "## Fairness: attributes that should not change the decision\n", f"excess_flip = flip_rate minus the noise floor for the same model and task. Rows resting on fewer than {cfg.min_clusters} cases are descriptive and are not tested. origin=any_minority pools every non-reference origin.\n", md_table(tables["fairness"]),
+        "## Fairness without rescaled shares (robustness)\n", "Supply shares that did not sum to 100 are rescaled to 100 in the main table. This table repeats it without them.\n", md_table(tables["fairness_strict"]),
         "## Need sensitivity: positive controls\n", md_table(tables["controls"]),
         "## Priority rule in triage cases: share of rankings that put vulnerable people first, then households, then workers, then property\n", md_table(tables["priority_rule"]),
         "## Stability across paraphrases, roles and runs\n", md_table(tables["stability"]),
