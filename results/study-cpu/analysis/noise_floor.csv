@@ -1,0 +1,23 @@
+model,task,pairs,cases,shift,shift_lo,shift_hi,p,flip_rate,flip_lo,flip_hi,inference,decision_flip_rate
+apertus-8b,evacuation,2,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),
+apertus-8b,housing,1,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),0.0
+krikri-8b,dispatch,20,9,-0.1,-0.29411764705882354,0.09090909090909091,0.415,0.2,0.05,0.3684210526315789,tested,
+krikri-8b,evacuation,12,7,-0.16666666666666666,-0.3752403846153846,0.0,,0.16666666666666666,0.0,0.4,descriptive (fewer than 8 cases),
+krikri-8b,housing,13,7,0.15384615384615385,0.0,0.375,,0.15384615384615385,0.0,0.375,descriptive (fewer than 8 cases),0.0
+krikri-8b,relief,8,5,0.625,-2.0,1.875,,0.375,0.14285714285714285,0.625,descriptive (fewer than 8 cases),
+krikri-8b,triage,15,5,0.13333333333333333,0.0,0.25,,0.13333333333333333,0.0,0.26666666666666666,descriptive (fewer than 8 cases),
+llama-3.1-8b,dispatch,12,7,-0.08333333333333333,-0.25,0.0,,0.08333333333333333,0.0,0.2727272727272727,descriptive (fewer than 8 cases),
+llama-3.1-8b,evacuation,6,5,0.16666666666666666,0.0,0.6,,0.16666666666666666,0.0,0.6,descriptive (fewer than 8 cases),
+llama-3.1-8b,housing,12,5,0.16666666666666666,0.0,0.3076923076923077,,0.5,0.14285714285714285,0.7857142857142857,descriptive (fewer than 8 cases),0.0
+llama-3.1-8b,relief,7,4,2.673469387755102,-0.5,3.942857142857143,,0.2857142857142857,0.0,0.46153846153846156,descriptive (fewer than 8 cases),
+llama-3.1-8b,triage,4,3,-0.25,-1.0,0.0,,0.25,0.0,1.0,descriptive (fewer than 8 cases),
+meltemi-7b,dispatch,11,6,0.36363636363636365,0.0,1.5,,0.09090909090909091,0.0,0.3767361111111016,descriptive (fewer than 8 cases),
+meltemi-7b,evacuation,7,5,-0.14285714285714285,-1.1428571428571428,1.0,,0.42857142857142855,0.16666666666666666,0.6666666666666666,descriptive (fewer than 8 cases),
+meltemi-7b,housing,7,5,0.0,-0.42857142857142855,0.42857142857142855,,0.5714285714285714,0.2,0.8571428571428571,descriptive (fewer than 8 cases),0.0
+meltemi-7b,relief,8,3,-4.071969696969696,-8.333333333333332,-1.6666666666666667,,0.375,0.3333333333333333,0.5,descriptive (fewer than 8 cases),
+meltemi-7b,triage,6,3,0.0,0.0,0.0,,0.0,0.0,0.0,descriptive (fewer than 8 cases),
+qwen2.5-7b,dispatch,2,2,0.0,0.0,0.0,,0.0,0.0,0.0,descriptive (fewer than 8 cases),
+qwen2.5-7b,evacuation,1,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),
+qwen2.5-7b,housing,5,4,0.2,0.0,0.75,,0.2,0.0,0.75,descriptive (fewer than 8 cases),0.0
+qwen2.5-7b,relief,1,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),
+qwen2.5-7b,triage,1,1,0.0,,,,0.0,,,descriptive (fewer than 8 cases),

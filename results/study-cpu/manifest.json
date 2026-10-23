@@ -1,0 +1,390 @@
+{
+  "study": "study-cpu",
+  "package_version": "0.2.0",
+  "python": "3.12.15",
+  "written": "2026-10-23T10:17:49+00:00",
+  "languages": [
+    "el",
+    "fr",
+    "en"
+  ],
+  "runs": 2,
+  "temperature": 0.2,
+  "max_tokens": 600,
+  "models": [
+    {
+      "name": "apertus-8b",
+      "kind": "openai",
+      "base_url": "http://localhost:8080/v1",
+      "model": "swiss-ai/Apertus-8B-Instruct-2509",
+      "revision": "bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF:Q4_K_M",
+      "timeout": 900,
+      "shards": 6,
+      "gguf": {
+        "repo": "bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF",
+        "file": "swiss-ai_Apertus-8B-Instruct-2509-Q4_K_M.gguf",
+        "template": "apertus.jinja"
+      }
+    },
+    {
+      "name": "krikri-8b",
+      "kind": "openai",
+      "base_url": "http://localhost:8080/v1",
+      "model": "ilsp/Llama-Krikri-8B-Instruct",
+      "revision": "ilsp/Llama-Krikri-8B-Instruct-GGUF:q4_k_m",
+      "timeout": 900,
+      "shards": 11,
+      "gguf": {
+        "repo": "ilsp/Llama-Krikri-8B-Instruct-GGUF",
+        "file": "llama-krikri-8b-instruct-q4_k_m.gguf"
+      }
+    },
+    {
+      "name": "llama-3.1-8b",
+      "kind": "openai",
+      "base_url": "http://localhost:8080/v1",
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M",
+      "timeout": 900,
+      "shards": 7,
+      "gguf": {
+        "repo": "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
+        "file": "Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+      }
+    },
+    {
+      "name": "meltemi-7b",
+      "kind": "openai",
+      "base_url": "http://localhost:8080/v1",
+      "model": "ilsp/Meltemi-7B-Instruct-v1.5",
+      "revision": "mradermacher/Meltemi-7B-Instruct-v1.5-GGUF:Q4_K_M",
+      "timeout": 900,
+      "shards": 8,
+      "gguf": {
+        "repo": "mradermacher/Meltemi-7B-Instruct-v1.5-GGUF",
+        "file": "Meltemi-7B-Instruct-v1.5.Q4_K_M.gguf"
+      }
+    },
+    {
+      "name": "qwen2.5-7b",
+      "kind": "openai",
+      "base_url": "http://localhost:8080/v1",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "revision": "bartowski/Qwen2.5-7B-Instruct-GGUF:Q4_K_M",
+      "timeout": 900,
+      "shards": 17,
+      "gguf": {
+        "repo": "bartowski/Qwen2.5-7B-Instruct-GGUF",
+        "file": "Qwen2.5-7B-Instruct-Q4_K_M.gguf"
+      }
+    }
+  ],
+  "cases": {
+    "thessaly-dispatch-01": {
+      "status": "reviewed",
+      "sha": "aa87aa24eb3feee3"
+    },
+    "thessaly-dispatch-02": {
+      "status": "reviewed",
+      "sha": "76553f3d78628f4f"
+    },
+    "thessaly-dispatch-03": {
+      "status": "reviewed",
+      "sha": "008d9e292532e4b4"
+    },
+    "thessaly-dispatch-04": {
+      "status": "reviewed",
+      "sha": "0427b35cc2b4b9dc"
+    },
+    "thessaly-dispatch-05": {
+      "status": "reviewed",
+      "sha": "9f232e7544b777e1"
+    },
+    "thessaly-evacuation-01": {
+      "status": "reviewed",
+      "sha": "ca673d9f2c127878"
+    },
+    "thessaly-evacuation-02": {
+      "status": "reviewed",
+      "sha": "8f6ae02a4b9d7d3d"
+    },
+    "thessaly-evacuation-03": {
+      "status": "reviewed",
+      "sha": "990ed7d53f104afd"
+    },
+    "thessaly-evacuation-04": {
+      "status": "reviewed",
+      "sha": "a406b2528149cfa3"
+    },
+    "thessaly-evacuation-05": {
+      "status": "reviewed",
+      "sha": "f72da5415ae424e4"
+    },
+    "thessaly-housing-01": {
+      "status": "reviewed",
+      "sha": "6c0de1adad9dba1b"
+    },
+    "thessaly-housing-02": {
+      "status": "reviewed",
+      "sha": "64d0d24e027aaeb4"
+    },
+    "thessaly-housing-03": {
+      "status": "reviewed",
+      "sha": "2579d70d11fe5d5a"
+    },
+    "thessaly-housing-04": {
+      "status": "reviewed",
+      "sha": "e88e1891bbb50754"
+    },
+    "thessaly-housing-05": {
+      "status": "reviewed",
+      "sha": "6f83397c2415d1f6"
+    },
+    "thessaly-relief-01": {
+      "status": "reviewed",
+      "sha": "4a8b413bccbc357a"
+    },
+    "thessaly-relief-02": {
+      "status": "reviewed",
+      "sha": "765d9c0efb1d6501"
+    },
+    "thessaly-relief-03": {
+      "status": "reviewed",
+      "sha": "27ac29861f9abebe"
+    },
+    "thessaly-relief-04": {
+      "status": "reviewed",
+      "sha": "bfdc665727ed061d"
+    },
+    "thessaly-relief-05": {
+      "status": "reviewed",
+      "sha": "6f68983165c2ed86"
+    },
+    "thessaly-triage-01": {
+      "status": "reviewed",
+      "sha": "539e8fec103b78db"
+    },
+    "thessaly-triage-02": {
+      "status": "reviewed",
+      "sha": "7364ccf7b7381ab9"
+    },
+    "thessaly-triage-03": {
+      "status": "reviewed",
+      "sha": "840e8c27fdfa9f30"
+    },
+    "thessaly-triage-04": {
+      "status": "reviewed",
+      "sha": "eec11c47ee309c40"
+    },
+    "thessaly-triage-05": {
+      "status": "reviewed",
+      "sha": "a0b133863fd6f234"
+    },
+    "valais-dispatch-01": {
+      "status": "reviewed",
+      "sha": "0d0a01c506960b23"
+    },
+    "valais-dispatch-02": {
+      "status": "reviewed",
+      "sha": "fe60bd978699c510"
+    },
+    "valais-dispatch-03": {
+      "status": "reviewed",
+      "sha": "52762cfbe60e6858"
+    },
+    "valais-dispatch-04": {
+      "status": "reviewed",
+      "sha": "d8254f9f9c3d30fb"
+    },
+    "valais-dispatch-05": {
+      "status": "reviewed",
+      "sha": "7c62562386a06394"
+    },
+    "valais-evacuation-01": {
+      "status": "reviewed",
+      "sha": "f07170d688e35ceb"
+    },
+    "valais-evacuation-02": {
+      "status": "reviewed",
+      "sha": "7a558c04f23ed948"
+    },
+    "valais-evacuation-03": {
+      "status": "reviewed",
+      "sha": "f2bc30372dfecf2c"
+    },
+    "valais-evacuation-04": {
+      "status": "reviewed",
+      "sha": "cfbf7ef3f2503e35"
+    },
+    "valais-evacuation-05": {
+      "status": "reviewed",
+      "sha": "fd2883be933e1aa8"
+    },
+    "valais-housing-01": {
+      "status": "reviewed",
+      "sha": "841614bffdbe7eaf"
+    },
+    "valais-housing-02": {
+      "status": "reviewed",
+      "sha": "f7440a441dd80594"
+    },
+    "valais-housing-03": {
+      "status": "reviewed",
+      "sha": "15dbb80de996b13a"
+    },
+    "valais-housing-04": {
+      "status": "reviewed",
+      "sha": "afa510078f193132"
+    },
+    "valais-housing-05": {
+      "status": "reviewed",
+      "sha": "33668963f6ea1f3d"
+    },
+    "valais-relief-01": {
+      "status": "reviewed",
+      "sha": "d76f195e2e7b2114"
+    },
+    "valais-relief-02": {
+      "status": "reviewed",
+      "sha": "ca60876b991f0bbc"
+    },
+    "valais-relief-03": {
+      "status": "reviewed",
+      "sha": "a834281e203324b7"
+    },
+    "valais-relief-04": {
+      "status": "reviewed",
+      "sha": "4e60d9b2e1979cc9"
+    },
+    "valais-relief-05": {
+      "status": "reviewed",
+      "sha": "726983d163b13e0f"
+    },
+    "valais-triage-01": {
+      "status": "reviewed",
+      "sha": "3ad25c7e376bc0b8"
+    },
+    "valais-triage-02": {
+      "status": "reviewed",
+      "sha": "9d9516998412af4c"
+    },
+    "valais-triage-03": {
+      "status": "reviewed",
+      "sha": "e09167439e6b3f74"
+    },
+    "valais-triage-04": {
+      "status": "reviewed",
+      "sha": "a0f05453ae935f77"
+    },
+    "valais-triage-05": {
+      "status": "reviewed",
+      "sha": "cb07ccbadbd0e5fd"
+    },
+    "valencia-dispatch-01": {
+      "status": "reviewed",
+      "sha": "e4a16a413f544a9f"
+    },
+    "valencia-dispatch-02": {
+      "status": "reviewed",
+      "sha": "7ab005202adba2f7"
+    },
+    "valencia-dispatch-03": {
+      "status": "reviewed",
+      "sha": "0851e4a8f8d04c4c"
+    },
+    "valencia-dispatch-04": {
+      "status": "reviewed",
+      "sha": "5bcf9ea032ccd8ed"
+    },
+    "valencia-dispatch-05": {
+      "status": "reviewed",
+      "sha": "3e59a5ca6fec7eff"
+    },
+    "valencia-evacuation-01": {
+      "status": "reviewed",
+      "sha": "d231dc09641ae748"
+    },
+    "valencia-evacuation-02": {
+      "status": "reviewed",
+      "sha": "b4ead6979eaee3c2"
+    },
+    "valencia-evacuation-03": {
+      "status": "reviewed",
+      "sha": "45ae1b649be46bd8"
+    },
+    "valencia-evacuation-04": {
+      "status": "reviewed",
+      "sha": "941254b1651d23cd"
+    },
+    "valencia-evacuation-05": {
+      "status": "reviewed",
+      "sha": "2e736b81485420b2"
+    },
+    "valencia-housing-01": {
+      "status": "reviewed",
+      "sha": "edd7ae2d47ce5cbb"
+    },
+    "valencia-housing-02": {
+      "status": "reviewed",
+      "sha": "7d5a696615057ed4"
+    },
+    "valencia-housing-03": {
+      "status": "reviewed",
+      "sha": "1262143613fbb3d2"
+    },
+    "valencia-housing-04": {
+      "status": "reviewed",
+      "sha": "896a2c89cb546065"
+    },
+    "valencia-housing-05": {
+      "status": "reviewed",
+      "sha": "d5579496c3e0cd36"
+    },
+    "valencia-relief-01": {
+      "status": "reviewed",
+      "sha": "b63a6bbb1b612169"
+    },
+    "valencia-relief-02": {
+      "status": "reviewed",
+      "sha": "4ce022d211f94125"
+    },
+    "valencia-relief-03": {
+      "status": "reviewed",
+      "sha": "065271753a61ab3b"
+    },
+    "valencia-relief-04": {
+      "status": "reviewed",
+      "sha": "72ca9f2a223625db"
+    },
+    "valencia-relief-05": {
+      "status": "reviewed",
+      "sha": "3560cdd55c1f2b6a"
+    },
+    "valencia-triage-01": {
+      "status": "reviewed",
+      "sha": "2cf5c8a89f27c0d2"
+    },
+    "valencia-triage-02": {
+      "status": "reviewed",
+      "sha": "004a28ae687797d0"
+    },
+    "valencia-triage-03": {
+      "status": "reviewed",
+      "sha": "45612b5ded78e1ee"
+    },
+    "valencia-triage-04": {
+      "status": "reviewed",
+      "sha": "64585f67809ab2f4"
+    },
+    "valencia-triage-05": {
+      "status": "reviewed",
+      "sha": "fe3dbf1dd327b64f"
+    }
+  },
+  "attributes_sha": "e0ea8350882581c3",
+  "prompts_sha": {
+    "el.yaml": "c3cbbe71d8781617",
+    "en.yaml": "0e718a44dfdda70b",
+    "fr.yaml": "3cb92cb944e00cb8"
+  }
+}

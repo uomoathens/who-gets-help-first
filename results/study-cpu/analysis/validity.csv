@@ -1,0 +1,16 @@
+model,language,records,valid_share,rescaled_share,errors
+apertus-8b,el,75,1.0,0.0,
+apertus-8b,en,78,0.9871794871794872,0.0,not-a-permutation 1
+apertus-8b,fr,88,0.9659090909090909,0.0,not-a-permutation 3
+krikri-8b,el,611,0.9967266775777414,0.006546644844517185,"not-a-permutation 1, bad-shares 1"
+krikri-8b,en,607,0.9983525535420099,0.0016474464579901153,bad-shares 1
+krikri-8b,fr,594,0.9865319865319865,0.005050505050505051,not-a-permutation 8
+llama-3.1-8b,el,490,0.9510204081632653,0.0020408163265306124,not-a-permutation 24
+llama-3.1-8b,en,492,0.9613821138211383,0.024390243902439025,"not-a-permutation 16, bad-shares 3"
+llama-3.1-8b,fr,473,0.9682875264270613,0.012684989429175475,"not-a-permutation 13, bad-shares 2"
+meltemi-7b,el,396,0.9873737373737373,0.14898989898989898,"no-json 2, not-a-permutation 2, shares-do-not-sum-to-100 1"
+meltemi-7b,en,414,0.9975845410628019,0.1473429951690821,shares-do-not-sum-to-100 1
+meltemi-7b,fr,419,0.9021479713603818,0.06443914081145585,shares-do-not-sum-to-100 41
+qwen2.5-7b,el,155,1.0,0.0,
+qwen2.5-7b,en,166,0.9698795180722891,0.0,not-a-permutation 5
+qwen2.5-7b,fr,177,0.9943502824858758,0.0,not-a-permutation 1
