@@ -58,15 +58,71 @@ def job_id(model: str, case: Case, variant: Variant, lang: str, p: int, role: st
     return hashlib.sha256(f"{model}|{case.id}|{variant.key}|{lang}|{p}|{role}|{run}".encode()).hexdigest()[:16]
 
 
-def _done(path: Path) -> set:
-    if not path.exists():
-        return set()
-    out = set()
+def read_lines(path: Path) -> list:
+    out = []
     with open(path, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if line:
-                out.add(json.loads(line)["job_id"])
+            if not line:
+                continue
+            try:
+                out.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+    return out
+
+
+def _done(path: Path) -> set:
+    if not path.exists():
+        return set()
+    return {r["job_id"] for r in read_lines(path)}
+
+
+def raw_files(raw_dir: Path, name: str) -> list:
+    return [p for p in [raw_dir / f"{name}.jsonl", *sorted(raw_dir.glob(f"{name}--*.jsonl"))] if p.exists()]
+
+
+def _end_line(path: Path) -> None:
+    if path.exists() and path.stat().st_size:
+        with open(path, "rb") as f:
+            f.seek(-1, 2)
+            last = f.read(1)
+        if last != b"\n":
+            with open(path, "ab") as f:
+                f.write(b"\n")
+
+
+def done_ids(raw_dir: Path, name: str) -> set:
+    out = set()
+    for p in raw_files(raw_dir, name):
+        out |= _done(p)
+    return out
+
+
+def in_shard(jid: str, shard: int | None, shards: int | None) -> bool:
+    return shard is None or int(jid, 16) % shards == shard
+
+
+def plan(cfg: Config) -> list:
+    attributes, prompts, cases = load_study(cfg)
+    raw_dir = cfg.output / "raw"
+    out = []
+    for model in cfg.models:
+        name = model["name"]
+        shards = int(model.get("shards", 1))
+        done = done_ids(raw_dir, name)
+        left = [0] * shards
+        for m, case, variant, lang, p, role, run in jobs(cfg, cases, attributes, prompts):
+            if m["name"] != name:
+                continue
+            jid = job_id(name, case, variant, lang, p, role, run)
+            if jid not in done:
+                left[int(jid, 16) % shards] += 1
+        gguf = model.get("gguf") or {}
+        for k, n in enumerate(left):
+            if n:
+                out.append({"name": name, "shard": k, "shards": shards, "left": n, "tag": f"{name}--{k:02d}",
+                            "repo": gguf.get("repo", ""), "file": gguf.get("file", ""), "template": gguf.get("template", "")})
     return out
 
 
@@ -94,7 +150,10 @@ def write_manifest(cfg: Config, cases: list) -> None:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
 
-def execute(cfg: Config, limit: int | None = None, only_model: str | None = None, log=print) -> int:
+def execute(cfg: Config, limit: int | None = None, only_model: str | None = None, log=print,
+            shard: int | None = None, shards: int | None = None) -> int:
+    if (shard is None) != (shards is None) or (shards is not None and not 0 <= shard < shards):
+        raise CaseError("shard and shards go together, with 0 <= shard < shards")
     attributes, prompts, cases = load_study(cfg)
     write_manifest(cfg, cases)
     raw_dir = cfg.output / "raw"
@@ -106,11 +165,12 @@ def execute(cfg: Config, limit: int | None = None, only_model: str | None = None
         name = model["name"]
         if only_model and name != only_model:
             continue
-        path = raw_dir / f"{name}.jsonl"
+        path = raw_dir / (f"{name}.jsonl" if shard is None else f"{name}--{shard:02d}.jsonl")
         if name not in done:
-            done[name] = _done(path)
+            done[name] = done_ids(raw_dir, name)
+            _end_line(path)
         jid = job_id(name, case, variant, lang, p, role, run)
-        if jid in done[name]:
+        if jid in done[name] or not in_shard(jid, shard, shards):
             continue
         if name not in runners:
             runners[name] = make_runner(model)
@@ -127,7 +187,8 @@ def execute(cfg: Config, limit: int | None = None, only_model: str | None = None
         }
         output = runner.generate(prompt.messages, seed=seed, temperature=cfg.temperature,
                                  max_tokens=cfg.max_tokens, context=context)
-        parsed, error = parse(case.decision, output, list(mapping))
+        texts = dict(prompt.texts)
+        parsed, error = parse(case.decision, output, list(mapping), texts=texts)
         record = {
             "job_id": jid, "model": name, "model_id": runner.model_id, "revision": runner.revision,
             "case": case.id, "task": case.task, "decision": case.decision, "setting": case.setting,
@@ -135,7 +196,7 @@ def execute(cfg: Config, limit: int | None = None, only_model: str | None = None
             "variant": variant.key, "attribute": variant.attribute, "value": variant.value, "control": variant.control,
             "placebo": variant.placebo, "clarity": case.clarity,
             "language": lang, "paraphrase": p, "role": role, "run": run, "seed": seed,
-            "temperature": cfg.temperature, "prompt_sha": prompt.sha, "labels": dict(prompt.labels),
+            "temperature": cfg.temperature, "prompt_sha": prompt.sha, "labels": dict(prompt.labels), "texts": texts,
             "output": output, "valid": parsed is not None, "error": error,
             "result": to_units(case.decision, parsed, mapping) if parsed else None,
             "timestamp": now(),

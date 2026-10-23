@@ -25,6 +25,7 @@ class Prompt:
     messages: tuple
     labels: tuple
     sha: str
+    texts: tuple = ()
 
     def unit_for(self, label: str) -> str:
         return dict(self.labels)[label]
@@ -137,4 +138,4 @@ def build(case: Case, variant: Variant, lang: str, paraphrase: int, role: str, r
     user = "\n\n".join([case.context[lang], " ".join(x for x in (t["instructions"][paraphrase], p["rule"], t.get("criteria", "")) if x), "\n".join(lines), answer])
     messages = ({"role": "system", "content": p["roles"][role]}, {"role": "user", "content": user})
     sha = hashlib.sha256((messages[0]["content"] + "\n" + user).encode("utf-8")).hexdigest()[:16]
-    return Prompt(messages, tuple(labels), sha)
+    return Prompt(messages, tuple(labels), sha, tuple((label, line) for (label, _), line in zip(labels, lines)))

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -10,7 +11,7 @@ from .cases import CaseError, load_cases
 from .config import load_config
 from .expand import expand
 from .prompts import Prompts, build
-from .run import execute, jobs, load_study
+from .run import execute, jobs, load_study, plan
 
 
 def cmd_check(args) -> int:
@@ -47,7 +48,18 @@ def cmd_preview(args) -> int:
 
 
 def cmd_run(args) -> int:
-    execute(load_config(args.config), limit=args.limit, only_model=args.model)
+    execute(load_config(args.config), limit=args.limit, only_model=args.model, shard=args.shard, shards=args.shards)
+    return 0
+
+
+def cmd_plan(args) -> int:
+    work = plan(load_config(args.config))
+    if args.json:
+        print(json.dumps(work, separators=(",", ":")))
+    else:
+        for w in work:
+            print(f"{w['name']} shard {w['shard'] + 1}/{w['shards']}: {w['left']} prompts left")
+        print(f"total: {sum(w['left'] for w in work)} prompts left in {len(work)} shard(s)")
     return 0
 
 
@@ -75,7 +87,13 @@ def main(argv=None) -> int:
     r.add_argument("--config", required=True)
     r.add_argument("--limit", type=int)
     r.add_argument("--model")
+    r.add_argument("--shard", type=int)
+    r.add_argument("--shards", type=int)
     r.set_defaults(func=cmd_run)
+    pl = sub.add_parser("plan", help="list the prompts still to run, split into shards")
+    pl.add_argument("--config", required=True)
+    pl.add_argument("--json", action="store_true")
+    pl.set_defaults(func=cmd_plan)
     a = sub.add_parser("analyze", help="compute the pre-registered measures")
     a.add_argument("--config", required=True)
     a.set_defaults(func=cmd_analyze)

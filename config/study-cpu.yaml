@@ -1,0 +1,64 @@
+name: study-cpu
+cases: cases/study
+attributes: attributes/swaps.yaml
+prompts: prompts
+output: results/study-cpu
+languages: [el, fr, en]
+paraphrases: [0]
+roles: [officer]
+runs: 2
+temperature: 0.2
+max_tokens: 600
+bootstrap: 2000
+models:
+  - name: apertus-8b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: swiss-ai/Apertus-8B-Instruct-2509
+    revision: bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF:Q4_K_M
+    timeout: 900
+    shards: 6
+    gguf:
+      repo: bartowski/swiss-ai_Apertus-8B-Instruct-2509-GGUF
+      file: swiss-ai_Apertus-8B-Instruct-2509-Q4_K_M.gguf
+      template: apertus.jinja
+  - name: krikri-8b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: ilsp/Llama-Krikri-8B-Instruct
+    revision: ilsp/Llama-Krikri-8B-Instruct-GGUF:q4_k_m
+    timeout: 900
+    shards: 11
+    gguf:
+      repo: ilsp/Llama-Krikri-8B-Instruct-GGUF
+      file: llama-krikri-8b-instruct-q4_k_m.gguf
+  - name: llama-3.1-8b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: meta-llama/Llama-3.1-8B-Instruct
+    revision: bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M
+    timeout: 900
+    shards: 7
+    gguf:
+      repo: bartowski/Meta-Llama-3.1-8B-Instruct-GGUF
+      file: Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+  - name: meltemi-7b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: ilsp/Meltemi-7B-Instruct-v1.5
+    revision: mradermacher/Meltemi-7B-Instruct-v1.5-GGUF:Q4_K_M
+    timeout: 900
+    shards: 8
+    gguf:
+      repo: mradermacher/Meltemi-7B-Instruct-v1.5-GGUF
+      file: Meltemi-7B-Instruct-v1.5.Q4_K_M.gguf
+  - name: qwen2.5-7b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: Qwen/Qwen2.5-7B-Instruct
+    revision: bartowski/Qwen2.5-7B-Instruct-GGUF:Q4_K_M
+    timeout: 900
+    shards: 17
+    gguf:
+      repo: bartowski/Qwen2.5-7B-Instruct-GGUF
+      file: Qwen2.5-7B-Instruct-Q4_K_M.gguf

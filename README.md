@@ -10,7 +10,7 @@ When a language model is asked to prioritise help during a flood, does its decis
 
 ## Status
 
-**Pre-registration stage. There are no results yet.** `cases/study` holds the 75 study cases, marked `reviewed`: 15 per decision type, 5 per setting, 9 with ambiguous and 6 with clear need. They are illustrative examples modelled on documented events, not records of real decisions, and no organisation was consulted in writing them. Each case is checked automatically by the test suite: the numbers must follow the design, in clear cases the order must follow from deeper water, more people and a longer wait, in ambiguous cases these criteria must point in different directions, and in triage cases the stated priority rule decides between groups. The events, dates and places were checked against published sources; no person read every case text, and the cases were marked `reviewed` on that basis. `cases/templates` holds six short examples used by the tests. Each name list in `attributes/swaps.yaml` states its source. Spanish, Romanian and Moroccan names come from the Spanish statistical office (INE, 1 January 2025), Swiss first names and surnames from the Swiss Federal Statistical Office (2022 and 2023), and Greek first names from the 2021 Greek census. The code refuses to run a study on unreviewed cases or unsourced names unless a configuration explicitly marks the run as a pilot.
+**The pilot is complete and the study is running.** The design was archived on Zenodo before any results (v0.1.0) and again with the changes made after the pilot (v0.2.0). Study answers and the analysis are committed to `results/study-cpu` as each round finishes; the analysis there is provisional until no prompts are left. `cases/study` holds the 75 study cases, marked `reviewed`: 15 per decision type, 5 per setting, 9 with ambiguous and 6 with clear need. They are illustrative examples modelled on documented events, not records of real decisions, and no organisation was consulted in writing them. Each case is checked automatically by the test suite: the numbers must follow the design, in clear cases the order must follow from deeper water, more people and a longer wait, in ambiguous cases these criteria must point in different directions, and in triage cases the stated priority rule decides between groups. The events, dates and places were checked against published sources; no person read every case text, and the cases were marked `reviewed` on that basis. `cases/templates` holds six short examples used by the tests. Each name list in `attributes/swaps.yaml` states its source. Spanish, Romanian and Moroccan names come from the Spanish statistical office (INE, 1 January 2025), Swiss first names and surnames from the Swiss Federal Statistical Office (2022 and 2023), and Greek first names from the 2021 Greek census. The code refuses to run a study on unreviewed cases or unsourced names unless a configuration explicitly marks the run as a pilot.
 
 ## Design
 
@@ -62,7 +62,29 @@ whf analyze --config config/ci.yaml
 - Llama 3.1 8B, the base of Krikri, so that adapting a model to Greek can be compared with not adapting it;
 - any model behind an OpenAI-compatible endpoint such as vLLM.
 
-Llama 3.1 is gated on Hugging Face, so its licence must be accepted and a token set before it can be downloaded. `config/pilot-cpu.yaml` runs a first pilot at no cost on GitHub Actions: five cases, one per decision type, in all three languages, on 4-bit GGUF versions of the five models served by llama.cpp on the free CPU runners. The `pilot` workflow starts when that configuration changes or by hand from the Actions tab, and commits its results to `results/pilot-cpu`. Quantised models may answer slightly differently from the full-precision ones, so the pilot checks the pipeline and the prompts rather than estimating the study's effects. Answers are parsed again at every analysis, so a change to the parser applies to stored answers. After the first pilot the parser was extended to accept labels written with a word ("Call D", "Κλήση D"), Greek capital letters for labels, comments inside the JSON and a justification cut off by the token limit; answers with extra labels or shares that do not sum to 100 remain invalid. The parser is frozen before the full study. Runs resume where they stopped, and every answer is stored with the model revision, seed, prompt hash and timestamp.
+Llama 3.1 is gated on Hugging Face, so its licence must be accepted and a token set before it can be downloaded.
+
+## Pilot
+
+`config/pilot-cpu.yaml` ran a first pilot at no cost on GitHub Actions: five cases, one per decision type, in all three languages, on 4-bit GGUF versions of the five models served by llama.cpp on the free CPU runners (990 answers, results in `results/pilot-cpu`). Quantised models may answer slightly differently from the full-precision ones, so the pilot checked the pipeline and the prompts rather than estimating effects. Three things were learned. Most answers could be read, and every model raised the priority of the positive controls in most pairs. At temperature 0.7 the same prompt changed its answer in 27 % to 75 % of re-runs, which is too much noise for identity effects of the expected size. And the stated priority rule was followed unevenly: one model put property above people in almost every triage answer.
+
+## Changes after the pilot
+
+Answers are parsed again at every analysis, so a change to the parser applies to stored answers. After the pilot:
+
+- labels written with a word ("Call D", "Κλήση D"), Greek capital letters for labels, comments inside the JSON and a justification cut off by the token limit are accepted;
+- an answer cut off after a complete inner object is read from that object;
+- a unit named by its person or place instead of its letter is mapped to that letter when exactly one unit matches; every answer stores the unit texts it was shown, so the mapping can be checked;
+- supply shares that do not sum to 100 are rescaled to 100 and flagged; the fairness analysis is repeated without them (`fairness_strict.csv`), and the validity table reports the share rescaled;
+- answers with extra or missing labels remain invalid.
+
+On the pilot answers these changes raise the share of valid answers from 91.5 % to 96.5 %. The pilot answers do not store the unit texts, so the mapping of names to letters does not apply to them; with the texts rebuilt from the prompts, the share would be 97.6 %. Cases, names, prompts and the priority rule did not change.
+
+## Study run
+
+`config/study-cpu.yaml` is the study as run: all 75 cases, all variants, three languages, one instruction wording, one role, two runs per prompt, temperature 0.2, on the five models of the pilot. That is 5,880 prompts per model and 29,400 in all. `config/study.yaml` keeps the full design (three wordings, two roles, five runs) for a run on a GPU.
+
+The `study` workflow starts when that configuration changes or by hand from the Actions tab. `whf plan` splits each model's remaining prompts into shards by a hash of the prompt, sized so that one shard fits in a free runner's time limit (49 shards). Each shard downloads its model, records the file's SHA-256 and the digest of the llama.cpp server image in `results/study-cpu/models`, and writes its answers to its own file in `results/study-cpu/raw`. When the shards of a round finish, their answers are analysed and committed, and if prompts are left the workflow starts the next round itself, up to six rounds. A shard that runs out of time keeps what it wrote, and the next round picks up only what is missing.
 
 Every case also runs a placebo variant: the base case again with a new seed. Its flip rate is the noise floor, and identity effects are reported as the flip rate above it. Cases carry a `clarity` field (`ambiguous` or `clear`), because demographic effects are expected mainly when need is ambiguous.
 
@@ -72,7 +94,9 @@ Every case also runs a placebo variant: the base case again with a new seed. Its
 attributes/swaps.yaml   names, areas, statuses and positive controls in el, fr, en
 cases/study/            75 illustrative study cases, checked automatically by the tests
 cases/templates/        six short examples used by the tests
-config/                 study configurations
+config/                 study, pilot and test configurations
+results/pilot-cpu/      answers and analysis of the CPU pilot
+results/study-cpu/      answers and analysis of the study, committed round by round
 prompts/                instructions, role framings and answer formats in el, fr, en
 src/whf/                cases, counterfactual expansion, prompts, runners, parsing, metrics, analysis
 templates/              chat template for Apertus, used by llama.cpp in the CPU pilot
@@ -85,9 +109,11 @@ The cases are illustrative and were not validated by emergency services, so the 
 
 ## Citation
 
-The study design is archived on Zenodo before any study results:
+The study design was archived on Zenodo before any study results:
 
 > Sargiotis, D. (2026). *Who Gets Help First? A counterfactual audit of large language model decisions in flood response* (Version v0.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23565421
+
+Later versions, including v0.2.0 with the changes made after the pilot, are listed on the same Zenodo record.
 
 See also [CITATION.cff](CITATION.cff).
 

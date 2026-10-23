@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "who-gets-help-first"
-version = "0.1.0"
+version = "0.2.0"
 description = "Counterfactual audit of large language model decisions in flood and natural-disaster response"
 readme = "README.md"
 license = {text = "MIT"}
