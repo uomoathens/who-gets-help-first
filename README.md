@@ -2,7 +2,7 @@
 
 **Dimitrios Sargiotis** · National Technical University of Athens · [users.ntua.gr/dims](https://users.ntua.gr/dims/) · [uomoathens.github.io](https://uomoathens.github.io/)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23565421.svg)](https://doi.org/10.5281/zenodo.23565421)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23684889.svg)](https://doi.org/10.5281/zenodo.23684889)
 
 A counterfactual audit of large language model (LLM) decisions in flood and natural-disaster response.
 
@@ -10,7 +10,7 @@ When a language model is asked to prioritise help during a flood, does its decis
 
 ## Status
 
-**The study is complete.** All 29,400 prompts were answered between 23 and 24 October 2026; the answers and the analysis are in `results/study-cpu`, and the main findings are summarised under [Results](#results). The design was archived on Zenodo before any study answer (v0.1.0), and again with the changes made after the pilot (v0.2.0); the results are archived as v1.0.0. `cases/study` holds the 75 study cases, marked `reviewed`: 15 per decision type, 5 per setting, 9 with ambiguous and 6 with clear need. They are illustrative examples modelled on documented events, not records of real decisions, and no organisation was consulted in writing them. Each case is checked automatically by the test suite: the numbers must follow the design, in clear cases the order must follow from deeper water, more people and a longer wait, in ambiguous cases these criteria must point in different directions, and in triage cases the stated priority rule decides between groups. The events, dates and places were checked against published sources; no person read every case text, and the cases were marked `reviewed` on that basis. `cases/templates` holds six short examples used by the tests. Each name list in `attributes/swaps.yaml` states its source. Spanish, Romanian and Moroccan names come from the Spanish statistical office (INE, 1 January 2025), Swiss first names and surnames from the Swiss Federal Statistical Office (2022 and 2023), and Greek first names from the 2021 Greek census. The code refuses to run a study on unreviewed cases or unsourced names unless a configuration explicitly marks the run as a pilot.
+**The study is complete.** All 29,400 prompts were answered between 23 and 24 October 2026; the answers and the analysis are in `results/study-cpu`, and the main findings are summarised under [Results](#results). The design was archived on Zenodo before any study answer (v0.1.0, 22 October 2026). The changes made after the pilot were tagged v0.2.0 on 23 October at 08:23 UTC, four hours before the first study answer (12:38 UTC); their Zenodo copy was made on 27 October, because the first release of v0.2.0 was published by editing the v0.1.0 release, which Zenodo does not archive. The results are archived as v1.0.0. `cases/study` holds the 75 study cases, marked `reviewed`: 15 per decision type, 5 per setting, 9 with ambiguous and 6 with clear need. They are illustrative examples modelled on documented events, not records of real decisions, and no organisation was consulted in writing them. Each case is checked automatically by the test suite: the numbers must follow the design, in clear cases the order must follow from deeper water, more people and a longer wait, in ambiguous cases these criteria must point in different directions, and in triage cases the stated priority rule decides between groups. The events, dates and places were checked against published sources; no person read every case text, and the cases were marked `reviewed` on that basis. `cases/templates` holds six short examples used by the tests. Each name list in `attributes/swaps.yaml` states its source. Spanish, Romanian and Moroccan names come from the Spanish statistical office (INE, 1 January 2025), Swiss first names and surnames from the Swiss Federal Statistical Office (2022 and 2023), and Greek first names from the 2021 Greek census. The code refuses to run a study on unreviewed cases or unsourced names unless a configuration explicitly marks the run as a pilot.
 
 ## Design
 
@@ -122,11 +122,17 @@ The cases are illustrative and were not validated by emergency services, so the 
 
 ## Citation
 
-The study design was archived on Zenodo before any study results:
+Study results:
 
-> Sargiotis, D. (2026). *Who Gets Help First? A counterfactual audit of large language model decisions in flood response* (Version v0.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23565421
+> Sargiotis, D. (2026). *Who Gets Help First? A counterfactual audit of large language model decisions in flood response* (Version v1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23684889
 
-Later versions are listed on the same Zenodo record: v0.2.0 with the changes made after the pilot, and v1.0.0 with the study results.
+All versions on the same Zenodo record:
+
+| Version | Content | DOI |
+| --- | --- | --- |
+| v0.1.0 | Study design before any results | [10.5281/zenodo.23565421](https://doi.org/10.5281/zenodo.23565421) |
+| v0.2.0 | Changes made after the pilot, and the study run | [10.5281/zenodo.23684831](https://doi.org/10.5281/zenodo.23684831) |
+| v1.0.0 | Study results | [10.5281/zenodo.23684889](https://doi.org/10.5281/zenodo.23684889) |
 
 See also [CITATION.cff](CITATION.cff).
 
