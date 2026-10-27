@@ -10,7 +10,7 @@ When a language model is asked to prioritise help during a flood, does its decis
 
 ## Status
 
-**The pilot is complete and the study is running.** The design was archived on Zenodo before any results (v0.1.0) and again with the changes made after the pilot (v0.2.0). Study answers and the analysis are committed to `results/study-cpu` as each round finishes; the analysis there is provisional until no prompts are left. `cases/study` holds the 75 study cases, marked `reviewed`: 15 per decision type, 5 per setting, 9 with ambiguous and 6 with clear need. They are illustrative examples modelled on documented events, not records of real decisions, and no organisation was consulted in writing them. Each case is checked automatically by the test suite: the numbers must follow the design, in clear cases the order must follow from deeper water, more people and a longer wait, in ambiguous cases these criteria must point in different directions, and in triage cases the stated priority rule decides between groups. The events, dates and places were checked against published sources; no person read every case text, and the cases were marked `reviewed` on that basis. `cases/templates` holds six short examples used by the tests. Each name list in `attributes/swaps.yaml` states its source. Spanish, Romanian and Moroccan names come from the Spanish statistical office (INE, 1 January 2025), Swiss first names and surnames from the Swiss Federal Statistical Office (2022 and 2023), and Greek first names from the 2021 Greek census. The code refuses to run a study on unreviewed cases or unsourced names unless a configuration explicitly marks the run as a pilot.
+**The study is complete.** All 29,400 prompts were answered between 23 and 24 October 2026; the answers and the analysis are in `results/study-cpu`, and the main findings are summarised under [Results](#results). The design was archived on Zenodo before any study answer (v0.1.0), and again with the changes made after the pilot (v0.2.0); the results are archived as v1.0.0. `cases/study` holds the 75 study cases, marked `reviewed`: 15 per decision type, 5 per setting, 9 with ambiguous and 6 with clear need. They are illustrative examples modelled on documented events, not records of real decisions, and no organisation was consulted in writing them. Each case is checked automatically by the test suite: the numbers must follow the design, in clear cases the order must follow from deeper water, more people and a longer wait, in ambiguous cases these criteria must point in different directions, and in triage cases the stated priority rule decides between groups. The events, dates and places were checked against published sources; no person read every case text, and the cases were marked `reviewed` on that basis. `cases/templates` holds six short examples used by the tests. Each name list in `attributes/swaps.yaml` states its source. Spanish, Romanian and Moroccan names come from the Spanish statistical office (INE, 1 January 2025), Swiss first names and surnames from the Swiss Federal Statistical Office (2022 and 2023), and Greek first names from the 2021 Greek census. The code refuses to run a study on unreviewed cases or unsourced names unless a configuration explicitly marks the run as a pilot.
 
 ## Design
 
@@ -88,6 +88,19 @@ The `study` workflow starts when that configuration changes or by hand from the 
 
 Every case also runs a placebo variant: the base case again with a new seed. Its flip rate is the noise floor, and identity effects are reported as the flip rate above it. Cases carry a `clarity` field (`ambiguous` or `clear`), because demographic effects are expected mainly when need is ambiguous.
 
+## Results
+
+The full report is [`results/study-cpu/analysis/report.md`](results/study-cpu/analysis/report.md). Running `whf analyze --config config/study-cpu.yaml` on the stored answers reproduces every table in it exactly.
+
+- **Answers.** 29,400 answers, 5,880 per model, of which 97.6 % could be read (95.9 % to 99.5 % by model). All were given at temperature 0.2 by the model files whose SHA-256 is recorded in `results/study-cpu/models`, and all 49 shards ran on the same llama.cpp server image.
+- **Noise floor.** Re-posing a base case with a new seed changed the target's position in 4 % to 51 % of pairs, depending on model and decision.
+- **Identity.** Of 170 identity contrasts that rest on all 15 cases of a decision type, 51 shift the target's priority beyond the noise floor after Holm correction, and their direction is consistent. Areas of villas were moved down in all five models (15 contrasts) and seasonal workers in four (5 contrasts). Syrian names were moved up in all five models (13 contrasts), as were asylum seekers (3), social housing (4) and women (2). No minority origin was moved down in any reportable contrast. Need is held constant in every pair, so the models appear to read identity as a signal of need, in favour of groups they associate with disadvantage and against those they associate with wealth or temporary work. The Syrian names, which give the most frequent effect, are also the one name list without an official source.
+- **Need.** The positive controls (a person over 80, a wheelchair user, an infant, a pregnant woman, a dialysis patient) raised the target in 41 % (Meltemi) to 64 % (Qwen) of pairs.
+- **Priority rule.** In triage, the stated order (vulnerable people, households, workers, property) was followed in full in 7 % (Meltemi) to 47 % (Krikri) of rankings.
+- **Language.** The same base case gave different answers between languages in 20 of 75 comparisons of model, decision and language pair (p < 0.05, not corrected); 11 of them concern emergency housing scores, and 10 of those 11 involve French.
+
+These are results for 4-bit quantised versions of the models on CPU, with one instruction wording and one role; full-precision models, other wordings and other roles may behave differently.
+
 ## Layout
 
 ```
@@ -105,7 +118,7 @@ tests/                  unit, metric and end-to-end tests
 
 ## Limitations
 
-The cases are illustrative and were not validated by emergency services, so the results describe how models behave on plausible written cases, not how they would perform in real operations. The numbers in each case are synthetic and generated by a fixed rule. No official name-frequency list was found for Syrian nationals, so the Syrian names were chosen by the author and signal that origin less precisely than the sourced names do. Romanian and Moroccan names come from nationals resident in Spain and are used in all three settings.
+The cases are illustrative and were not validated by emergency services, so the results describe how models behave on plausible written cases, not how they would perform in real operations. The numbers in each case are synthetic and generated by a fixed rule. No official name-frequency list was found for Syrian nationals, so the Syrian names were chosen by the author and signal that origin less precisely than the sourced names do. Romanian and Moroccan names come from nationals resident in Spain and are used in all three settings. The study ran 4-bit quantised models with one instruction wording and one role, and its effects are estimated for those conditions only.
 
 ## Citation
 
@@ -113,7 +126,7 @@ The study design was archived on Zenodo before any study results:
 
 > Sargiotis, D. (2026). *Who Gets Help First? A counterfactual audit of large language model decisions in flood response* (Version v0.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23565421
 
-Later versions, including v0.2.0 with the changes made after the pilot, are listed on the same Zenodo record.
+Later versions are listed on the same Zenodo record: v0.2.0 with the changes made after the pilot, and v1.0.0 with the study results.
 
 See also [CITATION.cff](CITATION.cff).
 
