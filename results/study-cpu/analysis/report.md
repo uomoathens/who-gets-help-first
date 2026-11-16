@@ -1689,7 +1689,7 @@ p_holm: Holm correction across all comparisons (task by language pair) of each m
 | krikri-8b | housing | C(key)[T.status=asylum_seeker] | -0.145 | 0.191 | 0.448 |  |
 | krikri-8b | housing | C(key)[T.status=seasonal_worker] | -0.645 | 0.191 | 0.001 |  |
 | krikri-8b | housing | C(language)[T.en] | -0.100 | 0.232 | 0.667 |  |
-| krikri-8b | housing | C(language)[T.fr] | 0.000 | 0.232 | 1.000 |  |
+| krikri-8b | housing | C(language)[T.fr] | -0.000 | 0.232 | 1.000 |  |
 | krikri-8b | housing | C(clarity)[T.clear] | 0.093 | 0.064 | 0.147 |  |
 | krikri-8b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.033 | 0.268 | 0.901 |  |
 | krikri-8b | housing | C(key)[T.area=villas]:C(language)[T.en] | 0.300 | 0.268 | 0.264 |  |
@@ -1703,7 +1703,7 @@ p_holm: Holm correction across all comparisons (task by language pair) of each m
 | krikri-8b | housing | C(key)[T.area=villas]:C(language)[T.fr] | -0.867 | 0.268 | 0.001 |  |
 | krikri-8b | housing | C(key)[T.gender=female]:C(language)[T.fr] | 0.133 | 0.268 | 0.619 |  |
 | krikri-8b | housing | C(key)[T.origin=local_migrant]:C(language)[T.fr] | 0.200 | 0.268 | 0.456 |  |
-| krikri-8b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.000 | 0.268 | 1.000 |  |
+| krikri-8b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | 0.000 | 0.268 | 1.000 |  |
 | krikri-8b | housing | C(key)[T.origin=syrian]:C(language)[T.fr] | 0.433 | 0.268 | 0.106 |  |
 | krikri-8b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.fr] | -0.100 | 0.268 | 0.709 |  |
 | krikri-8b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.fr] | -0.867 | 0.268 | 0.001 |  |
@@ -1887,34 +1887,34 @@ p_holm: Holm correction across all comparisons (task by language pair) of each m
 | meltemi-7b | evacuation | C(key)[T.origin=local_migrant]:C(language)[T.fr] | -0.567 | 0.582 | 0.330 |  |
 | meltemi-7b | evacuation | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.467 | 0.582 | 0.422 |  |
 | meltemi-7b | evacuation | C(key)[T.origin=syrian]:C(language)[T.fr] | -0.067 | 0.582 | 0.909 |  |
-| meltemi-7b | housing | Intercept | 0.041 | 0.289 | 0.887 |  |
-| meltemi-7b | housing | C(key)[T.area=social_housing] | 0.068 | 0.332 | 0.838 |  |
-| meltemi-7b | housing | C(key)[T.area=villas] | 0.035 | 0.332 | 0.917 |  |
-| meltemi-7b | housing | C(key)[T.gender=female] | 0.168 | 0.332 | 0.613 |  |
-| meltemi-7b | housing | C(key)[T.origin=local_migrant] | 0.201 | 0.332 | 0.544 |  |
-| meltemi-7b | housing | C(key)[T.origin=romanian] | 0.101 | 0.332 | 0.760 |  |
-| meltemi-7b | housing | C(key)[T.origin=syrian] | 0.168 | 0.332 | 0.613 |  |
-| meltemi-7b | housing | C(key)[T.status=asylum_seeker] | 0.101 | 0.332 | 0.760 |  |
-| meltemi-7b | housing | C(key)[T.status=seasonal_worker] | 0.201 | 0.332 | 0.544 |  |
-| meltemi-7b | housing | C(language)[T.en] | 0.200 | 0.406 | 0.622 |  |
-| meltemi-7b | housing | C(language)[T.fr] | 0.700 | 0.406 | 0.084 |  |
-| meltemi-7b | housing | C(clarity)[T.clear] | -0.106 | 0.072 | 0.143 |  |
-| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.333 | 0.469 | 0.477 |  |
-| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.en] | -0.433 | 0.469 | 0.355 |  |
-| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | -0.367 | 0.469 | 0.434 |  |
-| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.en] | -0.367 | 0.469 | 0.434 |  |
-| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.en] | -0.400 | 0.469 | 0.393 |  |
-| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.en] | -0.267 | 0.469 | 0.569 |  |
-| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.en] | -0.100 | 0.469 | 0.831 |  |
-| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.en] | -0.367 | 0.469 | 0.434 |  |
-| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 |  |
-| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.fr] | -1.133 | 0.469 | 0.016 |  |
-| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.fr] | -0.967 | 0.469 | 0.039 |  |
-| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.fr] | -1.100 | 0.469 | 0.019 |  |
-| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 |  |
-| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.fr] | -0.633 | 0.469 | 0.176 |  |
-| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.fr] | -0.800 | 0.469 | 0.088 |  |
-| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.fr] | -0.933 | 0.469 | 0.046 |  |
+| meltemi-7b | housing | Intercept | 0.041 | 0.289 | 0.887 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.area=social_housing] | 0.068 | 0.332 | 0.838 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.area=villas] | 0.035 | 0.332 | 0.917 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.gender=female] | 0.168 | 0.332 | 0.613 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=local_migrant] | 0.201 | 0.332 | 0.544 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=romanian] | 0.101 | 0.332 | 0.760 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=syrian] | 0.168 | 0.332 | 0.613 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.status=asylum_seeker] | 0.101 | 0.332 | 0.760 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.status=seasonal_worker] | 0.201 | 0.332 | 0.544 | did not converge; read with care |
+| meltemi-7b | housing | C(language)[T.en] | 0.200 | 0.406 | 0.622 | did not converge; read with care |
+| meltemi-7b | housing | C(language)[T.fr] | 0.700 | 0.406 | 0.084 | did not converge; read with care |
+| meltemi-7b | housing | C(clarity)[T.clear] | -0.106 | 0.072 | 0.143 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.333 | 0.469 | 0.477 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.en] | -0.433 | 0.469 | 0.355 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | -0.367 | 0.469 | 0.434 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.en] | -0.367 | 0.469 | 0.434 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.en] | -0.400 | 0.469 | 0.393 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.en] | -0.267 | 0.469 | 0.569 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.en] | -0.100 | 0.469 | 0.831 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.en] | -0.367 | 0.469 | 0.434 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.fr] | -1.133 | 0.469 | 0.016 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.fr] | -0.967 | 0.469 | 0.039 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.fr] | -1.100 | 0.469 | 0.019 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.fr] | -0.633 | 0.469 | 0.176 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.fr] | -0.800 | 0.469 | 0.088 | did not converge; read with care |
+| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.fr] | -0.933 | 0.469 | 0.046 | did not converge; read with care |
 | meltemi-7b | relief | Intercept | 1.213 | 2.472 | 0.624 |  |
 | meltemi-7b | relief | C(key)[T.area=social_housing] | -0.244 | 2.749 | 0.929 |  |
 | meltemi-7b | relief | C(key)[T.area=villas] | 3.588 | 2.784 | 0.197 |  |
@@ -2003,9 +2003,9 @@ p_holm: Holm correction across all comparisons (task by language pair) of each m
 | qwen2.5-7b | housing | C(language)[T.en] | 0.100 | 0.184 | 0.587 |  |
 | qwen2.5-7b | housing | C(language)[T.fr] | 1.300 | 0.184 | 0.000 |  |
 | qwen2.5-7b | housing | C(clarity)[T.clear] | -0.038 | 0.061 | 0.528 |  |
-| qwen2.5-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | 0.000 | 0.212 | 1.000 |  |
+| qwen2.5-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.000 | 0.212 | 1.000 |  |
 | qwen2.5-7b | housing | C(key)[T.area=villas]:C(language)[T.en] | -0.200 | 0.212 | 0.346 |  |
-| qwen2.5-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | 0.000 | 0.212 | 1.000 |  |
+| qwen2.5-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | -0.000 | 0.212 | 1.000 |  |
 | qwen2.5-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.en] | -0.067 | 0.212 | 0.754 |  |
 | qwen2.5-7b | housing | C(key)[T.origin=romanian]:C(language)[T.en] | -0.067 | 0.212 | 0.754 |  |
 | qwen2.5-7b | housing | C(key)[T.origin=syrian]:C(language)[T.en] | -0.067 | 0.212 | 0.754 |  |
