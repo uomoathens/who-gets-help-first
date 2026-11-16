@@ -2,6 +2,6 @@ value,signal,tasks,contrasts,reportable,raised,lowered,models
 local_migrant,name,"dispatch, housing",2,0,0,0,0
 local_migrant,statement,"evacuation, relief, triage",3,1,1,0,1
 romanian,name,"dispatch, housing",2,0,0,0,0
-romanian,statement,"evacuation, relief, triage",3,1,1,0,1
-syrian,name,"dispatch, housing",2,0,0,0,0
+romanian,statement,"evacuation, relief, triage",3,0,0,0,0
+syrian,name,"dispatch, housing",2,1,1,0,1
 syrian,statement,"evacuation, relief, triage",3,3,3,0,1

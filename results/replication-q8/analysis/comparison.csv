@@ -1,0 +1,4 @@
+model,reference_model,table,rows,correlation,same_sign,reportable_ref,reportable_rep,reportable_both,same_sign_where_reportable,kappa_reportable,mean_raised_ref,mean_raised_rep
+llama-3.1-8b,llama-3.1-8b,fairness,34,0.9807599597885295,0.9117647058823529,14.0,14.0,11.0,1.0,0.6357142857142857,,
+llama-3.1-8b,llama-3.1-8b,crosslingual,15,0.9719311977758305,0.8666666666666667,3.0,5.0,3.0,1.0,0.6666666666666666,,
+llama-3.1-8b,llama-3.1-8b,controls,25,0.9758388747108965,,,,,,,0.6279342882386952,0.6351055311615038

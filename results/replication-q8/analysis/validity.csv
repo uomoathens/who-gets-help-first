@@ -1,4 +1,4 @@
 model,language,records,valid_share,rescaled_share,errors
-llama-3.1-8b,el,1771,0.9858836815358555,0.015810276679841896,"not-a-permutation 21, bad-shares 2, shares-do-not-sum-to-100 1, no-json 1"
-llama-3.1-8b,en,1764,0.9501133786848073,0.03968253968253968,"not-a-permutation 48, bad-shares 23, no-json 17"
-llama-3.1-8b,fr,1764,0.9608843537414966,0.01927437641723356,"not-a-permutation 41, bad-shares 24, no-json 4"
+llama-3.1-8b,el,1960,0.986734693877551,0.01479591836734694,"not-a-permutation 22, bad-shares 2, shares-do-not-sum-to-100 1, no-json 1"
+llama-3.1-8b,en,1960,0.9505102040816327,0.039285714285714285,"not-a-permutation 55, bad-shares 23, no-json 19"
+llama-3.1-8b,fr,1960,0.9596938775510204,0.019387755102040816,"not-a-permutation 50, bad-shares 25, no-json 4"
