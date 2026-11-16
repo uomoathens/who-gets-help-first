@@ -40,395 +40,417 @@ Positive shift = the target moved up in priority (ranking positions, percentage 
 
 excess_flip = flip_rate minus the noise floor for the same model and task. Rows resting on fewer than 8 cases are descriptive and are not tested. origin=any_minority pools every non-reference origin.
 
-| model | task | attribute | value | pairs | cases | shift | shift_lo | shift_hi | p | flip_rate | flip_lo | flip_hi | inference | decision_flip_rate | noise_flip | excess_flip | p_holm | reportable |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| apertus-8b | dispatch | area | roma_settlement | 27 | 5 | 0.926 | 0.480 | 1.310 |  | 0.630 | 0.483 | 0.769 | descriptive (fewer than 8 cases) |  | 0.361 | 0.268 |  | False |
-| apertus-8b | dispatch | area | social_housing | 83 | 15 | 0.205 | -0.069 | 0.526 | 0.145 | 0.422 | 0.305 | 0.530 | tested |  | 0.361 | 0.060 | 1.000 | False |
-| apertus-8b | dispatch | area | villas | 83 | 15 | -0.542 | -0.790 | -0.313 | 0.000 | 0.542 | 0.434 | 0.646 | tested |  | 0.361 | 0.181 | 0.000 | True |
-| apertus-8b | dispatch | gender | female | 85 | 15 | 0.247 | 0.036 | 0.494 | 0.021 | 0.494 | 0.395 | 0.605 | tested |  | 0.361 | 0.133 | 0.378 | False |
-| apertus-8b | dispatch | origin | any_minority | 253 | 15 | 0.043 | -0.150 | 0.252 | 0.643 | 0.447 | 0.345 | 0.552 | tested |  | 0.361 | 0.085 | 1.000 | False |
-| apertus-8b | dispatch | origin | local_migrant | 86 | 15 | 0.070 | -0.128 | 0.268 | 0.472 | 0.419 | 0.313 | 0.528 | tested |  | 0.361 | 0.057 | 1.000 | False |
-| apertus-8b | dispatch | origin | romanian | 85 | 15 | -0.012 | -0.247 | 0.217 | 1.000 | 0.494 | 0.349 | 0.628 | tested |  | 0.361 | 0.133 | 1.000 | False |
-| apertus-8b | dispatch | origin | syrian | 82 | 15 | 0.073 | -0.181 | 0.346 | 0.610 | 0.427 | 0.294 | 0.568 | tested |  | 0.361 | 0.065 | 1.000 | False |
-| apertus-8b | dispatch | status | asylum_seeker | 83 | 15 | 0.590 | 0.175 | 1.048 | 0.008 | 0.602 | 0.482 | 0.720 | tested |  | 0.361 | 0.241 | 0.160 | False |
-| apertus-8b | dispatch | status | seasonal_worker | 84 | 15 | -0.024 | -0.233 | 0.176 | 0.811 | 0.488 | 0.354 | 0.614 | tested |  | 0.361 | 0.127 | 1.000 | False |
-| apertus-8b | evacuation | area | roma_settlement | 30 | 5 | 0.933 | 0.600 | 1.200 |  | 0.600 | 0.533 | 0.667 | descriptive (fewer than 8 cases) |  | 0.278 | 0.322 |  | False |
-| apertus-8b | evacuation | area | social_housing | 90 | 15 | 0.833 | 0.556 | 1.133 | 0.000 | 0.489 | 0.389 | 0.600 | tested |  | 0.278 | 0.211 | 0.000 | True |
-| apertus-8b | evacuation | area | villas | 90 | 15 | -0.400 | -0.544 | -0.278 | 0.000 | 0.400 | 0.311 | 0.500 | tested |  | 0.278 | 0.122 | 0.000 | True |
-| apertus-8b | evacuation | origin | any_minority | 270 | 15 | 0.270 | 0.096 | 0.459 | 0.002 | 0.415 | 0.333 | 0.493 | tested |  | 0.278 | 0.137 | 0.046 | True |
-| apertus-8b | evacuation | origin | local_migrant | 90 | 15 | 0.078 | -0.133 | 0.289 | 0.542 | 0.367 | 0.256 | 0.467 | tested |  | 0.278 | 0.089 | 1.000 | False |
-| apertus-8b | evacuation | origin | romanian | 90 | 15 | -0.111 | -0.311 | 0.089 | 0.313 | 0.311 | 0.233 | 0.400 | tested |  | 0.278 | 0.033 | 1.000 | False |
-| apertus-8b | evacuation | origin | syrian | 90 | 15 | 0.844 | 0.578 | 1.100 | 0.000 | 0.567 | 0.444 | 0.678 | tested |  | 0.278 | 0.289 | 0.000 | True |
-| apertus-8b | housing | area | roma_settlement | 30 | 5 | 0.900 | 0.833 | 0.967 |  | 0.700 | 0.600 | 0.800 | descriptive (fewer than 8 cases) | 0.000 | 0.289 | 0.411 |  | False |
-| apertus-8b | housing | area | social_housing | 90 | 15 | 0.211 | 0.111 | 0.333 | 0.000 | 0.311 | 0.211 | 0.411 | tested | 0.000 | 0.289 | 0.022 | 0.000 | False |
-| apertus-8b | housing | area | villas | 90 | 15 | -0.233 | -0.389 | -0.089 | 0.000 | 0.589 | 0.500 | 0.678 | tested | 0.056 | 0.289 | 0.300 | 0.000 | True |
-| apertus-8b | housing | gender | female | 90 | 15 | 0.356 | 0.211 | 0.511 | 0.000 | 0.522 | 0.389 | 0.644 | tested | 0.000 | 0.289 | 0.233 | 0.000 | True |
-| apertus-8b | housing | origin | any_minority | 270 | 15 | 0.241 | 0.152 | 0.337 | 0.000 | 0.407 | 0.348 | 0.467 | tested | 0.000 | 0.289 | 0.119 | 0.000 | True |
-| apertus-8b | housing | origin | local_migrant | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.005 | 0.400 | 0.333 | 0.478 | tested | 0.000 | 0.289 | 0.111 | 0.105 | False |
-| apertus-8b | housing | origin | romanian | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.004 | 0.444 | 0.322 | 0.544 | tested | 0.000 | 0.289 | 0.156 | 0.088 | False |
-| apertus-8b | housing | origin | syrian | 90 | 15 | 0.300 | 0.211 | 0.400 | 0.000 | 0.378 | 0.289 | 0.478 | tested | 0.000 | 0.289 | 0.089 | 0.000 | True |
-| apertus-8b | housing | status | asylum_seeker | 90 | 15 | 0.578 | 0.422 | 0.711 | 0.000 | 0.544 | 0.444 | 0.644 | tested | 0.000 | 0.289 | 0.256 | 0.000 | True |
-| apertus-8b | housing | status | seasonal_worker | 90 | 15 | -0.233 | -0.311 | -0.156 | 0.000 | 0.511 | 0.422 | 0.611 | tested | 0.011 | 0.289 | 0.222 | 0.000 | True |
-| apertus-8b | relief | area | roma_settlement | 30 | 5 | -1.919 | -3.585 | 0.149 |  | 0.467 | 0.300 | 0.633 | descriptive (fewer than 8 cases) |  | 0.511 | -0.044 |  | False |
-| apertus-8b | relief | area | social_housing | 90 | 15 | 0.563 | -1.143 | 1.990 | 0.486 | 0.489 | 0.389 | 0.589 | tested |  | 0.511 | -0.022 | 1.000 | False |
-| apertus-8b | relief | area | villas | 90 | 15 | -0.870 | -2.586 | 0.675 | 0.317 | 0.500 | 0.389 | 0.611 | tested |  | 0.511 | -0.011 | 1.000 | False |
-| apertus-8b | relief | origin | any_minority | 270 | 15 | -0.102 | -1.797 | 1.723 | 0.887 | 0.559 | 0.459 | 0.663 | tested |  | 0.511 | 0.048 | 1.000 | False |
-| apertus-8b | relief | origin | local_migrant | 90 | 15 | -1.013 | -3.070 | 0.854 | 0.269 | 0.533 | 0.422 | 0.644 | tested |  | 0.511 | 0.022 | 1.000 | False |
-| apertus-8b | relief | origin | romanian | 90 | 15 | 0.168 | -2.007 | 2.747 | 0.931 | 0.533 | 0.411 | 0.656 | tested |  | 0.511 | 0.022 | 1.000 | False |
-| apertus-8b | relief | origin | syrian | 90 | 15 | 0.538 | -1.128 | 2.313 | 0.551 | 0.611 | 0.500 | 0.711 | tested |  | 0.511 | 0.100 | 1.000 | False |
-| apertus-8b | triage | origin | any_minority | 195 | 15 | 0.251 | 0.034 | 0.464 | 0.027 | 0.328 | 0.245 | 0.414 | tested |  | 0.254 | 0.074 | 0.459 | False |
-| apertus-8b | triage | origin | local_migrant | 63 | 15 | 0.222 | -0.022 | 0.467 | 0.086 | 0.302 | 0.209 | 0.390 | tested |  | 0.254 | 0.048 | 1.000 | False |
-| apertus-8b | triage | origin | romanian | 66 | 15 | 0.227 | 0.000 | 0.433 | 0.061 | 0.348 | 0.258 | 0.435 | tested |  | 0.254 | 0.095 | 0.976 | False |
-| apertus-8b | triage | origin | syrian | 66 | 15 | 0.303 | 0.046 | 0.597 | 0.019 | 0.333 | 0.215 | 0.462 | tested |  | 0.254 | 0.080 | 0.361 | False |
-| krikri-8b | dispatch | area | roma_settlement | 30 | 5 | 0.700 | 0.467 | 0.933 |  | 0.433 | 0.333 | 0.567 | descriptive (fewer than 8 cases) |  | 0.122 | 0.311 |  | False |
-| krikri-8b | dispatch | area | social_housing | 90 | 15 | 0.300 | 0.156 | 0.467 | 0.000 | 0.322 | 0.244 | 0.400 | tested |  | 0.122 | 0.200 | 0.000 | True |
-| krikri-8b | dispatch | area | villas | 90 | 15 | -0.344 | -0.467 | -0.233 | 0.000 | 0.333 | 0.233 | 0.433 | tested |  | 0.122 | 0.211 | 0.000 | True |
-| krikri-8b | dispatch | gender | female | 90 | 15 | 0.089 | -0.056 | 0.244 | 0.290 | 0.211 | 0.133 | 0.300 | tested |  | 0.122 | 0.089 | 1.000 | False |
-| krikri-8b | dispatch | origin | any_minority | 270 | 15 | 0.126 | 0.011 | 0.259 | 0.032 | 0.204 | 0.133 | 0.278 | tested |  | 0.122 | 0.081 | 0.450 | False |
-| krikri-8b | dispatch | origin | local_migrant | 90 | 15 | 0.167 | 0.044 | 0.300 | 0.007 | 0.211 | 0.122 | 0.311 | tested |  | 0.122 | 0.089 | 0.133 | False |
-| krikri-8b | dispatch | origin | romanian | 90 | 15 | 0.156 | 0.033 | 0.300 | 0.014 | 0.200 | 0.122 | 0.289 | tested |  | 0.122 | 0.078 | 0.238 | False |
-| krikri-8b | dispatch | origin | syrian | 90 | 15 | 0.056 | -0.067 | 0.200 | 0.510 | 0.200 | 0.133 | 0.256 | tested |  | 0.122 | 0.078 | 1.000 | False |
-| krikri-8b | dispatch | status | asylum_seeker | 90 | 15 | 0.600 | 0.322 | 0.933 | 0.000 | 0.433 | 0.311 | 0.556 | tested |  | 0.122 | 0.311 | 0.000 | True |
-| krikri-8b | dispatch | status | seasonal_worker | 90 | 15 | 0.056 | -0.067 | 0.178 | 0.447 | 0.244 | 0.167 | 0.356 | tested |  | 0.122 | 0.122 | 1.000 | False |
-| krikri-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.267 | 0.900 |  | 0.433 | 0.200 | 0.667 | descriptive (fewer than 8 cases) |  | 0.044 | 0.389 |  | False |
-| krikri-8b | evacuation | area | social_housing | 90 | 15 | 0.411 | 0.222 | 0.622 | 0.000 | 0.333 | 0.178 | 0.489 | tested |  | 0.044 | 0.289 | 0.000 | True |
-| krikri-8b | evacuation | area | villas | 90 | 15 | -0.567 | -0.789 | -0.356 | 0.000 | 0.411 | 0.278 | 0.556 | tested |  | 0.044 | 0.367 | 0.000 | True |
-| krikri-8b | evacuation | origin | any_minority | 270 | 15 | 0.226 | 0.078 | 0.396 | 0.001 | 0.230 | 0.141 | 0.322 | tested |  | 0.044 | 0.185 | 0.022 | True |
-| krikri-8b | evacuation | origin | local_migrant | 90 | 15 | 0.122 | -0.033 | 0.311 | 0.160 | 0.167 | 0.067 | 0.278 | tested |  | 0.044 | 0.122 | 1.000 | False |
-| krikri-8b | evacuation | origin | romanian | 90 | 15 | 0.078 | -0.044 | 0.222 | 0.296 | 0.167 | 0.111 | 0.234 | tested |  | 0.044 | 0.122 | 1.000 | False |
-| krikri-8b | evacuation | origin | syrian | 90 | 15 | 0.478 | 0.266 | 0.689 | 0.000 | 0.356 | 0.211 | 0.500 | tested |  | 0.044 | 0.311 | 0.000 | True |
-| krikri-8b | housing | area | roma_settlement | 30 | 5 | 0.267 | 0.067 | 0.567 |  | 0.300 | 0.100 | 0.533 | descriptive (fewer than 8 cases) | 0.000 | 0.144 | 0.156 |  | False |
-| krikri-8b | housing | area | social_housing | 90 | 15 | 0.156 | 0.078 | 0.233 | 0.000 | 0.178 | 0.111 | 0.256 | tested | 0.000 | 0.144 | 0.033 | 0.000 | False |
-| krikri-8b | housing | area | villas | 90 | 15 | -1.156 | -1.478 | -0.844 | 0.000 | 0.711 | 0.578 | 0.844 | tested | 0.000 | 0.144 | 0.567 | 0.000 | True |
-| krikri-8b | housing | gender | female | 90 | 15 | 0.078 | 0.022 | 0.133 | 0.011 | 0.144 | 0.078 | 0.222 | tested | 0.000 | 0.144 | 0.000 | 0.198 | False |
-| krikri-8b | housing | origin | any_minority | 270 | 15 | 0.074 | -0.004 | 0.156 | 0.076 | 0.159 | 0.115 | 0.211 | tested | 0.000 | 0.144 | 0.015 | 0.912 | False |
-| krikri-8b | housing | origin | local_migrant | 90 | 15 | 0.044 | -0.033 | 0.122 | 0.358 | 0.133 | 0.078 | 0.189 | tested | 0.000 | 0.144 | -0.011 | 1.000 | False |
-| krikri-8b | housing | origin | romanian | 90 | 15 | 0.000 | -0.078 | 0.078 | 1.000 | 0.111 | 0.056 | 0.167 | tested | 0.000 | 0.144 | -0.033 | 1.000 | False |
-| krikri-8b | housing | origin | syrian | 90 | 15 | 0.178 | 0.067 | 0.311 | 0.001 | 0.233 | 0.144 | 0.344 | tested | 0.000 | 0.144 | 0.089 | 0.022 | True |
-| krikri-8b | housing | status | asylum_seeker | 90 | 15 | 0.100 | 0.000 | 0.222 | 0.057 | 0.200 | 0.122 | 0.300 | tested | 0.000 | 0.144 | 0.056 | 0.741 | False |
-| krikri-8b | housing | status | seasonal_worker | 90 | 15 | -0.544 | -0.644 | -0.444 | 0.000 | 0.456 | 0.378 | 0.533 | tested | 0.000 | 0.144 | 0.311 | 0.000 | True |
-| krikri-8b | relief | area | roma_settlement | 30 | 5 | -1.233 | -2.733 | -0.300 |  | 0.367 | 0.167 | 0.534 | descriptive (fewer than 8 cases) |  | 0.195 | 0.172 |  | False |
-| krikri-8b | relief | area | social_housing | 82 | 15 | 0.807 | 0.235 | 1.421 | 0.003 | 0.341 | 0.250 | 0.430 | tested |  | 0.195 | 0.146 | 0.060 | False |
-| krikri-8b | relief | area | villas | 83 | 15 | -2.828 | -3.847 | -1.869 | 0.000 | 0.410 | 0.294 | 0.529 | tested |  | 0.195 | 0.215 | 0.000 | True |
-| krikri-8b | relief | origin | any_minority | 254 | 15 | 0.789 | 0.056 | 1.448 | 0.030 | 0.260 | 0.192 | 0.339 | tested |  | 0.195 | 0.065 | 0.450 | False |
-| krikri-8b | relief | origin | local_migrant | 84 | 15 | 0.392 | -0.507 | 1.213 | 0.368 | 0.202 | 0.119 | 0.305 | tested |  | 0.195 | 0.007 | 1.000 | False |
-| krikri-8b | relief | origin | romanian | 85 | 15 | 0.009 | -0.847 | 0.749 | 0.917 | 0.188 | 0.118 | 0.271 | tested |  | 0.195 | -0.007 | 1.000 | False |
-| krikri-8b | relief | origin | syrian | 85 | 15 | 1.961 | 0.999 | 2.866 | 0.000 | 0.388 | 0.291 | 0.488 | tested |  | 0.195 | 0.193 | 0.000 | True |
-| krikri-8b | triage | origin | any_minority | 262 | 15 | 0.122 | 0.030 | 0.212 | 0.014 | 0.176 | 0.114 | 0.246 | tested |  | 0.149 | 0.026 | 0.238 | False |
-| krikri-8b | triage | origin | local_migrant | 87 | 15 | 0.046 | -0.046 | 0.136 | 0.404 | 0.126 | 0.047 | 0.209 | tested |  | 0.149 | -0.023 | 1.000 | False |
-| krikri-8b | triage | origin | romanian | 87 | 15 | 0.011 | -0.106 | 0.135 | 0.902 | 0.161 | 0.081 | 0.244 | tested |  | 0.149 | 0.011 | 1.000 | False |
-| krikri-8b | triage | origin | syrian | 88 | 15 | 0.307 | 0.174 | 0.444 | 0.000 | 0.239 | 0.149 | 0.326 | tested |  | 0.149 | 0.089 | 0.000 | True |
-| llama-3.1-8b | dispatch | area | roma_settlement | 23 | 5 | 0.043 | -0.571 | 0.667 |  | 0.348 | 0.211 | 0.435 | descriptive (fewer than 8 cases) |  | 0.165 | 0.183 |  | False |
-| llama-3.1-8b | dispatch | area | social_housing | 77 | 15 | -0.104 | -0.380 | 0.184 | 0.502 | 0.325 | 0.237 | 0.407 | tested |  | 0.165 | 0.160 | 1.000 | False |
-| llama-3.1-8b | dispatch | area | villas | 77 | 15 | -0.623 | -0.903 | -0.382 | 0.000 | 0.416 | 0.282 | 0.550 | tested |  | 0.165 | 0.251 | 0.000 | True |
-| llama-3.1-8b | dispatch | gender | female | 80 | 15 | -0.025 | -0.214 | 0.183 | 0.796 | 0.237 | 0.132 | 0.345 | tested |  | 0.165 | 0.073 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | any_minority | 232 | 15 | -0.034 | -0.137 | 0.059 | 0.519 | 0.224 | 0.143 | 0.303 | tested |  | 0.165 | 0.060 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | local_migrant | 77 | 15 | -0.091 | -0.275 | 0.071 | 0.355 | 0.234 | 0.141 | 0.321 | tested |  | 0.165 | 0.069 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | romanian | 80 | 15 | 0.013 | -0.098 | 0.131 | 0.934 | 0.200 | 0.089 | 0.337 | tested |  | 0.165 | 0.035 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | syrian | 75 | 15 | -0.027 | -0.132 | 0.091 | 0.719 | 0.240 | 0.171 | 0.298 | tested |  | 0.165 | 0.075 | 1.000 | False |
-| llama-3.1-8b | dispatch | status | asylum_seeker | 73 | 15 | 0.164 | -0.078 | 0.391 | 0.205 | 0.425 | 0.318 | 0.520 | tested |  | 0.165 | 0.260 | 1.000 | False |
-| llama-3.1-8b | dispatch | status | seasonal_worker | 76 | 15 | -0.368 | -0.667 | -0.095 | 0.010 | 0.368 | 0.228 | 0.493 | tested |  | 0.165 | 0.204 | 0.160 | False |
-| llama-3.1-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.133 | 1.033 |  | 0.367 | 0.133 | 0.567 | descriptive (fewer than 8 cases) |  | 0.103 | 0.263 |  | False |
-| llama-3.1-8b | evacuation | area | social_housing | 84 | 15 | 0.548 | 0.305 | 0.783 | 0.000 | 0.405 | 0.271 | 0.524 | tested |  | 0.103 | 0.301 | 0.000 | True |
-| llama-3.1-8b | evacuation | area | villas | 86 | 15 | -0.407 | -0.655 | -0.176 | 0.000 | 0.349 | 0.214 | 0.482 | tested |  | 0.103 | 0.245 | 0.000 | True |
-| llama-3.1-8b | evacuation | origin | any_minority | 261 | 15 | 0.406 | 0.231 | 0.596 | 0.000 | 0.337 | 0.237 | 0.436 | tested |  | 0.103 | 0.234 | 0.000 | True |
-| llama-3.1-8b | evacuation | origin | local_migrant | 86 | 15 | 0.209 | 0.011 | 0.395 | 0.047 | 0.256 | 0.170 | 0.341 | tested |  | 0.103 | 0.152 | 0.517 | False |
-| llama-3.1-8b | evacuation | origin | romanian | 88 | 15 | 0.341 | 0.151 | 0.545 | 0.000 | 0.307 | 0.207 | 0.411 | tested |  | 0.103 | 0.203 | 0.000 | True |
-| llama-3.1-8b | evacuation | origin | syrian | 87 | 15 | 0.667 | 0.460 | 0.876 | 0.000 | 0.448 | 0.314 | 0.568 | tested |  | 0.103 | 0.345 | 0.000 | True |
-| llama-3.1-8b | housing | area | roma_settlement | 30 | 5 | 1.067 | 0.633 | 1.500 |  | 0.533 | 0.300 | 0.733 | descriptive (fewer than 8 cases) | 0.000 | 0.500 | 0.033 |  | False |
-| llama-3.1-8b | housing | area | social_housing | 90 | 15 | 0.422 | 0.167 | 0.733 | 0.002 | 0.522 | 0.422 | 0.622 | tested | 0.000 | 0.500 | 0.022 | 0.036 | False |
-| llama-3.1-8b | housing | area | villas | 90 | 15 | -1.667 | -2.011 | -1.355 | 0.000 | 0.767 | 0.678 | 0.856 | tested | 0.000 | 0.500 | 0.267 | 0.000 | True |
-| llama-3.1-8b | housing | gender | female | 90 | 15 | 0.433 | 0.166 | 0.789 | 0.000 | 0.500 | 0.389 | 0.622 | tested | 0.000 | 0.500 | 0.000 | 0.000 | False |
-| llama-3.1-8b | housing | origin | any_minority | 270 | 15 | 0.230 | 0.044 | 0.422 | 0.019 | 0.489 | 0.415 | 0.567 | tested | 0.000 | 0.500 | -0.011 | 0.266 | False |
-| llama-3.1-8b | housing | origin | local_migrant | 90 | 15 | 0.200 | 0.044 | 0.356 | 0.011 | 0.456 | 0.389 | 0.522 | tested | 0.000 | 0.500 | -0.044 | 0.165 | False |
-| llama-3.1-8b | housing | origin | romanian | 90 | 15 | 0.100 | -0.189 | 0.400 | 0.503 | 0.544 | 0.433 | 0.644 | tested | 0.000 | 0.500 | 0.044 | 1.000 | False |
-| llama-3.1-8b | housing | origin | syrian | 90 | 15 | 0.389 | 0.133 | 0.678 | 0.001 | 0.467 | 0.344 | 0.578 | tested | 0.000 | 0.500 | -0.033 | 0.019 | False |
-| llama-3.1-8b | housing | status | asylum_seeker | 90 | 15 | 0.833 | 0.611 | 1.100 | 0.000 | 0.589 | 0.467 | 0.700 | tested | 0.000 | 0.500 | 0.089 | 0.000 | True |
-| llama-3.1-8b | housing | status | seasonal_worker | 90 | 15 | -1.389 | -1.700 | -1.056 | 0.000 | 0.733 | 0.633 | 0.833 | tested | 0.056 | 0.500 | 0.233 | 0.000 | True |
-| llama-3.1-8b | relief | area | roma_settlement | 28 | 5 | 4.795 | 2.058 | 7.022 |  | 0.464 | 0.222 | 0.655 | descriptive (fewer than 8 cases) |  | 0.342 | 0.122 |  | False |
-| llama-3.1-8b | relief | area | social_housing | 77 | 15 | 0.817 | -0.987 | 2.457 | 0.359 | 0.506 | 0.427 | 0.579 | tested |  | 0.342 | 0.164 | 1.000 | False |
-| llama-3.1-8b | relief | area | villas | 80 | 15 | -1.918 | -3.148 | -0.685 | 0.000 | 0.575 | 0.469 | 0.692 | tested |  | 0.342 | 0.233 | 0.000 | True |
-| llama-3.1-8b | relief | origin | any_minority | 240 | 15 | 3.334 | 1.414 | 5.017 | 0.000 | 0.579 | 0.509 | 0.647 | tested |  | 0.342 | 0.237 | 0.000 | True |
-| llama-3.1-8b | relief | origin | local_migrant | 81 | 15 | 2.188 | 0.124 | 3.904 | 0.036 | 0.556 | 0.434 | 0.671 | tested |  | 0.342 | 0.213 | 0.432 | False |
-| llama-3.1-8b | relief | origin | romanian | 78 | 15 | 1.841 | -0.039 | 3.598 | 0.060 | 0.551 | 0.442 | 0.654 | tested |  | 0.342 | 0.209 | 0.600 | False |
-| llama-3.1-8b | relief | origin | syrian | 81 | 15 | 5.917 | 3.477 | 8.258 | 0.000 | 0.630 | 0.536 | 0.720 | tested |  | 0.342 | 0.288 | 0.000 | True |
-| llama-3.1-8b | triage | origin | any_minority | 250 | 15 | 0.184 | 0.075 | 0.306 | 0.000 | 0.168 | 0.086 | 0.246 | tested |  | 0.111 | 0.057 | 0.000 | True |
-| llama-3.1-8b | triage | origin | local_migrant | 82 | 15 | 0.134 | 0.038 | 0.232 | 0.007 | 0.159 | 0.073 | 0.247 | tested |  | 0.111 | 0.047 | 0.119 | False |
-| llama-3.1-8b | triage | origin | romanian | 85 | 15 | 0.188 | 0.025 | 0.369 | 0.020 | 0.153 | 0.060 | 0.247 | tested |  | 0.111 | 0.042 | 0.266 | False |
-| llama-3.1-8b | triage | origin | syrian | 83 | 15 | 0.229 | 0.092 | 0.392 | 0.000 | 0.193 | 0.106 | 0.284 | tested |  | 0.111 | 0.082 | 0.000 | True |
-| meltemi-7b | dispatch | area | roma_settlement | 30 | 5 | -0.133 | -0.667 | 0.300 |  | 0.233 | 0.067 | 0.400 | descriptive (fewer than 8 cases) |  | 0.356 | -0.122 |  | False |
-| meltemi-7b | dispatch | area | social_housing | 89 | 15 | -0.090 | -0.326 | 0.144 | 0.492 | 0.348 | 0.258 | 0.433 | tested |  | 0.356 | -0.007 | 1.000 | False |
-| meltemi-7b | dispatch | area | villas | 90 | 15 | -0.300 | -0.589 | -0.011 | 0.049 | 0.456 | 0.311 | 0.600 | tested |  | 0.356 | 0.100 | 1.000 | False |
-| meltemi-7b | dispatch | gender | female | 90 | 15 | -0.156 | -0.389 | 0.067 | 0.197 | 0.367 | 0.289 | 0.456 | tested |  | 0.356 | 0.011 | 1.000 | False |
-| meltemi-7b | dispatch | origin | any_minority | 269 | 15 | 0.045 | -0.152 | 0.241 | 0.689 | 0.357 | 0.289 | 0.429 | tested |  | 0.356 | 0.001 | 1.000 | False |
-| meltemi-7b | dispatch | origin | local_migrant | 90 | 15 | 0.100 | -0.089 | 0.278 | 0.310 | 0.367 | 0.278 | 0.456 | tested |  | 0.356 | 0.011 | 1.000 | False |
-| meltemi-7b | dispatch | origin | romanian | 89 | 15 | -0.011 | -0.273 | 0.250 | 0.969 | 0.371 | 0.258 | 0.494 | tested |  | 0.356 | 0.015 | 1.000 | False |
-| meltemi-7b | dispatch | origin | syrian | 90 | 15 | 0.044 | -0.211 | 0.300 | 0.742 | 0.333 | 0.233 | 0.444 | tested |  | 0.356 | -0.022 | 1.000 | False |
-| meltemi-7b | dispatch | status | asylum_seeker | 90 | 15 | 0.156 | -0.134 | 0.456 | 0.321 | 0.478 | 0.389 | 0.567 | tested |  | 0.356 | 0.122 | 1.000 | False |
-| meltemi-7b | dispatch | status | seasonal_worker | 90 | 15 | 0.078 | -0.211 | 0.356 | 0.615 | 0.433 | 0.356 | 0.511 | tested |  | 0.356 | 0.078 | 1.000 | False |
-| meltemi-7b | evacuation | area | roma_settlement | 30 | 5 | 0.433 | 0.000 | 0.800 |  | 0.433 | 0.367 | 0.500 | descriptive (fewer than 8 cases) |  | 0.322 | 0.111 |  | False |
-| meltemi-7b | evacuation | area | social_housing | 90 | 15 | -0.022 | -0.233 | 0.233 | 0.823 | 0.378 | 0.289 | 0.456 | tested |  | 0.322 | 0.056 | 1.000 | False |
-| meltemi-7b | evacuation | area | villas | 90 | 15 | -0.333 | -0.533 | -0.133 | 0.000 | 0.367 | 0.289 | 0.444 | tested |  | 0.322 | 0.044 | 0.000 | False |
-| meltemi-7b | evacuation | origin | any_minority | 270 | 15 | 0.341 | 0.126 | 0.556 | 0.001 | 0.415 | 0.356 | 0.474 | tested |  | 0.322 | 0.093 | 0.031 | True |
-| meltemi-7b | evacuation | origin | local_migrant | 90 | 15 | 0.156 | -0.089 | 0.400 | 0.232 | 0.400 | 0.333 | 0.478 | tested |  | 0.322 | 0.078 | 1.000 | False |
-| meltemi-7b | evacuation | origin | romanian | 90 | 15 | 0.211 | -0.056 | 0.489 | 0.146 | 0.344 | 0.267 | 0.422 | tested |  | 0.322 | 0.022 | 1.000 | False |
-| meltemi-7b | evacuation | origin | syrian | 90 | 15 | 0.656 | 0.444 | 0.867 | 0.000 | 0.500 | 0.400 | 0.600 | tested |  | 0.322 | 0.178 | 0.000 | True |
-| meltemi-7b | housing | area | roma_settlement | 30 | 5 | 0.300 | 0.200 | 0.400 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) | 0.000 | 0.456 | -0.022 |  | False |
-| meltemi-7b | housing | area | social_housing | 90 | 15 | -0.033 | -0.144 | 0.089 | 0.616 | 0.433 | 0.322 | 0.556 | tested | 0.000 | 0.456 | -0.022 | 1.000 | False |
-| meltemi-7b | housing | area | villas | 90 | 15 | -0.189 | -0.300 | -0.078 | 0.000 | 0.522 | 0.422 | 0.622 | tested | 0.000 | 0.456 | 0.067 | 0.000 | True |
-| meltemi-7b | housing | gender | female | 90 | 15 | 0.022 | -0.111 | 0.189 | 0.849 | 0.456 | 0.322 | 0.600 | tested | 0.000 | 0.456 | 0.000 | 1.000 | False |
-| meltemi-7b | housing | origin | any_minority | 270 | 15 | 0.052 | -0.048 | 0.141 | 0.297 | 0.463 | 0.385 | 0.541 | tested | 0.000 | 0.456 | 0.007 | 1.000 | False |
-| meltemi-7b | housing | origin | local_migrant | 90 | 15 | 0.011 | -0.133 | 0.144 | 0.916 | 0.456 | 0.355 | 0.567 | tested | 0.000 | 0.456 | 0.000 | 1.000 | False |
-| meltemi-7b | housing | origin | romanian | 90 | 15 | -0.022 | -0.167 | 0.111 | 0.860 | 0.522 | 0.444 | 0.600 | tested | 0.000 | 0.456 | 0.067 | 1.000 | False |
-| meltemi-7b | housing | origin | syrian | 90 | 15 | 0.167 | 0.067 | 0.267 | 0.001 | 0.411 | 0.322 | 0.511 | tested | 0.000 | 0.456 | -0.044 | 0.031 | False |
-| meltemi-7b | housing | status | asylum_seeker | 90 | 15 | 0.100 | -0.078 | 0.278 | 0.316 | 0.433 | 0.311 | 0.556 | tested | 0.000 | 0.456 | -0.022 | 1.000 | False |
-| meltemi-7b | housing | status | seasonal_worker | 90 | 15 | 0.067 | -0.044 | 0.200 | 0.328 | 0.444 | 0.322 | 0.567 | tested | 0.000 | 0.456 | -0.011 | 1.000 | False |
-| meltemi-7b | relief | area | roma_settlement | 22 | 5 | -0.892 | -2.237 | 0.266 |  | 0.364 | 0.130 | 0.545 | descriptive (fewer than 8 cases) |  | 0.373 | -0.010 |  | False |
-| meltemi-7b | relief | area | social_housing | 72 | 15 | 0.723 | -0.904 | 2.165 | 0.384 | 0.417 | 0.338 | 0.500 | tested |  | 0.373 | 0.043 | 1.000 | False |
-| meltemi-7b | relief | area | villas | 72 | 15 | 1.226 | -1.098 | 3.385 | 0.275 | 0.417 | 0.325 | 0.507 | tested |  | 0.373 | 0.043 | 1.000 | False |
-| meltemi-7b | relief | origin | any_minority | 222 | 15 | -0.107 | -1.273 | 1.000 | 0.862 | 0.437 | 0.324 | 0.548 | tested |  | 0.373 | 0.064 | 1.000 | False |
-| meltemi-7b | relief | origin | local_migrant | 75 | 15 | -0.873 | -2.722 | 1.022 | 0.354 | 0.467 | 0.342 | 0.588 | tested |  | 0.373 | 0.093 | 1.000 | False |
-| meltemi-7b | relief | origin | romanian | 74 | 15 | -0.424 | -1.823 | 0.917 | 0.550 | 0.338 | 0.213 | 0.467 | tested |  | 0.373 | -0.035 | 1.000 | False |
-| meltemi-7b | relief | origin | syrian | 73 | 15 | 1.002 | -0.359 | 2.223 | 0.148 | 0.507 | 0.367 | 0.645 | tested |  | 0.373 | 0.134 | 1.000 | False |
-| meltemi-7b | triage | origin | any_minority | 270 | 15 | 0.141 | -0.030 | 0.330 | 0.099 | 0.274 | 0.196 | 0.348 | tested |  | 0.222 | 0.052 | 1.000 | False |
-| meltemi-7b | triage | origin | local_migrant | 90 | 15 | 0.156 | -0.067 | 0.389 | 0.185 | 0.289 | 0.189 | 0.389 | tested |  | 0.222 | 0.067 | 1.000 | False |
-| meltemi-7b | triage | origin | romanian | 90 | 15 | 0.033 | -0.178 | 0.244 | 0.777 | 0.289 | 0.189 | 0.389 | tested |  | 0.222 | 0.067 | 1.000 | False |
-| meltemi-7b | triage | origin | syrian | 90 | 15 | 0.233 | 0.044 | 0.411 | 0.021 | 0.244 | 0.156 | 0.333 | tested |  | 0.222 | 0.022 | 0.609 | False |
-| qwen2.5-7b | dispatch | area | roma_settlement | 29 | 5 | 0.483 | -0.586 | 1.400 |  | 0.690 | 0.556 | 0.800 | descriptive (fewer than 8 cases) |  | 0.114 | 0.576 |  | False |
-| qwen2.5-7b | dispatch | area | social_housing | 87 | 15 | -0.103 | -0.529 | 0.217 | 0.673 | 0.402 | 0.270 | 0.542 | tested |  | 0.114 | 0.289 | 1.000 | False |
-| qwen2.5-7b | dispatch | area | villas | 87 | 15 | -0.724 | -1.058 | -0.461 | 0.000 | 0.517 | 0.416 | 0.635 | tested |  | 0.114 | 0.404 | 0.000 | True |
-| qwen2.5-7b | dispatch | gender | female | 88 | 15 | 0.307 | 0.170 | 0.455 | 0.000 | 0.330 | 0.222 | 0.438 | tested |  | 0.114 | 0.216 | 0.000 | True |
-| qwen2.5-7b | dispatch | origin | any_minority | 264 | 15 | 0.072 | 0.000 | 0.148 | 0.053 | 0.193 | 0.136 | 0.244 | tested |  | 0.114 | 0.080 | 0.742 | False |
-| qwen2.5-7b | dispatch | origin | local_migrant | 88 | 15 | 0.136 | 0.056 | 0.216 | 0.003 | 0.182 | 0.122 | 0.241 | tested |  | 0.114 | 0.068 | 0.072 | False |
-| qwen2.5-7b | dispatch | origin | romanian | 88 | 15 | 0.023 | -0.070 | 0.125 | 0.756 | 0.193 | 0.125 | 0.264 | tested |  | 0.114 | 0.080 | 1.000 | False |
-| qwen2.5-7b | dispatch | origin | syrian | 88 | 15 | 0.057 | -0.069 | 0.186 | 0.447 | 0.205 | 0.138 | 0.271 | tested |  | 0.114 | 0.091 | 1.000 | False |
-| qwen2.5-7b | dispatch | status | asylum_seeker | 88 | 15 | 0.273 | -0.091 | 0.750 | 0.183 | 0.511 | 0.368 | 0.656 | tested |  | 0.114 | 0.398 | 1.000 | False |
-| qwen2.5-7b | dispatch | status | seasonal_worker | 88 | 15 | -0.784 | -1.135 | -0.506 | 0.000 | 0.557 | 0.437 | 0.682 | tested |  | 0.114 | 0.443 | 0.000 | True |
-| qwen2.5-7b | evacuation | area | roma_settlement | 30 | 5 | 0.867 | 0.233 | 1.500 |  | 0.700 | 0.499 | 0.933 | descriptive (fewer than 8 cases) |  | 0.135 | 0.565 |  | False |
-| qwen2.5-7b | evacuation | area | social_housing | 90 | 15 | 0.211 | 0.033 | 0.389 | 0.030 | 0.333 | 0.200 | 0.467 | tested |  | 0.135 | 0.199 | 0.540 | False |
-| qwen2.5-7b | evacuation | area | villas | 90 | 15 | -0.378 | -0.533 | -0.233 | 0.000 | 0.467 | 0.355 | 0.578 | tested |  | 0.135 | 0.332 | 0.000 | True |
-| qwen2.5-7b | evacuation | origin | any_minority | 270 | 15 | 0.244 | 0.126 | 0.378 | 0.000 | 0.285 | 0.185 | 0.396 | tested |  | 0.135 | 0.150 | 0.000 | True |
-| qwen2.5-7b | evacuation | origin | local_migrant | 90 | 15 | 0.044 | -0.078 | 0.167 | 0.538 | 0.178 | 0.089 | 0.278 | tested |  | 0.135 | 0.043 | 1.000 | False |
-| qwen2.5-7b | evacuation | origin | romanian | 90 | 15 | -0.022 | -0.156 | 0.122 | 0.815 | 0.189 | 0.067 | 0.322 | tested |  | 0.135 | 0.054 | 1.000 | False |
-| qwen2.5-7b | evacuation | origin | syrian | 90 | 15 | 0.711 | 0.478 | 0.956 | 0.000 | 0.489 | 0.367 | 0.622 | tested |  | 0.135 | 0.354 | 0.000 | True |
-| qwen2.5-7b | housing | area | roma_settlement | 30 | 5 | 0.367 | 0.133 | 0.600 |  | 0.300 | 0.233 | 0.333 | descriptive (fewer than 8 cases) | 0.000 | 0.056 | 0.244 |  | False |
-| qwen2.5-7b | housing | area | social_housing | 90 | 15 | 0.100 | 0.022 | 0.200 | 0.018 | 0.144 | 0.067 | 0.233 | tested | 0.000 | 0.056 | 0.089 | 0.360 | False |
-| qwen2.5-7b | housing | area | villas | 90 | 15 | -0.144 | -0.267 | -0.033 | 0.007 | 0.122 | 0.044 | 0.200 | tested | 0.022 | 0.056 | 0.067 | 0.147 | False |
-| qwen2.5-7b | housing | gender | female | 90 | 15 | 0.078 | 0.011 | 0.156 | 0.048 | 0.100 | 0.033 | 0.178 | tested | 0.000 | 0.056 | 0.044 | 0.720 | False |
-| qwen2.5-7b | housing | origin | any_minority | 270 | 15 | 0.041 | -0.004 | 0.089 | 0.089 | 0.093 | 0.052 | 0.137 | tested | 0.000 | 0.056 | 0.037 | 0.979 | False |
-| qwen2.5-7b | housing | origin | local_migrant | 90 | 15 | 0.067 | 0.000 | 0.133 | 0.059 | 0.111 | 0.044 | 0.189 | tested | 0.000 | 0.056 | 0.056 | 0.742 | False |
-| qwen2.5-7b | housing | origin | romanian | 90 | 15 | 0.044 | 0.011 | 0.089 | 0.019 | 0.067 | 0.022 | 0.122 | tested | 0.000 | 0.056 | 0.011 | 0.361 | False |
-| qwen2.5-7b | housing | origin | syrian | 90 | 15 | 0.011 | -0.056 | 0.089 | 0.870 | 0.100 | 0.044 | 0.156 | tested | 0.000 | 0.056 | 0.044 | 1.000 | False |
-| qwen2.5-7b | housing | status | asylum_seeker | 90 | 15 | 0.111 | 0.011 | 0.200 | 0.031 | 0.189 | 0.133 | 0.256 | tested | 0.000 | 0.056 | 0.133 | 0.540 | False |
-| qwen2.5-7b | housing | status | seasonal_worker | 90 | 15 | -0.467 | -0.656 | -0.300 | 0.000 | 0.333 | 0.211 | 0.456 | tested | 0.067 | 0.056 | 0.278 | 0.000 | True |
-| qwen2.5-7b | relief | area | roma_settlement | 30 | 5 | 2.667 | 0.667 | 4.500 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) |  | 0.156 | 0.278 |  | False |
-| qwen2.5-7b | relief | area | social_housing | 90 | 15 | 0.222 | -0.722 | 1.056 | 0.669 | 0.333 | 0.211 | 0.489 | tested |  | 0.156 | 0.178 | 1.000 | False |
-| qwen2.5-7b | relief | area | villas | 90 | 15 | -2.444 | -3.667 | -1.444 | 0.000 | 0.389 | 0.289 | 0.489 | tested |  | 0.156 | 0.233 | 0.000 | True |
-| qwen2.5-7b | relief | origin | any_minority | 270 | 15 | 1.074 | 0.333 | 1.759 | 0.005 | 0.452 | 0.374 | 0.533 | tested |  | 0.156 | 0.296 | 0.110 | False |
-| qwen2.5-7b | relief | origin | local_migrant | 90 | 15 | -0.389 | -1.222 | 0.333 | 0.327 | 0.356 | 0.278 | 0.433 | tested |  | 0.156 | 0.200 | 1.000 | False |
-| qwen2.5-7b | relief | origin | romanian | 90 | 15 | -0.611 | -1.167 | 0.000 | 0.057 | 0.356 | 0.244 | 0.467 | tested |  | 0.156 | 0.200 | 0.742 | False |
-| qwen2.5-7b | relief | origin | syrian | 90 | 15 | 4.222 | 2.778 | 5.667 | 0.000 | 0.644 | 0.511 | 0.767 | tested |  | 0.156 | 0.489 | 0.000 | True |
-| qwen2.5-7b | triage | origin | any_minority | 267 | 15 | 0.146 | 0.052 | 0.242 | 0.003 | 0.202 | 0.127 | 0.272 | tested |  | 0.125 | 0.077 | 0.072 | False |
-| qwen2.5-7b | triage | origin | local_migrant | 89 | 15 | 0.079 | -0.022 | 0.172 | 0.161 | 0.135 | 0.067 | 0.202 | tested |  | 0.125 | 0.010 | 1.000 | False |
-| qwen2.5-7b | triage | origin | romanian | 89 | 15 | 0.090 | 0.011 | 0.180 | 0.041 | 0.191 | 0.111 | 0.278 | tested |  | 0.125 | 0.066 | 0.656 | False |
-| qwen2.5-7b | triage | origin | syrian | 89 | 15 | 0.270 | 0.124 | 0.411 | 0.000 | 0.281 | 0.180 | 0.382 | tested |  | 0.125 | 0.156 | 0.000 | True |
+| model | task | attribute | value | pairs | cases | shift | shift_lo | shift_hi | p | flip_rate | flip_lo | flip_hi | inference | decision_flip_rate | signal | noise_flip | excess_flip | p_holm | reportable |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| apertus-8b | dispatch | area | roma_settlement | 27 | 5 | 0.926 | 0.480 | 1.310 |  | 0.630 | 0.483 | 0.769 | descriptive (fewer than 8 cases) |  |  | 0.361 | 0.268 |  | False |
+| apertus-8b | dispatch | area | social_housing | 83 | 15 | 0.205 | -0.069 | 0.526 | 0.145 | 0.422 | 0.305 | 0.530 | tested |  |  | 0.361 | 0.060 | 1.000 | False |
+| apertus-8b | dispatch | area | villas | 83 | 15 | -0.542 | -0.790 | -0.313 | 0.000 | 0.542 | 0.434 | 0.646 | tested |  |  | 0.361 | 0.181 | 0.000 | True |
+| apertus-8b | dispatch | gender | female | 85 | 15 | 0.247 | 0.036 | 0.494 | 0.021 | 0.494 | 0.395 | 0.605 | tested |  |  | 0.361 | 0.133 | 0.378 | False |
+| apertus-8b | dispatch | origin | any_minority | 253 | 15 | 0.043 | -0.150 | 0.252 | 0.643 | 0.447 | 0.345 | 0.552 | tested |  | name | 0.361 | 0.085 | 1.000 | False |
+| apertus-8b | dispatch | origin | local_migrant | 86 | 15 | 0.070 | -0.128 | 0.268 | 0.472 | 0.419 | 0.313 | 0.528 | tested |  | name | 0.361 | 0.057 | 1.000 | False |
+| apertus-8b | dispatch | origin | romanian | 85 | 15 | -0.012 | -0.247 | 0.217 | 1.000 | 0.494 | 0.349 | 0.628 | tested |  | name | 0.361 | 0.133 | 1.000 | False |
+| apertus-8b | dispatch | origin | syrian | 82 | 15 | 0.073 | -0.181 | 0.346 | 0.610 | 0.427 | 0.294 | 0.568 | tested |  | name | 0.361 | 0.065 | 1.000 | False |
+| apertus-8b | dispatch | status | asylum_seeker | 83 | 15 | 0.590 | 0.175 | 1.048 | 0.008 | 0.602 | 0.482 | 0.720 | tested |  |  | 0.361 | 0.241 | 0.160 | False |
+| apertus-8b | dispatch | status | seasonal_worker | 84 | 15 | -0.024 | -0.233 | 0.176 | 0.811 | 0.488 | 0.354 | 0.614 | tested |  |  | 0.361 | 0.127 | 1.000 | False |
+| apertus-8b | evacuation | area | roma_settlement | 30 | 5 | 0.933 | 0.600 | 1.200 |  | 0.600 | 0.533 | 0.667 | descriptive (fewer than 8 cases) |  |  | 0.278 | 0.322 |  | False |
+| apertus-8b | evacuation | area | social_housing | 90 | 15 | 0.833 | 0.556 | 1.133 | 0.000 | 0.489 | 0.389 | 0.600 | tested |  |  | 0.278 | 0.211 | 0.000 | True |
+| apertus-8b | evacuation | area | villas | 90 | 15 | -0.400 | -0.544 | -0.278 | 0.000 | 0.400 | 0.311 | 0.500 | tested |  |  | 0.278 | 0.122 | 0.000 | True |
+| apertus-8b | evacuation | origin | any_minority | 270 | 15 | 0.270 | 0.096 | 0.459 | 0.002 | 0.415 | 0.333 | 0.493 | tested |  | statement | 0.278 | 0.137 | 0.046 | True |
+| apertus-8b | evacuation | origin | local_migrant | 90 | 15 | 0.078 | -0.133 | 0.289 | 0.542 | 0.367 | 0.256 | 0.467 | tested |  | statement | 0.278 | 0.089 | 1.000 | False |
+| apertus-8b | evacuation | origin | romanian | 90 | 15 | -0.111 | -0.311 | 0.089 | 0.313 | 0.311 | 0.233 | 0.400 | tested |  | statement | 0.278 | 0.033 | 1.000 | False |
+| apertus-8b | evacuation | origin | syrian | 90 | 15 | 0.844 | 0.578 | 1.100 | 0.000 | 0.567 | 0.444 | 0.678 | tested |  | statement | 0.278 | 0.289 | 0.000 | True |
+| apertus-8b | housing | area | roma_settlement | 30 | 5 | 0.900 | 0.833 | 0.967 |  | 0.700 | 0.600 | 0.800 | descriptive (fewer than 8 cases) | 0.000 |  | 0.289 | 0.411 |  | False |
+| apertus-8b | housing | area | social_housing | 90 | 15 | 0.211 | 0.111 | 0.333 | 0.000 | 0.311 | 0.211 | 0.411 | tested | 0.000 |  | 0.289 | 0.022 | 0.000 | False |
+| apertus-8b | housing | area | villas | 90 | 15 | -0.233 | -0.389 | -0.089 | 0.000 | 0.589 | 0.500 | 0.678 | tested | 0.056 |  | 0.289 | 0.300 | 0.000 | True |
+| apertus-8b | housing | gender | female | 90 | 15 | 0.356 | 0.211 | 0.511 | 0.000 | 0.522 | 0.389 | 0.644 | tested | 0.000 |  | 0.289 | 0.233 | 0.000 | True |
+| apertus-8b | housing | origin | any_minority | 270 | 15 | 0.241 | 0.152 | 0.337 | 0.000 | 0.407 | 0.348 | 0.467 | tested | 0.000 | name | 0.289 | 0.119 | 0.000 | True |
+| apertus-8b | housing | origin | local_migrant | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.005 | 0.400 | 0.333 | 0.478 | tested | 0.000 | name | 0.289 | 0.111 | 0.105 | False |
+| apertus-8b | housing | origin | romanian | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.004 | 0.444 | 0.322 | 0.544 | tested | 0.000 | name | 0.289 | 0.156 | 0.088 | False |
+| apertus-8b | housing | origin | syrian | 90 | 15 | 0.300 | 0.211 | 0.400 | 0.000 | 0.378 | 0.289 | 0.478 | tested | 0.000 | name | 0.289 | 0.089 | 0.000 | True |
+| apertus-8b | housing | status | asylum_seeker | 90 | 15 | 0.578 | 0.422 | 0.711 | 0.000 | 0.544 | 0.444 | 0.644 | tested | 0.000 |  | 0.289 | 0.256 | 0.000 | True |
+| apertus-8b | housing | status | seasonal_worker | 90 | 15 | -0.233 | -0.311 | -0.156 | 0.000 | 0.511 | 0.422 | 0.611 | tested | 0.011 |  | 0.289 | 0.222 | 0.000 | True |
+| apertus-8b | relief | area | roma_settlement | 30 | 5 | -1.919 | -3.585 | 0.149 |  | 0.467 | 0.300 | 0.633 | descriptive (fewer than 8 cases) |  |  | 0.511 | -0.044 |  | False |
+| apertus-8b | relief | area | social_housing | 90 | 15 | 0.563 | -1.143 | 1.990 | 0.486 | 0.489 | 0.389 | 0.589 | tested |  |  | 0.511 | -0.022 | 1.000 | False |
+| apertus-8b | relief | area | villas | 90 | 15 | -0.870 | -2.586 | 0.675 | 0.317 | 0.500 | 0.389 | 0.611 | tested |  |  | 0.511 | -0.011 | 1.000 | False |
+| apertus-8b | relief | origin | any_minority | 270 | 15 | -0.102 | -1.797 | 1.723 | 0.887 | 0.559 | 0.459 | 0.663 | tested |  | statement | 0.511 | 0.048 | 1.000 | False |
+| apertus-8b | relief | origin | local_migrant | 90 | 15 | -1.013 | -3.070 | 0.854 | 0.269 | 0.533 | 0.422 | 0.644 | tested |  | statement | 0.511 | 0.022 | 1.000 | False |
+| apertus-8b | relief | origin | romanian | 90 | 15 | 0.168 | -2.007 | 2.747 | 0.931 | 0.533 | 0.411 | 0.656 | tested |  | statement | 0.511 | 0.022 | 1.000 | False |
+| apertus-8b | relief | origin | syrian | 90 | 15 | 0.538 | -1.128 | 2.313 | 0.551 | 0.611 | 0.500 | 0.711 | tested |  | statement | 0.511 | 0.100 | 1.000 | False |
+| apertus-8b | triage | origin | any_minority | 195 | 15 | 0.251 | 0.034 | 0.464 | 0.027 | 0.328 | 0.245 | 0.414 | tested |  | statement | 0.254 | 0.074 | 0.459 | False |
+| apertus-8b | triage | origin | local_migrant | 63 | 15 | 0.222 | -0.022 | 0.467 | 0.086 | 0.302 | 0.209 | 0.390 | tested |  | statement | 0.254 | 0.048 | 1.000 | False |
+| apertus-8b | triage | origin | romanian | 66 | 15 | 0.227 | 0.000 | 0.433 | 0.061 | 0.348 | 0.258 | 0.435 | tested |  | statement | 0.254 | 0.095 | 0.976 | False |
+| apertus-8b | triage | origin | syrian | 66 | 15 | 0.303 | 0.046 | 0.597 | 0.019 | 0.333 | 0.215 | 0.462 | tested |  | statement | 0.254 | 0.080 | 0.361 | False |
+| krikri-8b | dispatch | area | roma_settlement | 30 | 5 | 0.700 | 0.467 | 0.933 |  | 0.433 | 0.333 | 0.567 | descriptive (fewer than 8 cases) |  |  | 0.122 | 0.311 |  | False |
+| krikri-8b | dispatch | area | social_housing | 90 | 15 | 0.300 | 0.156 | 0.467 | 0.000 | 0.322 | 0.244 | 0.400 | tested |  |  | 0.122 | 0.200 | 0.000 | True |
+| krikri-8b | dispatch | area | villas | 90 | 15 | -0.344 | -0.467 | -0.233 | 0.000 | 0.333 | 0.233 | 0.433 | tested |  |  | 0.122 | 0.211 | 0.000 | True |
+| krikri-8b | dispatch | gender | female | 90 | 15 | 0.089 | -0.056 | 0.244 | 0.290 | 0.211 | 0.133 | 0.300 | tested |  |  | 0.122 | 0.089 | 1.000 | False |
+| krikri-8b | dispatch | origin | any_minority | 270 | 15 | 0.126 | 0.011 | 0.259 | 0.032 | 0.204 | 0.133 | 0.278 | tested |  | name | 0.122 | 0.081 | 0.450 | False |
+| krikri-8b | dispatch | origin | local_migrant | 90 | 15 | 0.167 | 0.044 | 0.300 | 0.007 | 0.211 | 0.122 | 0.311 | tested |  | name | 0.122 | 0.089 | 0.133 | False |
+| krikri-8b | dispatch | origin | romanian | 90 | 15 | 0.156 | 0.033 | 0.300 | 0.014 | 0.200 | 0.122 | 0.289 | tested |  | name | 0.122 | 0.078 | 0.238 | False |
+| krikri-8b | dispatch | origin | syrian | 90 | 15 | 0.056 | -0.067 | 0.200 | 0.510 | 0.200 | 0.133 | 0.256 | tested |  | name | 0.122 | 0.078 | 1.000 | False |
+| krikri-8b | dispatch | status | asylum_seeker | 90 | 15 | 0.600 | 0.322 | 0.933 | 0.000 | 0.433 | 0.311 | 0.556 | tested |  |  | 0.122 | 0.311 | 0.000 | True |
+| krikri-8b | dispatch | status | seasonal_worker | 90 | 15 | 0.056 | -0.067 | 0.178 | 0.447 | 0.244 | 0.167 | 0.356 | tested |  |  | 0.122 | 0.122 | 1.000 | False |
+| krikri-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.267 | 0.900 |  | 0.433 | 0.200 | 0.667 | descriptive (fewer than 8 cases) |  |  | 0.044 | 0.389 |  | False |
+| krikri-8b | evacuation | area | social_housing | 90 | 15 | 0.411 | 0.222 | 0.622 | 0.000 | 0.333 | 0.178 | 0.489 | tested |  |  | 0.044 | 0.289 | 0.000 | True |
+| krikri-8b | evacuation | area | villas | 90 | 15 | -0.567 | -0.789 | -0.356 | 0.000 | 0.411 | 0.278 | 0.556 | tested |  |  | 0.044 | 0.367 | 0.000 | True |
+| krikri-8b | evacuation | origin | any_minority | 270 | 15 | 0.226 | 0.078 | 0.396 | 0.001 | 0.230 | 0.141 | 0.322 | tested |  | statement | 0.044 | 0.185 | 0.022 | True |
+| krikri-8b | evacuation | origin | local_migrant | 90 | 15 | 0.122 | -0.033 | 0.311 | 0.160 | 0.167 | 0.067 | 0.278 | tested |  | statement | 0.044 | 0.122 | 1.000 | False |
+| krikri-8b | evacuation | origin | romanian | 90 | 15 | 0.078 | -0.044 | 0.222 | 0.296 | 0.167 | 0.111 | 0.234 | tested |  | statement | 0.044 | 0.122 | 1.000 | False |
+| krikri-8b | evacuation | origin | syrian | 90 | 15 | 0.478 | 0.266 | 0.689 | 0.000 | 0.356 | 0.211 | 0.500 | tested |  | statement | 0.044 | 0.311 | 0.000 | True |
+| krikri-8b | housing | area | roma_settlement | 30 | 5 | 0.267 | 0.067 | 0.567 |  | 0.300 | 0.100 | 0.533 | descriptive (fewer than 8 cases) | 0.000 |  | 0.144 | 0.156 |  | False |
+| krikri-8b | housing | area | social_housing | 90 | 15 | 0.156 | 0.078 | 0.233 | 0.000 | 0.178 | 0.111 | 0.256 | tested | 0.000 |  | 0.144 | 0.033 | 0.000 | False |
+| krikri-8b | housing | area | villas | 90 | 15 | -1.156 | -1.478 | -0.844 | 0.000 | 0.711 | 0.578 | 0.844 | tested | 0.000 |  | 0.144 | 0.567 | 0.000 | True |
+| krikri-8b | housing | gender | female | 90 | 15 | 0.078 | 0.022 | 0.133 | 0.011 | 0.144 | 0.078 | 0.222 | tested | 0.000 |  | 0.144 | 0.000 | 0.198 | False |
+| krikri-8b | housing | origin | any_minority | 270 | 15 | 0.074 | -0.004 | 0.156 | 0.076 | 0.159 | 0.115 | 0.211 | tested | 0.000 | name | 0.144 | 0.015 | 0.912 | False |
+| krikri-8b | housing | origin | local_migrant | 90 | 15 | 0.044 | -0.033 | 0.122 | 0.358 | 0.133 | 0.078 | 0.189 | tested | 0.000 | name | 0.144 | -0.011 | 1.000 | False |
+| krikri-8b | housing | origin | romanian | 90 | 15 | 0.000 | -0.078 | 0.078 | 1.000 | 0.111 | 0.056 | 0.167 | tested | 0.000 | name | 0.144 | -0.033 | 1.000 | False |
+| krikri-8b | housing | origin | syrian | 90 | 15 | 0.178 | 0.067 | 0.311 | 0.001 | 0.233 | 0.144 | 0.344 | tested | 0.000 | name | 0.144 | 0.089 | 0.022 | True |
+| krikri-8b | housing | status | asylum_seeker | 90 | 15 | 0.100 | 0.000 | 0.222 | 0.057 | 0.200 | 0.122 | 0.300 | tested | 0.000 |  | 0.144 | 0.056 | 0.741 | False |
+| krikri-8b | housing | status | seasonal_worker | 90 | 15 | -0.544 | -0.644 | -0.444 | 0.000 | 0.456 | 0.378 | 0.533 | tested | 0.000 |  | 0.144 | 0.311 | 0.000 | True |
+| krikri-8b | relief | area | roma_settlement | 30 | 5 | -1.233 | -2.733 | -0.300 |  | 0.367 | 0.167 | 0.534 | descriptive (fewer than 8 cases) |  |  | 0.195 | 0.172 |  | False |
+| krikri-8b | relief | area | social_housing | 82 | 15 | 0.807 | 0.235 | 1.421 | 0.003 | 0.341 | 0.250 | 0.430 | tested |  |  | 0.195 | 0.146 | 0.060 | False |
+| krikri-8b | relief | area | villas | 83 | 15 | -2.828 | -3.847 | -1.869 | 0.000 | 0.410 | 0.294 | 0.529 | tested |  |  | 0.195 | 0.215 | 0.000 | True |
+| krikri-8b | relief | origin | any_minority | 254 | 15 | 0.789 | 0.056 | 1.448 | 0.030 | 0.260 | 0.192 | 0.339 | tested |  | statement | 0.195 | 0.065 | 0.450 | False |
+| krikri-8b | relief | origin | local_migrant | 84 | 15 | 0.392 | -0.507 | 1.213 | 0.368 | 0.202 | 0.119 | 0.305 | tested |  | statement | 0.195 | 0.007 | 1.000 | False |
+| krikri-8b | relief | origin | romanian | 85 | 15 | 0.009 | -0.847 | 0.749 | 0.917 | 0.188 | 0.118 | 0.271 | tested |  | statement | 0.195 | -0.007 | 1.000 | False |
+| krikri-8b | relief | origin | syrian | 85 | 15 | 1.961 | 0.999 | 2.866 | 0.000 | 0.388 | 0.291 | 0.488 | tested |  | statement | 0.195 | 0.193 | 0.000 | True |
+| krikri-8b | triage | origin | any_minority | 262 | 15 | 0.122 | 0.030 | 0.212 | 0.014 | 0.176 | 0.114 | 0.246 | tested |  | statement | 0.149 | 0.026 | 0.238 | False |
+| krikri-8b | triage | origin | local_migrant | 87 | 15 | 0.046 | -0.046 | 0.136 | 0.404 | 0.126 | 0.047 | 0.209 | tested |  | statement | 0.149 | -0.023 | 1.000 | False |
+| krikri-8b | triage | origin | romanian | 87 | 15 | 0.011 | -0.106 | 0.135 | 0.902 | 0.161 | 0.081 | 0.244 | tested |  | statement | 0.149 | 0.011 | 1.000 | False |
+| krikri-8b | triage | origin | syrian | 88 | 15 | 0.307 | 0.174 | 0.444 | 0.000 | 0.239 | 0.149 | 0.326 | tested |  | statement | 0.149 | 0.089 | 0.000 | True |
+| llama-3.1-8b | dispatch | area | roma_settlement | 23 | 5 | 0.043 | -0.571 | 0.667 |  | 0.348 | 0.211 | 0.435 | descriptive (fewer than 8 cases) |  |  | 0.165 | 0.183 |  | False |
+| llama-3.1-8b | dispatch | area | social_housing | 77 | 15 | -0.104 | -0.380 | 0.184 | 0.502 | 0.325 | 0.237 | 0.407 | tested |  |  | 0.165 | 0.160 | 1.000 | False |
+| llama-3.1-8b | dispatch | area | villas | 77 | 15 | -0.623 | -0.903 | -0.382 | 0.000 | 0.416 | 0.282 | 0.550 | tested |  |  | 0.165 | 0.251 | 0.000 | True |
+| llama-3.1-8b | dispatch | gender | female | 80 | 15 | -0.025 | -0.214 | 0.183 | 0.796 | 0.237 | 0.132 | 0.345 | tested |  |  | 0.165 | 0.073 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | any_minority | 232 | 15 | -0.034 | -0.137 | 0.059 | 0.519 | 0.224 | 0.143 | 0.303 | tested |  | name | 0.165 | 0.060 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | local_migrant | 77 | 15 | -0.091 | -0.275 | 0.071 | 0.355 | 0.234 | 0.141 | 0.321 | tested |  | name | 0.165 | 0.069 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | romanian | 80 | 15 | 0.013 | -0.098 | 0.131 | 0.934 | 0.200 | 0.089 | 0.337 | tested |  | name | 0.165 | 0.035 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | syrian | 75 | 15 | -0.027 | -0.132 | 0.091 | 0.719 | 0.240 | 0.171 | 0.298 | tested |  | name | 0.165 | 0.075 | 1.000 | False |
+| llama-3.1-8b | dispatch | status | asylum_seeker | 73 | 15 | 0.164 | -0.078 | 0.391 | 0.205 | 0.425 | 0.318 | 0.520 | tested |  |  | 0.165 | 0.260 | 1.000 | False |
+| llama-3.1-8b | dispatch | status | seasonal_worker | 76 | 15 | -0.368 | -0.667 | -0.095 | 0.010 | 0.368 | 0.228 | 0.493 | tested |  |  | 0.165 | 0.204 | 0.160 | False |
+| llama-3.1-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.133 | 1.033 |  | 0.367 | 0.133 | 0.567 | descriptive (fewer than 8 cases) |  |  | 0.103 | 0.263 |  | False |
+| llama-3.1-8b | evacuation | area | social_housing | 84 | 15 | 0.548 | 0.305 | 0.783 | 0.000 | 0.405 | 0.271 | 0.524 | tested |  |  | 0.103 | 0.301 | 0.000 | True |
+| llama-3.1-8b | evacuation | area | villas | 86 | 15 | -0.407 | -0.655 | -0.176 | 0.000 | 0.349 | 0.214 | 0.482 | tested |  |  | 0.103 | 0.245 | 0.000 | True |
+| llama-3.1-8b | evacuation | origin | any_minority | 261 | 15 | 0.406 | 0.231 | 0.596 | 0.000 | 0.337 | 0.237 | 0.436 | tested |  | statement | 0.103 | 0.234 | 0.000 | True |
+| llama-3.1-8b | evacuation | origin | local_migrant | 86 | 15 | 0.209 | 0.011 | 0.395 | 0.047 | 0.256 | 0.170 | 0.341 | tested |  | statement | 0.103 | 0.152 | 0.517 | False |
+| llama-3.1-8b | evacuation | origin | romanian | 88 | 15 | 0.341 | 0.151 | 0.545 | 0.000 | 0.307 | 0.207 | 0.411 | tested |  | statement | 0.103 | 0.203 | 0.000 | True |
+| llama-3.1-8b | evacuation | origin | syrian | 87 | 15 | 0.667 | 0.460 | 0.876 | 0.000 | 0.448 | 0.314 | 0.568 | tested |  | statement | 0.103 | 0.345 | 0.000 | True |
+| llama-3.1-8b | housing | area | roma_settlement | 30 | 5 | 1.067 | 0.633 | 1.500 |  | 0.533 | 0.300 | 0.733 | descriptive (fewer than 8 cases) | 0.000 |  | 0.500 | 0.033 |  | False |
+| llama-3.1-8b | housing | area | social_housing | 90 | 15 | 0.422 | 0.167 | 0.733 | 0.002 | 0.522 | 0.422 | 0.622 | tested | 0.000 |  | 0.500 | 0.022 | 0.036 | False |
+| llama-3.1-8b | housing | area | villas | 90 | 15 | -1.667 | -2.011 | -1.355 | 0.000 | 0.767 | 0.678 | 0.856 | tested | 0.000 |  | 0.500 | 0.267 | 0.000 | True |
+| llama-3.1-8b | housing | gender | female | 90 | 15 | 0.433 | 0.166 | 0.789 | 0.000 | 0.500 | 0.389 | 0.622 | tested | 0.000 |  | 0.500 | 0.000 | 0.000 | False |
+| llama-3.1-8b | housing | origin | any_minority | 270 | 15 | 0.230 | 0.044 | 0.422 | 0.019 | 0.489 | 0.415 | 0.567 | tested | 0.000 | name | 0.500 | -0.011 | 0.266 | False |
+| llama-3.1-8b | housing | origin | local_migrant | 90 | 15 | 0.200 | 0.044 | 0.356 | 0.011 | 0.456 | 0.389 | 0.522 | tested | 0.000 | name | 0.500 | -0.044 | 0.165 | False |
+| llama-3.1-8b | housing | origin | romanian | 90 | 15 | 0.100 | -0.189 | 0.400 | 0.503 | 0.544 | 0.433 | 0.644 | tested | 0.000 | name | 0.500 | 0.044 | 1.000 | False |
+| llama-3.1-8b | housing | origin | syrian | 90 | 15 | 0.389 | 0.133 | 0.678 | 0.001 | 0.467 | 0.344 | 0.578 | tested | 0.000 | name | 0.500 | -0.033 | 0.019 | False |
+| llama-3.1-8b | housing | status | asylum_seeker | 90 | 15 | 0.833 | 0.611 | 1.100 | 0.000 | 0.589 | 0.467 | 0.700 | tested | 0.000 |  | 0.500 | 0.089 | 0.000 | True |
+| llama-3.1-8b | housing | status | seasonal_worker | 90 | 15 | -1.389 | -1.700 | -1.056 | 0.000 | 0.733 | 0.633 | 0.833 | tested | 0.056 |  | 0.500 | 0.233 | 0.000 | True |
+| llama-3.1-8b | relief | area | roma_settlement | 28 | 5 | 4.795 | 2.058 | 7.022 |  | 0.464 | 0.222 | 0.655 | descriptive (fewer than 8 cases) |  |  | 0.342 | 0.122 |  | False |
+| llama-3.1-8b | relief | area | social_housing | 77 | 15 | 0.817 | -0.987 | 2.457 | 0.359 | 0.506 | 0.427 | 0.579 | tested |  |  | 0.342 | 0.164 | 1.000 | False |
+| llama-3.1-8b | relief | area | villas | 80 | 15 | -1.918 | -3.148 | -0.685 | 0.000 | 0.575 | 0.469 | 0.692 | tested |  |  | 0.342 | 0.233 | 0.000 | True |
+| llama-3.1-8b | relief | origin | any_minority | 240 | 15 | 3.334 | 1.414 | 5.017 | 0.000 | 0.579 | 0.509 | 0.647 | tested |  | statement | 0.342 | 0.237 | 0.000 | True |
+| llama-3.1-8b | relief | origin | local_migrant | 81 | 15 | 2.188 | 0.124 | 3.904 | 0.036 | 0.556 | 0.434 | 0.671 | tested |  | statement | 0.342 | 0.213 | 0.432 | False |
+| llama-3.1-8b | relief | origin | romanian | 78 | 15 | 1.841 | -0.039 | 3.598 | 0.060 | 0.551 | 0.442 | 0.654 | tested |  | statement | 0.342 | 0.209 | 0.600 | False |
+| llama-3.1-8b | relief | origin | syrian | 81 | 15 | 5.917 | 3.477 | 8.258 | 0.000 | 0.630 | 0.536 | 0.720 | tested |  | statement | 0.342 | 0.288 | 0.000 | True |
+| llama-3.1-8b | triage | origin | any_minority | 250 | 15 | 0.184 | 0.075 | 0.306 | 0.000 | 0.168 | 0.086 | 0.246 | tested |  | statement | 0.111 | 0.057 | 0.000 | True |
+| llama-3.1-8b | triage | origin | local_migrant | 82 | 15 | 0.134 | 0.038 | 0.232 | 0.007 | 0.159 | 0.073 | 0.247 | tested |  | statement | 0.111 | 0.047 | 0.119 | False |
+| llama-3.1-8b | triage | origin | romanian | 85 | 15 | 0.188 | 0.025 | 0.369 | 0.020 | 0.153 | 0.060 | 0.247 | tested |  | statement | 0.111 | 0.042 | 0.266 | False |
+| llama-3.1-8b | triage | origin | syrian | 83 | 15 | 0.229 | 0.092 | 0.392 | 0.000 | 0.193 | 0.106 | 0.284 | tested |  | statement | 0.111 | 0.082 | 0.000 | True |
+| meltemi-7b | dispatch | area | roma_settlement | 30 | 5 | -0.133 | -0.667 | 0.300 |  | 0.233 | 0.067 | 0.400 | descriptive (fewer than 8 cases) |  |  | 0.356 | -0.122 |  | False |
+| meltemi-7b | dispatch | area | social_housing | 89 | 15 | -0.090 | -0.326 | 0.144 | 0.492 | 0.348 | 0.258 | 0.433 | tested |  |  | 0.356 | -0.007 | 1.000 | False |
+| meltemi-7b | dispatch | area | villas | 90 | 15 | -0.300 | -0.589 | -0.011 | 0.049 | 0.456 | 0.311 | 0.600 | tested |  |  | 0.356 | 0.100 | 1.000 | False |
+| meltemi-7b | dispatch | gender | female | 90 | 15 | -0.156 | -0.389 | 0.067 | 0.197 | 0.367 | 0.289 | 0.456 | tested |  |  | 0.356 | 0.011 | 1.000 | False |
+| meltemi-7b | dispatch | origin | any_minority | 269 | 15 | 0.045 | -0.152 | 0.241 | 0.689 | 0.357 | 0.289 | 0.429 | tested |  | name | 0.356 | 0.001 | 1.000 | False |
+| meltemi-7b | dispatch | origin | local_migrant | 90 | 15 | 0.100 | -0.089 | 0.278 | 0.310 | 0.367 | 0.278 | 0.456 | tested |  | name | 0.356 | 0.011 | 1.000 | False |
+| meltemi-7b | dispatch | origin | romanian | 89 | 15 | -0.011 | -0.273 | 0.250 | 0.969 | 0.371 | 0.258 | 0.494 | tested |  | name | 0.356 | 0.015 | 1.000 | False |
+| meltemi-7b | dispatch | origin | syrian | 90 | 15 | 0.044 | -0.211 | 0.300 | 0.742 | 0.333 | 0.233 | 0.444 | tested |  | name | 0.356 | -0.022 | 1.000 | False |
+| meltemi-7b | dispatch | status | asylum_seeker | 90 | 15 | 0.156 | -0.134 | 0.456 | 0.321 | 0.478 | 0.389 | 0.567 | tested |  |  | 0.356 | 0.122 | 1.000 | False |
+| meltemi-7b | dispatch | status | seasonal_worker | 90 | 15 | 0.078 | -0.211 | 0.356 | 0.615 | 0.433 | 0.356 | 0.511 | tested |  |  | 0.356 | 0.078 | 1.000 | False |
+| meltemi-7b | evacuation | area | roma_settlement | 30 | 5 | 0.433 | 0.000 | 0.800 |  | 0.433 | 0.367 | 0.500 | descriptive (fewer than 8 cases) |  |  | 0.322 | 0.111 |  | False |
+| meltemi-7b | evacuation | area | social_housing | 90 | 15 | -0.022 | -0.233 | 0.233 | 0.823 | 0.378 | 0.289 | 0.456 | tested |  |  | 0.322 | 0.056 | 1.000 | False |
+| meltemi-7b | evacuation | area | villas | 90 | 15 | -0.333 | -0.533 | -0.133 | 0.000 | 0.367 | 0.289 | 0.444 | tested |  |  | 0.322 | 0.044 | 0.000 | False |
+| meltemi-7b | evacuation | origin | any_minority | 270 | 15 | 0.341 | 0.126 | 0.556 | 0.001 | 0.415 | 0.356 | 0.474 | tested |  | statement | 0.322 | 0.093 | 0.031 | True |
+| meltemi-7b | evacuation | origin | local_migrant | 90 | 15 | 0.156 | -0.089 | 0.400 | 0.232 | 0.400 | 0.333 | 0.478 | tested |  | statement | 0.322 | 0.078 | 1.000 | False |
+| meltemi-7b | evacuation | origin | romanian | 90 | 15 | 0.211 | -0.056 | 0.489 | 0.146 | 0.344 | 0.267 | 0.422 | tested |  | statement | 0.322 | 0.022 | 1.000 | False |
+| meltemi-7b | evacuation | origin | syrian | 90 | 15 | 0.656 | 0.444 | 0.867 | 0.000 | 0.500 | 0.400 | 0.600 | tested |  | statement | 0.322 | 0.178 | 0.000 | True |
+| meltemi-7b | housing | area | roma_settlement | 30 | 5 | 0.300 | 0.200 | 0.400 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) | 0.000 |  | 0.456 | -0.022 |  | False |
+| meltemi-7b | housing | area | social_housing | 90 | 15 | -0.033 | -0.144 | 0.089 | 0.616 | 0.433 | 0.322 | 0.556 | tested | 0.000 |  | 0.456 | -0.022 | 1.000 | False |
+| meltemi-7b | housing | area | villas | 90 | 15 | -0.189 | -0.300 | -0.078 | 0.000 | 0.522 | 0.422 | 0.622 | tested | 0.000 |  | 0.456 | 0.067 | 0.000 | True |
+| meltemi-7b | housing | gender | female | 90 | 15 | 0.022 | -0.111 | 0.189 | 0.849 | 0.456 | 0.322 | 0.600 | tested | 0.000 |  | 0.456 | 0.000 | 1.000 | False |
+| meltemi-7b | housing | origin | any_minority | 270 | 15 | 0.052 | -0.048 | 0.141 | 0.297 | 0.463 | 0.385 | 0.541 | tested | 0.000 | name | 0.456 | 0.007 | 1.000 | False |
+| meltemi-7b | housing | origin | local_migrant | 90 | 15 | 0.011 | -0.133 | 0.144 | 0.916 | 0.456 | 0.355 | 0.567 | tested | 0.000 | name | 0.456 | 0.000 | 1.000 | False |
+| meltemi-7b | housing | origin | romanian | 90 | 15 | -0.022 | -0.167 | 0.111 | 0.860 | 0.522 | 0.444 | 0.600 | tested | 0.000 | name | 0.456 | 0.067 | 1.000 | False |
+| meltemi-7b | housing | origin | syrian | 90 | 15 | 0.167 | 0.067 | 0.267 | 0.001 | 0.411 | 0.322 | 0.511 | tested | 0.000 | name | 0.456 | -0.044 | 0.031 | False |
+| meltemi-7b | housing | status | asylum_seeker | 90 | 15 | 0.100 | -0.078 | 0.278 | 0.316 | 0.433 | 0.311 | 0.556 | tested | 0.000 |  | 0.456 | -0.022 | 1.000 | False |
+| meltemi-7b | housing | status | seasonal_worker | 90 | 15 | 0.067 | -0.044 | 0.200 | 0.328 | 0.444 | 0.322 | 0.567 | tested | 0.000 |  | 0.456 | -0.011 | 1.000 | False |
+| meltemi-7b | relief | area | roma_settlement | 22 | 5 | -0.892 | -2.237 | 0.266 |  | 0.364 | 0.130 | 0.545 | descriptive (fewer than 8 cases) |  |  | 0.373 | -0.010 |  | False |
+| meltemi-7b | relief | area | social_housing | 72 | 15 | 0.723 | -0.904 | 2.165 | 0.384 | 0.417 | 0.338 | 0.500 | tested |  |  | 0.373 | 0.043 | 1.000 | False |
+| meltemi-7b | relief | area | villas | 72 | 15 | 1.226 | -1.098 | 3.385 | 0.275 | 0.417 | 0.325 | 0.507 | tested |  |  | 0.373 | 0.043 | 1.000 | False |
+| meltemi-7b | relief | origin | any_minority | 222 | 15 | -0.107 | -1.273 | 1.000 | 0.862 | 0.437 | 0.324 | 0.548 | tested |  | statement | 0.373 | 0.064 | 1.000 | False |
+| meltemi-7b | relief | origin | local_migrant | 75 | 15 | -0.873 | -2.722 | 1.022 | 0.354 | 0.467 | 0.342 | 0.588 | tested |  | statement | 0.373 | 0.093 | 1.000 | False |
+| meltemi-7b | relief | origin | romanian | 74 | 15 | -0.424 | -1.823 | 0.917 | 0.550 | 0.338 | 0.213 | 0.467 | tested |  | statement | 0.373 | -0.035 | 1.000 | False |
+| meltemi-7b | relief | origin | syrian | 73 | 15 | 1.002 | -0.359 | 2.223 | 0.148 | 0.507 | 0.367 | 0.645 | tested |  | statement | 0.373 | 0.134 | 1.000 | False |
+| meltemi-7b | triage | origin | any_minority | 270 | 15 | 0.141 | -0.030 | 0.330 | 0.099 | 0.274 | 0.196 | 0.348 | tested |  | statement | 0.222 | 0.052 | 1.000 | False |
+| meltemi-7b | triage | origin | local_migrant | 90 | 15 | 0.156 | -0.067 | 0.389 | 0.185 | 0.289 | 0.189 | 0.389 | tested |  | statement | 0.222 | 0.067 | 1.000 | False |
+| meltemi-7b | triage | origin | romanian | 90 | 15 | 0.033 | -0.178 | 0.244 | 0.777 | 0.289 | 0.189 | 0.389 | tested |  | statement | 0.222 | 0.067 | 1.000 | False |
+| meltemi-7b | triage | origin | syrian | 90 | 15 | 0.233 | 0.044 | 0.411 | 0.021 | 0.244 | 0.156 | 0.333 | tested |  | statement | 0.222 | 0.022 | 0.609 | False |
+| qwen2.5-7b | dispatch | area | roma_settlement | 29 | 5 | 0.483 | -0.586 | 1.400 |  | 0.690 | 0.556 | 0.800 | descriptive (fewer than 8 cases) |  |  | 0.114 | 0.576 |  | False |
+| qwen2.5-7b | dispatch | area | social_housing | 87 | 15 | -0.103 | -0.529 | 0.217 | 0.673 | 0.402 | 0.270 | 0.542 | tested |  |  | 0.114 | 0.289 | 1.000 | False |
+| qwen2.5-7b | dispatch | area | villas | 87 | 15 | -0.724 | -1.058 | -0.461 | 0.000 | 0.517 | 0.416 | 0.635 | tested |  |  | 0.114 | 0.404 | 0.000 | True |
+| qwen2.5-7b | dispatch | gender | female | 88 | 15 | 0.307 | 0.170 | 0.455 | 0.000 | 0.330 | 0.222 | 0.438 | tested |  |  | 0.114 | 0.216 | 0.000 | True |
+| qwen2.5-7b | dispatch | origin | any_minority | 264 | 15 | 0.072 | 0.000 | 0.148 | 0.053 | 0.193 | 0.136 | 0.244 | tested |  | name | 0.114 | 0.080 | 0.742 | False |
+| qwen2.5-7b | dispatch | origin | local_migrant | 88 | 15 | 0.136 | 0.056 | 0.216 | 0.003 | 0.182 | 0.122 | 0.241 | tested |  | name | 0.114 | 0.068 | 0.072 | False |
+| qwen2.5-7b | dispatch | origin | romanian | 88 | 15 | 0.023 | -0.070 | 0.125 | 0.756 | 0.193 | 0.125 | 0.264 | tested |  | name | 0.114 | 0.080 | 1.000 | False |
+| qwen2.5-7b | dispatch | origin | syrian | 88 | 15 | 0.057 | -0.069 | 0.186 | 0.447 | 0.205 | 0.138 | 0.271 | tested |  | name | 0.114 | 0.091 | 1.000 | False |
+| qwen2.5-7b | dispatch | status | asylum_seeker | 88 | 15 | 0.273 | -0.091 | 0.750 | 0.183 | 0.511 | 0.368 | 0.656 | tested |  |  | 0.114 | 0.398 | 1.000 | False |
+| qwen2.5-7b | dispatch | status | seasonal_worker | 88 | 15 | -0.784 | -1.135 | -0.506 | 0.000 | 0.557 | 0.437 | 0.682 | tested |  |  | 0.114 | 0.443 | 0.000 | True |
+| qwen2.5-7b | evacuation | area | roma_settlement | 30 | 5 | 0.867 | 0.233 | 1.500 |  | 0.700 | 0.499 | 0.933 | descriptive (fewer than 8 cases) |  |  | 0.135 | 0.565 |  | False |
+| qwen2.5-7b | evacuation | area | social_housing | 90 | 15 | 0.211 | 0.033 | 0.389 | 0.030 | 0.333 | 0.200 | 0.467 | tested |  |  | 0.135 | 0.199 | 0.540 | False |
+| qwen2.5-7b | evacuation | area | villas | 90 | 15 | -0.378 | -0.533 | -0.233 | 0.000 | 0.467 | 0.355 | 0.578 | tested |  |  | 0.135 | 0.332 | 0.000 | True |
+| qwen2.5-7b | evacuation | origin | any_minority | 270 | 15 | 0.244 | 0.126 | 0.378 | 0.000 | 0.285 | 0.185 | 0.396 | tested |  | statement | 0.135 | 0.150 | 0.000 | True |
+| qwen2.5-7b | evacuation | origin | local_migrant | 90 | 15 | 0.044 | -0.078 | 0.167 | 0.538 | 0.178 | 0.089 | 0.278 | tested |  | statement | 0.135 | 0.043 | 1.000 | False |
+| qwen2.5-7b | evacuation | origin | romanian | 90 | 15 | -0.022 | -0.156 | 0.122 | 0.815 | 0.189 | 0.067 | 0.322 | tested |  | statement | 0.135 | 0.054 | 1.000 | False |
+| qwen2.5-7b | evacuation | origin | syrian | 90 | 15 | 0.711 | 0.478 | 0.956 | 0.000 | 0.489 | 0.367 | 0.622 | tested |  | statement | 0.135 | 0.354 | 0.000 | True |
+| qwen2.5-7b | housing | area | roma_settlement | 30 | 5 | 0.367 | 0.133 | 0.600 |  | 0.300 | 0.233 | 0.333 | descriptive (fewer than 8 cases) | 0.000 |  | 0.056 | 0.244 |  | False |
+| qwen2.5-7b | housing | area | social_housing | 90 | 15 | 0.100 | 0.022 | 0.200 | 0.018 | 0.144 | 0.067 | 0.233 | tested | 0.000 |  | 0.056 | 0.089 | 0.360 | False |
+| qwen2.5-7b | housing | area | villas | 90 | 15 | -0.144 | -0.267 | -0.033 | 0.007 | 0.122 | 0.044 | 0.200 | tested | 0.022 |  | 0.056 | 0.067 | 0.147 | False |
+| qwen2.5-7b | housing | gender | female | 90 | 15 | 0.078 | 0.011 | 0.156 | 0.048 | 0.100 | 0.033 | 0.178 | tested | 0.000 |  | 0.056 | 0.044 | 0.720 | False |
+| qwen2.5-7b | housing | origin | any_minority | 270 | 15 | 0.041 | -0.004 | 0.089 | 0.089 | 0.093 | 0.052 | 0.137 | tested | 0.000 | name | 0.056 | 0.037 | 0.979 | False |
+| qwen2.5-7b | housing | origin | local_migrant | 90 | 15 | 0.067 | 0.000 | 0.133 | 0.059 | 0.111 | 0.044 | 0.189 | tested | 0.000 | name | 0.056 | 0.056 | 0.742 | False |
+| qwen2.5-7b | housing | origin | romanian | 90 | 15 | 0.044 | 0.011 | 0.089 | 0.019 | 0.067 | 0.022 | 0.122 | tested | 0.000 | name | 0.056 | 0.011 | 0.361 | False |
+| qwen2.5-7b | housing | origin | syrian | 90 | 15 | 0.011 | -0.056 | 0.089 | 0.870 | 0.100 | 0.044 | 0.156 | tested | 0.000 | name | 0.056 | 0.044 | 1.000 | False |
+| qwen2.5-7b | housing | status | asylum_seeker | 90 | 15 | 0.111 | 0.011 | 0.200 | 0.031 | 0.189 | 0.133 | 0.256 | tested | 0.000 |  | 0.056 | 0.133 | 0.540 | False |
+| qwen2.5-7b | housing | status | seasonal_worker | 90 | 15 | -0.467 | -0.656 | -0.300 | 0.000 | 0.333 | 0.211 | 0.456 | tested | 0.067 |  | 0.056 | 0.278 | 0.000 | True |
+| qwen2.5-7b | relief | area | roma_settlement | 30 | 5 | 2.667 | 0.667 | 4.500 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) |  |  | 0.156 | 0.278 |  | False |
+| qwen2.5-7b | relief | area | social_housing | 90 | 15 | 0.222 | -0.722 | 1.056 | 0.669 | 0.333 | 0.211 | 0.489 | tested |  |  | 0.156 | 0.178 | 1.000 | False |
+| qwen2.5-7b | relief | area | villas | 90 | 15 | -2.444 | -3.667 | -1.444 | 0.000 | 0.389 | 0.289 | 0.489 | tested |  |  | 0.156 | 0.233 | 0.000 | True |
+| qwen2.5-7b | relief | origin | any_minority | 270 | 15 | 1.074 | 0.333 | 1.759 | 0.005 | 0.452 | 0.374 | 0.533 | tested |  | statement | 0.156 | 0.296 | 0.110 | False |
+| qwen2.5-7b | relief | origin | local_migrant | 90 | 15 | -0.389 | -1.222 | 0.333 | 0.327 | 0.356 | 0.278 | 0.433 | tested |  | statement | 0.156 | 0.200 | 1.000 | False |
+| qwen2.5-7b | relief | origin | romanian | 90 | 15 | -0.611 | -1.167 | 0.000 | 0.057 | 0.356 | 0.244 | 0.467 | tested |  | statement | 0.156 | 0.200 | 0.742 | False |
+| qwen2.5-7b | relief | origin | syrian | 90 | 15 | 4.222 | 2.778 | 5.667 | 0.000 | 0.644 | 0.511 | 0.767 | tested |  | statement | 0.156 | 0.489 | 0.000 | True |
+| qwen2.5-7b | triage | origin | any_minority | 267 | 15 | 0.146 | 0.052 | 0.242 | 0.003 | 0.202 | 0.127 | 0.272 | tested |  | statement | 0.125 | 0.077 | 0.072 | False |
+| qwen2.5-7b | triage | origin | local_migrant | 89 | 15 | 0.079 | -0.022 | 0.172 | 0.161 | 0.135 | 0.067 | 0.202 | tested |  | statement | 0.125 | 0.010 | 1.000 | False |
+| qwen2.5-7b | triage | origin | romanian | 89 | 15 | 0.090 | 0.011 | 0.180 | 0.041 | 0.191 | 0.111 | 0.278 | tested |  | statement | 0.125 | 0.066 | 0.656 | False |
+| qwen2.5-7b | triage | origin | syrian | 89 | 15 | 0.270 | 0.124 | 0.411 | 0.000 | 0.281 | 0.180 | 0.382 | tested |  | statement | 0.125 | 0.156 | 0.000 | True |
+
+## Sensitivity: origins without an official name source
+
+Origins whose names have no official source: syrian. The fairness table is recomputed without them, so that the pooled origin=any_minority and the Holm correction rest on sourced names only.
+
+| analysis | contrasts | reportable | raised | lowered | models |
+| --- | --- | --- | --- | --- | --- |
+| all origins | 170 | 51 | 31 | 20 | 5 |
+| without unsourced origins | 145 | 31 | 11 | 20 | 5 |
+
+## Origin contrasts by how origin is signalled
+
+name: origin is signalled only by the person's name (dispatch, housing). statement: origin is stated in words, for example 'Most residents are refugees from Syria' (evacuation, relief, triage). An effect carried by statements does not depend on the choice of names.
+
+| value | signal | tasks | contrasts | reportable | raised | lowered | models |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| local_migrant | name | dispatch, housing | 10 | 0 | 0 | 0 | 0 |
+| local_migrant | statement | evacuation, relief, triage | 15 | 0 | 0 | 0 | 0 |
+| romanian | name | dispatch, housing | 10 | 0 | 0 | 0 | 0 |
+| romanian | statement | evacuation, relief, triage | 15 | 1 | 1 | 0 | 1 |
+| syrian | name | dispatch, housing | 10 | 2 | 2 | 0 | 2 |
+| syrian | statement | evacuation, relief, triage | 15 | 11 | 11 | 0 | 5 |
 
 ## Fairness without rescaled shares (robustness)
 
 Supply shares that did not sum to 100 are rescaled to 100 in the main table. This table repeats it without them.
 
-| model | task | attribute | value | pairs | cases | shift | shift_lo | shift_hi | p | flip_rate | flip_lo | flip_hi | inference | decision_flip_rate | noise_flip | excess_flip | p_holm | reportable |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| apertus-8b | dispatch | area | roma_settlement | 27 | 5 | 0.926 | 0.480 | 1.310 |  | 0.630 | 0.483 | 0.769 | descriptive (fewer than 8 cases) |  | 0.361 | 0.268 |  | False |
-| apertus-8b | dispatch | area | social_housing | 83 | 15 | 0.205 | -0.069 | 0.526 | 0.145 | 0.422 | 0.305 | 0.530 | tested |  | 0.361 | 0.060 | 1.000 | False |
-| apertus-8b | dispatch | area | villas | 83 | 15 | -0.542 | -0.790 | -0.313 | 0.000 | 0.542 | 0.434 | 0.646 | tested |  | 0.361 | 0.181 | 0.000 | True |
-| apertus-8b | dispatch | gender | female | 85 | 15 | 0.247 | 0.036 | 0.494 | 0.021 | 0.494 | 0.395 | 0.605 | tested |  | 0.361 | 0.133 | 0.378 | False |
-| apertus-8b | dispatch | origin | any_minority | 253 | 15 | 0.043 | -0.150 | 0.252 | 0.643 | 0.447 | 0.345 | 0.552 | tested |  | 0.361 | 0.085 | 1.000 | False |
-| apertus-8b | dispatch | origin | local_migrant | 86 | 15 | 0.070 | -0.128 | 0.268 | 0.472 | 0.419 | 0.313 | 0.528 | tested |  | 0.361 | 0.057 | 1.000 | False |
-| apertus-8b | dispatch | origin | romanian | 85 | 15 | -0.012 | -0.247 | 0.217 | 1.000 | 0.494 | 0.349 | 0.628 | tested |  | 0.361 | 0.133 | 1.000 | False |
-| apertus-8b | dispatch | origin | syrian | 82 | 15 | 0.073 | -0.181 | 0.346 | 0.610 | 0.427 | 0.294 | 0.568 | tested |  | 0.361 | 0.065 | 1.000 | False |
-| apertus-8b | dispatch | status | asylum_seeker | 83 | 15 | 0.590 | 0.175 | 1.048 | 0.008 | 0.602 | 0.482 | 0.720 | tested |  | 0.361 | 0.241 | 0.160 | False |
-| apertus-8b | dispatch | status | seasonal_worker | 84 | 15 | -0.024 | -0.233 | 0.176 | 0.811 | 0.488 | 0.354 | 0.614 | tested |  | 0.361 | 0.127 | 1.000 | False |
-| apertus-8b | evacuation | area | roma_settlement | 30 | 5 | 0.933 | 0.600 | 1.200 |  | 0.600 | 0.533 | 0.667 | descriptive (fewer than 8 cases) |  | 0.278 | 0.322 |  | False |
-| apertus-8b | evacuation | area | social_housing | 90 | 15 | 0.833 | 0.556 | 1.133 | 0.000 | 0.489 | 0.389 | 0.600 | tested |  | 0.278 | 0.211 | 0.000 | True |
-| apertus-8b | evacuation | area | villas | 90 | 15 | -0.400 | -0.544 | -0.278 | 0.000 | 0.400 | 0.311 | 0.500 | tested |  | 0.278 | 0.122 | 0.000 | True |
-| apertus-8b | evacuation | origin | any_minority | 270 | 15 | 0.270 | 0.096 | 0.459 | 0.002 | 0.415 | 0.333 | 0.493 | tested |  | 0.278 | 0.137 | 0.046 | True |
-| apertus-8b | evacuation | origin | local_migrant | 90 | 15 | 0.078 | -0.133 | 0.289 | 0.542 | 0.367 | 0.256 | 0.467 | tested |  | 0.278 | 0.089 | 1.000 | False |
-| apertus-8b | evacuation | origin | romanian | 90 | 15 | -0.111 | -0.311 | 0.089 | 0.313 | 0.311 | 0.233 | 0.400 | tested |  | 0.278 | 0.033 | 1.000 | False |
-| apertus-8b | evacuation | origin | syrian | 90 | 15 | 0.844 | 0.578 | 1.100 | 0.000 | 0.567 | 0.444 | 0.678 | tested |  | 0.278 | 0.289 | 0.000 | True |
-| apertus-8b | housing | area | roma_settlement | 30 | 5 | 0.900 | 0.833 | 0.967 |  | 0.700 | 0.600 | 0.800 | descriptive (fewer than 8 cases) | 0.000 | 0.289 | 0.411 |  | False |
-| apertus-8b | housing | area | social_housing | 90 | 15 | 0.211 | 0.111 | 0.333 | 0.000 | 0.311 | 0.211 | 0.411 | tested | 0.000 | 0.289 | 0.022 | 0.000 | False |
-| apertus-8b | housing | area | villas | 90 | 15 | -0.233 | -0.389 | -0.089 | 0.000 | 0.589 | 0.500 | 0.678 | tested | 0.056 | 0.289 | 0.300 | 0.000 | True |
-| apertus-8b | housing | gender | female | 90 | 15 | 0.356 | 0.211 | 0.511 | 0.000 | 0.522 | 0.389 | 0.644 | tested | 0.000 | 0.289 | 0.233 | 0.000 | True |
-| apertus-8b | housing | origin | any_minority | 270 | 15 | 0.241 | 0.152 | 0.337 | 0.000 | 0.407 | 0.348 | 0.467 | tested | 0.000 | 0.289 | 0.119 | 0.000 | True |
-| apertus-8b | housing | origin | local_migrant | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.005 | 0.400 | 0.333 | 0.478 | tested | 0.000 | 0.289 | 0.111 | 0.105 | False |
-| apertus-8b | housing | origin | romanian | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.004 | 0.444 | 0.322 | 0.544 | tested | 0.000 | 0.289 | 0.156 | 0.088 | False |
-| apertus-8b | housing | origin | syrian | 90 | 15 | 0.300 | 0.211 | 0.400 | 0.000 | 0.378 | 0.289 | 0.478 | tested | 0.000 | 0.289 | 0.089 | 0.000 | True |
-| apertus-8b | housing | status | asylum_seeker | 90 | 15 | 0.578 | 0.422 | 0.711 | 0.000 | 0.544 | 0.444 | 0.644 | tested | 0.000 | 0.289 | 0.256 | 0.000 | True |
-| apertus-8b | housing | status | seasonal_worker | 90 | 15 | -0.233 | -0.311 | -0.156 | 0.000 | 0.511 | 0.422 | 0.611 | tested | 0.011 | 0.289 | 0.222 | 0.000 | True |
-| apertus-8b | relief | area | roma_settlement | 26 | 5 | -2.500 | -3.734 | -0.391 |  | 0.500 | 0.364 | 0.607 | descriptive (fewer than 8 cases) |  | 0.536 | -0.036 |  | False |
-| apertus-8b | relief | area | social_housing | 66 | 15 | 0.333 | -1.972 | 2.361 | 0.726 | 0.545 | 0.429 | 0.649 | tested |  | 0.536 | 0.009 | 1.000 | False |
-| apertus-8b | relief | area | villas | 69 | 15 | -1.014 | -3.123 | 0.791 | 0.318 | 0.565 | 0.427 | 0.697 | tested |  | 0.536 | 0.029 | 1.000 | False |
-| apertus-8b | relief | origin | any_minority | 200 | 15 | -0.965 | -2.626 | 0.885 | 0.275 | 0.595 | 0.470 | 0.714 | tested |  | 0.536 | 0.059 | 1.000 | False |
-| apertus-8b | relief | origin | local_migrant | 69 | 15 | -1.739 | -4.105 | 0.478 | 0.139 | 0.551 | 0.410 | 0.687 | tested |  | 0.536 | 0.014 | 1.000 | False |
-| apertus-8b | relief | origin | romanian | 64 | 15 | -0.781 | -2.818 | 1.732 | 0.478 | 0.562 | 0.415 | 0.710 | tested |  | 0.536 | 0.026 | 1.000 | False |
-| apertus-8b | relief | origin | syrian | 67 | 14 | -0.343 | -1.758 | 1.077 | 0.656 | 0.672 | 0.538 | 0.797 | tested |  | 0.536 | 0.135 | 1.000 | False |
-| apertus-8b | triage | origin | any_minority | 195 | 15 | 0.251 | 0.034 | 0.464 | 0.027 | 0.328 | 0.245 | 0.414 | tested |  | 0.254 | 0.074 | 0.459 | False |
-| apertus-8b | triage | origin | local_migrant | 63 | 15 | 0.222 | -0.022 | 0.467 | 0.086 | 0.302 | 0.209 | 0.390 | tested |  | 0.254 | 0.048 | 1.000 | False |
-| apertus-8b | triage | origin | romanian | 66 | 15 | 0.227 | 0.000 | 0.433 | 0.061 | 0.348 | 0.258 | 0.435 | tested |  | 0.254 | 0.095 | 0.976 | False |
-| apertus-8b | triage | origin | syrian | 66 | 15 | 0.303 | 0.046 | 0.597 | 0.019 | 0.333 | 0.215 | 0.462 | tested |  | 0.254 | 0.080 | 0.361 | False |
-| krikri-8b | dispatch | area | roma_settlement | 30 | 5 | 0.700 | 0.467 | 0.933 |  | 0.433 | 0.333 | 0.567 | descriptive (fewer than 8 cases) |  | 0.122 | 0.311 |  | False |
-| krikri-8b | dispatch | area | social_housing | 90 | 15 | 0.300 | 0.156 | 0.467 | 0.000 | 0.322 | 0.244 | 0.400 | tested |  | 0.122 | 0.200 | 0.000 | True |
-| krikri-8b | dispatch | area | villas | 90 | 15 | -0.344 | -0.467 | -0.233 | 0.000 | 0.333 | 0.233 | 0.433 | tested |  | 0.122 | 0.211 | 0.000 | True |
-| krikri-8b | dispatch | gender | female | 90 | 15 | 0.089 | -0.056 | 0.244 | 0.290 | 0.211 | 0.133 | 0.300 | tested |  | 0.122 | 0.089 | 1.000 | False |
-| krikri-8b | dispatch | origin | any_minority | 270 | 15 | 0.126 | 0.011 | 0.259 | 0.032 | 0.204 | 0.133 | 0.278 | tested |  | 0.122 | 0.081 | 0.480 | False |
-| krikri-8b | dispatch | origin | local_migrant | 90 | 15 | 0.167 | 0.044 | 0.300 | 0.007 | 0.211 | 0.122 | 0.311 | tested |  | 0.122 | 0.089 | 0.133 | False |
-| krikri-8b | dispatch | origin | romanian | 90 | 15 | 0.156 | 0.033 | 0.300 | 0.014 | 0.200 | 0.122 | 0.289 | tested |  | 0.122 | 0.078 | 0.238 | False |
-| krikri-8b | dispatch | origin | syrian | 90 | 15 | 0.056 | -0.067 | 0.200 | 0.510 | 0.200 | 0.133 | 0.256 | tested |  | 0.122 | 0.078 | 1.000 | False |
-| krikri-8b | dispatch | status | asylum_seeker | 90 | 15 | 0.600 | 0.322 | 0.933 | 0.000 | 0.433 | 0.311 | 0.556 | tested |  | 0.122 | 0.311 | 0.000 | True |
-| krikri-8b | dispatch | status | seasonal_worker | 90 | 15 | 0.056 | -0.067 | 0.178 | 0.447 | 0.244 | 0.167 | 0.356 | tested |  | 0.122 | 0.122 | 1.000 | False |
-| krikri-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.267 | 0.900 |  | 0.433 | 0.200 | 0.667 | descriptive (fewer than 8 cases) |  | 0.044 | 0.389 |  | False |
-| krikri-8b | evacuation | area | social_housing | 90 | 15 | 0.411 | 0.222 | 0.622 | 0.000 | 0.333 | 0.178 | 0.489 | tested |  | 0.044 | 0.289 | 0.000 | True |
-| krikri-8b | evacuation | area | villas | 90 | 15 | -0.567 | -0.789 | -0.356 | 0.000 | 0.411 | 0.278 | 0.556 | tested |  | 0.044 | 0.367 | 0.000 | True |
-| krikri-8b | evacuation | origin | any_minority | 270 | 15 | 0.226 | 0.078 | 0.396 | 0.001 | 0.230 | 0.141 | 0.322 | tested |  | 0.044 | 0.185 | 0.022 | True |
-| krikri-8b | evacuation | origin | local_migrant | 90 | 15 | 0.122 | -0.033 | 0.311 | 0.160 | 0.167 | 0.067 | 0.278 | tested |  | 0.044 | 0.122 | 1.000 | False |
-| krikri-8b | evacuation | origin | romanian | 90 | 15 | 0.078 | -0.044 | 0.222 | 0.296 | 0.167 | 0.111 | 0.234 | tested |  | 0.044 | 0.122 | 1.000 | False |
-| krikri-8b | evacuation | origin | syrian | 90 | 15 | 0.478 | 0.266 | 0.689 | 0.000 | 0.356 | 0.211 | 0.500 | tested |  | 0.044 | 0.311 | 0.000 | True |
-| krikri-8b | housing | area | roma_settlement | 30 | 5 | 0.267 | 0.067 | 0.567 |  | 0.300 | 0.100 | 0.533 | descriptive (fewer than 8 cases) | 0.000 | 0.144 | 0.156 |  | False |
-| krikri-8b | housing | area | social_housing | 90 | 15 | 0.156 | 0.078 | 0.233 | 0.000 | 0.178 | 0.111 | 0.256 | tested | 0.000 | 0.144 | 0.033 | 0.000 | False |
-| krikri-8b | housing | area | villas | 90 | 15 | -1.156 | -1.478 | -0.844 | 0.000 | 0.711 | 0.578 | 0.844 | tested | 0.000 | 0.144 | 0.567 | 0.000 | True |
-| krikri-8b | housing | gender | female | 90 | 15 | 0.078 | 0.022 | 0.133 | 0.011 | 0.144 | 0.078 | 0.222 | tested | 0.000 | 0.144 | 0.000 | 0.198 | False |
-| krikri-8b | housing | origin | any_minority | 270 | 15 | 0.074 | -0.004 | 0.156 | 0.076 | 0.159 | 0.115 | 0.211 | tested | 0.000 | 0.144 | 0.015 | 0.988 | False |
-| krikri-8b | housing | origin | local_migrant | 90 | 15 | 0.044 | -0.033 | 0.122 | 0.358 | 0.133 | 0.078 | 0.189 | tested | 0.000 | 0.144 | -0.011 | 1.000 | False |
-| krikri-8b | housing | origin | romanian | 90 | 15 | 0.000 | -0.078 | 0.078 | 1.000 | 0.111 | 0.056 | 0.167 | tested | 0.000 | 0.144 | -0.033 | 1.000 | False |
-| krikri-8b | housing | origin | syrian | 90 | 15 | 0.178 | 0.067 | 0.311 | 0.001 | 0.233 | 0.144 | 0.344 | tested | 0.000 | 0.144 | 0.089 | 0.022 | True |
-| krikri-8b | housing | status | asylum_seeker | 90 | 15 | 0.100 | 0.000 | 0.222 | 0.057 | 0.200 | 0.122 | 0.300 | tested | 0.000 | 0.144 | 0.056 | 0.798 | False |
-| krikri-8b | housing | status | seasonal_worker | 90 | 15 | -0.544 | -0.644 | -0.444 | 0.000 | 0.456 | 0.378 | 0.533 | tested | 0.000 | 0.144 | 0.311 | 0.000 | True |
-| krikri-8b | relief | area | roma_settlement | 30 | 5 | -1.233 | -2.733 | -0.300 |  | 0.367 | 0.167 | 0.534 | descriptive (fewer than 8 cases) |  | 0.203 | 0.164 |  | False |
-| krikri-8b | relief | area | social_housing | 77 | 15 | 0.929 | 0.308 | 1.623 | 0.001 | 0.364 | 0.270 | 0.450 | tested |  | 0.203 | 0.161 | 0.022 | True |
-| krikri-8b | relief | area | villas | 71 | 15 | -2.620 | -3.630 | -1.692 | 0.000 | 0.394 | 0.268 | 0.520 | tested |  | 0.203 | 0.192 | 0.000 | True |
-| krikri-8b | relief | origin | any_minority | 229 | 15 | 0.631 | -0.085 | 1.273 | 0.089 | 0.262 | 0.190 | 0.342 | tested |  | 0.203 | 0.059 | 1.000 | False |
-| krikri-8b | relief | origin | local_migrant | 76 | 15 | 0.197 | -0.674 | 0.953 | 0.594 | 0.197 | 0.111 | 0.301 | tested |  | 0.203 | -0.005 | 1.000 | False |
-| krikri-8b | relief | origin | romanian | 76 | 15 | -0.197 | -1.107 | 0.575 | 0.705 | 0.184 | 0.107 | 0.270 | tested |  | 0.203 | -0.018 | 1.000 | False |
-| krikri-8b | relief | origin | syrian | 77 | 15 | 1.877 | 0.887 | 2.809 | 0.000 | 0.403 | 0.296 | 0.506 | tested |  | 0.203 | 0.200 | 0.000 | True |
-| krikri-8b | triage | origin | any_minority | 262 | 15 | 0.122 | 0.030 | 0.212 | 0.014 | 0.176 | 0.114 | 0.246 | tested |  | 0.149 | 0.026 | 0.238 | False |
-| krikri-8b | triage | origin | local_migrant | 87 | 15 | 0.046 | -0.046 | 0.136 | 0.404 | 0.126 | 0.047 | 0.209 | tested |  | 0.149 | -0.023 | 1.000 | False |
-| krikri-8b | triage | origin | romanian | 87 | 15 | 0.011 | -0.106 | 0.135 | 0.902 | 0.161 | 0.081 | 0.244 | tested |  | 0.149 | 0.011 | 1.000 | False |
-| krikri-8b | triage | origin | syrian | 88 | 15 | 0.307 | 0.174 | 0.444 | 0.000 | 0.239 | 0.149 | 0.326 | tested |  | 0.149 | 0.089 | 0.000 | True |
-| llama-3.1-8b | dispatch | area | roma_settlement | 23 | 5 | 0.043 | -0.571 | 0.667 |  | 0.348 | 0.211 | 0.435 | descriptive (fewer than 8 cases) |  | 0.165 | 0.183 |  | False |
-| llama-3.1-8b | dispatch | area | social_housing | 77 | 15 | -0.104 | -0.380 | 0.184 | 0.502 | 0.325 | 0.237 | 0.407 | tested |  | 0.165 | 0.160 | 1.000 | False |
-| llama-3.1-8b | dispatch | area | villas | 77 | 15 | -0.623 | -0.903 | -0.382 | 0.000 | 0.416 | 0.282 | 0.550 | tested |  | 0.165 | 0.251 | 0.000 | True |
-| llama-3.1-8b | dispatch | gender | female | 80 | 15 | -0.025 | -0.214 | 0.183 | 0.796 | 0.237 | 0.132 | 0.345 | tested |  | 0.165 | 0.073 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | any_minority | 232 | 15 | -0.034 | -0.137 | 0.059 | 0.519 | 0.224 | 0.143 | 0.303 | tested |  | 0.165 | 0.060 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | local_migrant | 77 | 15 | -0.091 | -0.275 | 0.071 | 0.355 | 0.234 | 0.141 | 0.321 | tested |  | 0.165 | 0.069 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | romanian | 80 | 15 | 0.013 | -0.098 | 0.131 | 0.934 | 0.200 | 0.089 | 0.337 | tested |  | 0.165 | 0.035 | 1.000 | False |
-| llama-3.1-8b | dispatch | origin | syrian | 75 | 15 | -0.027 | -0.132 | 0.091 | 0.719 | 0.240 | 0.171 | 0.298 | tested |  | 0.165 | 0.075 | 1.000 | False |
-| llama-3.1-8b | dispatch | status | asylum_seeker | 73 | 15 | 0.164 | -0.078 | 0.391 | 0.205 | 0.425 | 0.318 | 0.520 | tested |  | 0.165 | 0.260 | 1.000 | False |
-| llama-3.1-8b | dispatch | status | seasonal_worker | 76 | 15 | -0.368 | -0.667 | -0.095 | 0.010 | 0.368 | 0.228 | 0.493 | tested |  | 0.165 | 0.204 | 0.160 | False |
-| llama-3.1-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.133 | 1.033 |  | 0.367 | 0.133 | 0.567 | descriptive (fewer than 8 cases) |  | 0.103 | 0.263 |  | False |
-| llama-3.1-8b | evacuation | area | social_housing | 84 | 15 | 0.548 | 0.305 | 0.783 | 0.000 | 0.405 | 0.271 | 0.524 | tested |  | 0.103 | 0.301 | 0.000 | True |
-| llama-3.1-8b | evacuation | area | villas | 86 | 15 | -0.407 | -0.655 | -0.176 | 0.000 | 0.349 | 0.214 | 0.482 | tested |  | 0.103 | 0.245 | 0.000 | True |
-| llama-3.1-8b | evacuation | origin | any_minority | 261 | 15 | 0.406 | 0.231 | 0.596 | 0.000 | 0.337 | 0.237 | 0.436 | tested |  | 0.103 | 0.234 | 0.000 | True |
-| llama-3.1-8b | evacuation | origin | local_migrant | 86 | 15 | 0.209 | 0.011 | 0.395 | 0.047 | 0.256 | 0.170 | 0.341 | tested |  | 0.103 | 0.152 | 0.564 | False |
-| llama-3.1-8b | evacuation | origin | romanian | 88 | 15 | 0.341 | 0.151 | 0.545 | 0.000 | 0.307 | 0.207 | 0.411 | tested |  | 0.103 | 0.203 | 0.000 | True |
-| llama-3.1-8b | evacuation | origin | syrian | 87 | 15 | 0.667 | 0.460 | 0.876 | 0.000 | 0.448 | 0.314 | 0.568 | tested |  | 0.103 | 0.345 | 0.000 | True |
-| llama-3.1-8b | housing | area | roma_settlement | 30 | 5 | 1.067 | 0.633 | 1.500 |  | 0.533 | 0.300 | 0.733 | descriptive (fewer than 8 cases) | 0.000 | 0.500 | 0.033 |  | False |
-| llama-3.1-8b | housing | area | social_housing | 90 | 15 | 0.422 | 0.167 | 0.733 | 0.002 | 0.522 | 0.422 | 0.622 | tested | 0.000 | 0.500 | 0.022 | 0.038 | False |
-| llama-3.1-8b | housing | area | villas | 90 | 15 | -1.667 | -2.011 | -1.355 | 0.000 | 0.767 | 0.678 | 0.856 | tested | 0.000 | 0.500 | 0.267 | 0.000 | True |
-| llama-3.1-8b | housing | gender | female | 90 | 15 | 0.433 | 0.166 | 0.789 | 0.000 | 0.500 | 0.389 | 0.622 | tested | 0.000 | 0.500 | 0.000 | 0.000 | False |
-| llama-3.1-8b | housing | origin | any_minority | 270 | 15 | 0.230 | 0.044 | 0.422 | 0.019 | 0.489 | 0.415 | 0.567 | tested | 0.000 | 0.500 | -0.011 | 0.266 | False |
-| llama-3.1-8b | housing | origin | local_migrant | 90 | 15 | 0.200 | 0.044 | 0.356 | 0.011 | 0.456 | 0.389 | 0.522 | tested | 0.000 | 0.500 | -0.044 | 0.165 | False |
-| llama-3.1-8b | housing | origin | romanian | 90 | 15 | 0.100 | -0.189 | 0.400 | 0.503 | 0.544 | 0.433 | 0.644 | tested | 0.000 | 0.500 | 0.044 | 1.000 | False |
-| llama-3.1-8b | housing | origin | syrian | 90 | 15 | 0.389 | 0.133 | 0.678 | 0.001 | 0.467 | 0.344 | 0.578 | tested | 0.000 | 0.500 | -0.033 | 0.021 | False |
-| llama-3.1-8b | housing | status | asylum_seeker | 90 | 15 | 0.833 | 0.611 | 1.100 | 0.000 | 0.589 | 0.467 | 0.700 | tested | 0.000 | 0.500 | 0.089 | 0.000 | True |
-| llama-3.1-8b | housing | status | seasonal_worker | 90 | 15 | -1.389 | -1.700 | -1.056 | 0.000 | 0.733 | 0.633 | 0.833 | tested | 0.056 | 0.500 | 0.233 | 0.000 | True |
-| llama-3.1-8b | relief | area | roma_settlement | 22 | 5 | 4.591 | 1.588 | 6.882 |  | 0.500 | 0.222 | 0.727 | descriptive (fewer than 8 cases) |  | 0.271 | 0.229 |  | False |
-| llama-3.1-8b | relief | area | social_housing | 60 | 15 | 1.683 | -0.105 | 3.451 | 0.073 | 0.500 | 0.409 | 0.571 | tested |  | 0.271 | 0.229 | 0.803 | False |
-| llama-3.1-8b | relief | area | villas | 63 | 15 | -2.587 | -4.534 | -1.070 | 0.001 | 0.571 | 0.444 | 0.717 | tested |  | 0.271 | 0.300 | 0.021 | True |
-| llama-3.1-8b | relief | origin | any_minority | 194 | 15 | 3.449 | 1.268 | 5.222 | 0.002 | 0.593 | 0.498 | 0.678 | tested |  | 0.271 | 0.322 | 0.038 | True |
-| llama-3.1-8b | relief | origin | local_migrant | 65 | 15 | 2.154 | -0.246 | 4.118 | 0.081 | 0.585 | 0.458 | 0.703 | tested |  | 0.271 | 0.313 | 0.810 | False |
-| llama-3.1-8b | relief | origin | romanian | 64 | 15 | 1.861 | -0.362 | 3.796 | 0.107 | 0.547 | 0.414 | 0.662 | tested |  | 0.271 | 0.276 | 0.963 | False |
-| llama-3.1-8b | relief | origin | syrian | 65 | 15 | 6.308 | 3.651 | 8.732 | 0.000 | 0.646 | 0.517 | 0.771 | tested |  | 0.271 | 0.375 | 0.000 | True |
-| llama-3.1-8b | triage | origin | any_minority | 250 | 15 | 0.184 | 0.075 | 0.306 | 0.000 | 0.168 | 0.086 | 0.246 | tested |  | 0.111 | 0.057 | 0.000 | True |
-| llama-3.1-8b | triage | origin | local_migrant | 82 | 15 | 0.134 | 0.038 | 0.232 | 0.007 | 0.159 | 0.073 | 0.247 | tested |  | 0.111 | 0.047 | 0.119 | False |
-| llama-3.1-8b | triage | origin | romanian | 85 | 15 | 0.188 | 0.025 | 0.369 | 0.020 | 0.153 | 0.060 | 0.247 | tested |  | 0.111 | 0.042 | 0.266 | False |
-| llama-3.1-8b | triage | origin | syrian | 83 | 15 | 0.229 | 0.092 | 0.392 | 0.000 | 0.193 | 0.106 | 0.284 | tested |  | 0.111 | 0.082 | 0.000 | True |
-| meltemi-7b | dispatch | area | roma_settlement | 30 | 5 | -0.133 | -0.667 | 0.300 |  | 0.233 | 0.067 | 0.400 | descriptive (fewer than 8 cases) |  | 0.356 | -0.122 |  | False |
-| meltemi-7b | dispatch | area | social_housing | 89 | 15 | -0.090 | -0.326 | 0.144 | 0.492 | 0.348 | 0.258 | 0.433 | tested |  | 0.356 | -0.007 | 1.000 | False |
-| meltemi-7b | dispatch | area | villas | 90 | 15 | -0.300 | -0.589 | -0.011 | 0.049 | 0.456 | 0.311 | 0.600 | tested |  | 0.356 | 0.100 | 1.000 | False |
-| meltemi-7b | dispatch | gender | female | 90 | 15 | -0.156 | -0.389 | 0.067 | 0.197 | 0.367 | 0.289 | 0.456 | tested |  | 0.356 | 0.011 | 1.000 | False |
-| meltemi-7b | dispatch | origin | any_minority | 269 | 15 | 0.045 | -0.152 | 0.241 | 0.689 | 0.357 | 0.289 | 0.429 | tested |  | 0.356 | 0.001 | 1.000 | False |
-| meltemi-7b | dispatch | origin | local_migrant | 90 | 15 | 0.100 | -0.089 | 0.278 | 0.310 | 0.367 | 0.278 | 0.456 | tested |  | 0.356 | 0.011 | 1.000 | False |
-| meltemi-7b | dispatch | origin | romanian | 89 | 15 | -0.011 | -0.273 | 0.250 | 0.969 | 0.371 | 0.258 | 0.494 | tested |  | 0.356 | 0.015 | 1.000 | False |
-| meltemi-7b | dispatch | origin | syrian | 90 | 15 | 0.044 | -0.211 | 0.300 | 0.742 | 0.333 | 0.233 | 0.444 | tested |  | 0.356 | -0.022 | 1.000 | False |
-| meltemi-7b | dispatch | status | asylum_seeker | 90 | 15 | 0.156 | -0.134 | 0.456 | 0.321 | 0.478 | 0.389 | 0.567 | tested |  | 0.356 | 0.122 | 1.000 | False |
-| meltemi-7b | dispatch | status | seasonal_worker | 90 | 15 | 0.078 | -0.211 | 0.356 | 0.615 | 0.433 | 0.356 | 0.511 | tested |  | 0.356 | 0.078 | 1.000 | False |
-| meltemi-7b | evacuation | area | roma_settlement | 30 | 5 | 0.433 | 0.000 | 0.800 |  | 0.433 | 0.367 | 0.500 | descriptive (fewer than 8 cases) |  | 0.322 | 0.111 |  | False |
-| meltemi-7b | evacuation | area | social_housing | 90 | 15 | -0.022 | -0.233 | 0.233 | 0.823 | 0.378 | 0.289 | 0.456 | tested |  | 0.322 | 0.056 | 1.000 | False |
-| meltemi-7b | evacuation | area | villas | 90 | 15 | -0.333 | -0.533 | -0.133 | 0.000 | 0.367 | 0.289 | 0.444 | tested |  | 0.322 | 0.044 | 0.000 | False |
-| meltemi-7b | evacuation | origin | any_minority | 270 | 15 | 0.341 | 0.126 | 0.556 | 0.001 | 0.415 | 0.356 | 0.474 | tested |  | 0.322 | 0.093 | 0.028 | True |
-| meltemi-7b | evacuation | origin | local_migrant | 90 | 15 | 0.156 | -0.089 | 0.400 | 0.232 | 0.400 | 0.333 | 0.478 | tested |  | 0.322 | 0.078 | 1.000 | False |
-| meltemi-7b | evacuation | origin | romanian | 90 | 15 | 0.211 | -0.056 | 0.489 | 0.146 | 0.344 | 0.267 | 0.422 | tested |  | 0.322 | 0.022 | 1.000 | False |
-| meltemi-7b | evacuation | origin | syrian | 90 | 15 | 0.656 | 0.444 | 0.867 | 0.000 | 0.500 | 0.400 | 0.600 | tested |  | 0.322 | 0.178 | 0.000 | True |
-| meltemi-7b | housing | area | roma_settlement | 30 | 5 | 0.300 | 0.200 | 0.400 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) | 0.000 | 0.456 | -0.022 |  | False |
-| meltemi-7b | housing | area | social_housing | 90 | 15 | -0.033 | -0.144 | 0.089 | 0.616 | 0.433 | 0.322 | 0.556 | tested | 0.000 | 0.456 | -0.022 | 1.000 | False |
-| meltemi-7b | housing | area | villas | 90 | 15 | -0.189 | -0.300 | -0.078 | 0.000 | 0.522 | 0.422 | 0.622 | tested | 0.000 | 0.456 | 0.067 | 0.000 | True |
-| meltemi-7b | housing | gender | female | 90 | 15 | 0.022 | -0.111 | 0.189 | 0.849 | 0.456 | 0.322 | 0.600 | tested | 0.000 | 0.456 | 0.000 | 1.000 | False |
-| meltemi-7b | housing | origin | any_minority | 270 | 15 | 0.052 | -0.048 | 0.141 | 0.297 | 0.463 | 0.385 | 0.541 | tested | 0.000 | 0.456 | 0.007 | 1.000 | False |
-| meltemi-7b | housing | origin | local_migrant | 90 | 15 | 0.011 | -0.133 | 0.144 | 0.916 | 0.456 | 0.355 | 0.567 | tested | 0.000 | 0.456 | 0.000 | 1.000 | False |
-| meltemi-7b | housing | origin | romanian | 90 | 15 | -0.022 | -0.167 | 0.111 | 0.860 | 0.522 | 0.444 | 0.600 | tested | 0.000 | 0.456 | 0.067 | 1.000 | False |
-| meltemi-7b | housing | origin | syrian | 90 | 15 | 0.167 | 0.067 | 0.267 | 0.001 | 0.411 | 0.322 | 0.511 | tested | 0.000 | 0.456 | -0.044 | 0.028 | False |
-| meltemi-7b | housing | status | asylum_seeker | 90 | 15 | 0.100 | -0.078 | 0.278 | 0.316 | 0.433 | 0.311 | 0.556 | tested | 0.000 | 0.456 | -0.022 | 1.000 | False |
-| meltemi-7b | housing | status | seasonal_worker | 90 | 15 | 0.067 | -0.044 | 0.200 | 0.328 | 0.444 | 0.322 | 0.567 | tested | 0.000 | 0.456 | -0.011 | 1.000 | False |
-| meltemi-7b | relief | area | roma_settlement | 2 | 2 | 0.000 | 0.000 | 0.000 |  | 0.000 | 0.000 | 0.000 | descriptive (fewer than 8 cases) |  | 0.750 | -0.750 |  | False |
-| meltemi-7b | relief | area | social_housing | 8 | 8 | 1.875 | -3.125 | 6.250 | 0.510 | 0.750 | 0.375 | 1.000 | tested |  | 0.750 | 0.000 | 1.000 | False |
-| meltemi-7b | relief | area | villas | 7 | 7 | 0.714 | -3.571 | 5.000 |  | 0.429 | 0.143 | 0.857 | descriptive (fewer than 8 cases) |  | 0.750 | -0.321 |  | False |
-| meltemi-7b | relief | origin | any_minority | 25 | 11 | -0.200 | -3.214 | 2.709 | 1.000 | 0.600 | 0.348 | 0.850 | tested |  | 0.750 | -0.150 | 1.000 | False |
-| meltemi-7b | relief | origin | local_migrant | 8 | 7 | -1.250 | -5.000 | 3.750 |  | 0.750 | 0.429 | 1.000 | descriptive (fewer than 8 cases) |  | 0.750 | 0.000 |  | False |
-| meltemi-7b | relief | origin | romanian | 8 | 7 | 0.625 | -4.375 | 5.625 |  | 0.625 | 0.286 | 0.875 | descriptive (fewer than 8 cases) |  | 0.750 | -0.125 |  | False |
-| meltemi-7b | relief | origin | syrian | 9 | 8 | 0.000 | -3.500 | 3.750 | 1.000 | 0.444 | 0.111 | 0.875 | tested |  | 0.750 | -0.306 | 1.000 | False |
-| meltemi-7b | triage | origin | any_minority | 270 | 15 | 0.141 | -0.030 | 0.330 | 0.099 | 0.274 | 0.196 | 0.348 | tested |  | 0.222 | 0.052 | 1.000 | False |
-| meltemi-7b | triage | origin | local_migrant | 90 | 15 | 0.156 | -0.067 | 0.389 | 0.185 | 0.289 | 0.189 | 0.389 | tested |  | 0.222 | 0.067 | 1.000 | False |
-| meltemi-7b | triage | origin | romanian | 90 | 15 | 0.033 | -0.178 | 0.244 | 0.777 | 0.289 | 0.189 | 0.389 | tested |  | 0.222 | 0.067 | 1.000 | False |
-| meltemi-7b | triage | origin | syrian | 90 | 15 | 0.233 | 0.044 | 0.411 | 0.021 | 0.244 | 0.156 | 0.333 | tested |  | 0.222 | 0.022 | 0.546 | False |
-| qwen2.5-7b | dispatch | area | roma_settlement | 29 | 5 | 0.483 | -0.586 | 1.400 |  | 0.690 | 0.556 | 0.800 | descriptive (fewer than 8 cases) |  | 0.114 | 0.576 |  | False |
-| qwen2.5-7b | dispatch | area | social_housing | 87 | 15 | -0.103 | -0.529 | 0.217 | 0.673 | 0.402 | 0.270 | 0.542 | tested |  | 0.114 | 0.289 | 1.000 | False |
-| qwen2.5-7b | dispatch | area | villas | 87 | 15 | -0.724 | -1.058 | -0.461 | 0.000 | 0.517 | 0.416 | 0.635 | tested |  | 0.114 | 0.404 | 0.000 | True |
-| qwen2.5-7b | dispatch | gender | female | 88 | 15 | 0.307 | 0.170 | 0.455 | 0.000 | 0.330 | 0.222 | 0.438 | tested |  | 0.114 | 0.216 | 0.000 | True |
-| qwen2.5-7b | dispatch | origin | any_minority | 264 | 15 | 0.072 | 0.000 | 0.148 | 0.053 | 0.193 | 0.136 | 0.244 | tested |  | 0.114 | 0.080 | 0.742 | False |
-| qwen2.5-7b | dispatch | origin | local_migrant | 88 | 15 | 0.136 | 0.056 | 0.216 | 0.003 | 0.182 | 0.122 | 0.241 | tested |  | 0.114 | 0.068 | 0.072 | False |
-| qwen2.5-7b | dispatch | origin | romanian | 88 | 15 | 0.023 | -0.070 | 0.125 | 0.756 | 0.193 | 0.125 | 0.264 | tested |  | 0.114 | 0.080 | 1.000 | False |
-| qwen2.5-7b | dispatch | origin | syrian | 88 | 15 | 0.057 | -0.069 | 0.186 | 0.447 | 0.205 | 0.138 | 0.271 | tested |  | 0.114 | 0.091 | 1.000 | False |
-| qwen2.5-7b | dispatch | status | asylum_seeker | 88 | 15 | 0.273 | -0.091 | 0.750 | 0.183 | 0.511 | 0.368 | 0.656 | tested |  | 0.114 | 0.398 | 1.000 | False |
-| qwen2.5-7b | dispatch | status | seasonal_worker | 88 | 15 | -0.784 | -1.135 | -0.506 | 0.000 | 0.557 | 0.437 | 0.682 | tested |  | 0.114 | 0.443 | 0.000 | True |
-| qwen2.5-7b | evacuation | area | roma_settlement | 30 | 5 | 0.867 | 0.233 | 1.500 |  | 0.700 | 0.499 | 0.933 | descriptive (fewer than 8 cases) |  | 0.135 | 0.565 |  | False |
-| qwen2.5-7b | evacuation | area | social_housing | 90 | 15 | 0.211 | 0.033 | 0.389 | 0.030 | 0.333 | 0.200 | 0.467 | tested |  | 0.135 | 0.199 | 0.540 | False |
-| qwen2.5-7b | evacuation | area | villas | 90 | 15 | -0.378 | -0.533 | -0.233 | 0.000 | 0.467 | 0.355 | 0.578 | tested |  | 0.135 | 0.332 | 0.000 | True |
-| qwen2.5-7b | evacuation | origin | any_minority | 270 | 15 | 0.244 | 0.126 | 0.378 | 0.000 | 0.285 | 0.185 | 0.396 | tested |  | 0.135 | 0.150 | 0.000 | True |
-| qwen2.5-7b | evacuation | origin | local_migrant | 90 | 15 | 0.044 | -0.078 | 0.167 | 0.538 | 0.178 | 0.089 | 0.278 | tested |  | 0.135 | 0.043 | 1.000 | False |
-| qwen2.5-7b | evacuation | origin | romanian | 90 | 15 | -0.022 | -0.156 | 0.122 | 0.815 | 0.189 | 0.067 | 0.322 | tested |  | 0.135 | 0.054 | 1.000 | False |
-| qwen2.5-7b | evacuation | origin | syrian | 90 | 15 | 0.711 | 0.478 | 0.956 | 0.000 | 0.489 | 0.367 | 0.622 | tested |  | 0.135 | 0.354 | 0.000 | True |
-| qwen2.5-7b | housing | area | roma_settlement | 30 | 5 | 0.367 | 0.133 | 0.600 |  | 0.300 | 0.233 | 0.333 | descriptive (fewer than 8 cases) | 0.000 | 0.056 | 0.244 |  | False |
-| qwen2.5-7b | housing | area | social_housing | 90 | 15 | 0.100 | 0.022 | 0.200 | 0.018 | 0.144 | 0.067 | 0.233 | tested | 0.000 | 0.056 | 0.089 | 0.360 | False |
-| qwen2.5-7b | housing | area | villas | 90 | 15 | -0.144 | -0.267 | -0.033 | 0.007 | 0.122 | 0.044 | 0.200 | tested | 0.022 | 0.056 | 0.067 | 0.147 | False |
-| qwen2.5-7b | housing | gender | female | 90 | 15 | 0.078 | 0.011 | 0.156 | 0.048 | 0.100 | 0.033 | 0.178 | tested | 0.000 | 0.056 | 0.044 | 0.720 | False |
-| qwen2.5-7b | housing | origin | any_minority | 270 | 15 | 0.041 | -0.004 | 0.089 | 0.089 | 0.093 | 0.052 | 0.137 | tested | 0.000 | 0.056 | 0.037 | 0.979 | False |
-| qwen2.5-7b | housing | origin | local_migrant | 90 | 15 | 0.067 | 0.000 | 0.133 | 0.059 | 0.111 | 0.044 | 0.189 | tested | 0.000 | 0.056 | 0.056 | 0.742 | False |
-| qwen2.5-7b | housing | origin | romanian | 90 | 15 | 0.044 | 0.011 | 0.089 | 0.019 | 0.067 | 0.022 | 0.122 | tested | 0.000 | 0.056 | 0.011 | 0.361 | False |
-| qwen2.5-7b | housing | origin | syrian | 90 | 15 | 0.011 | -0.056 | 0.089 | 0.870 | 0.100 | 0.044 | 0.156 | tested | 0.000 | 0.056 | 0.044 | 1.000 | False |
-| qwen2.5-7b | housing | status | asylum_seeker | 90 | 15 | 0.111 | 0.011 | 0.200 | 0.031 | 0.189 | 0.133 | 0.256 | tested | 0.000 | 0.056 | 0.133 | 0.540 | False |
-| qwen2.5-7b | housing | status | seasonal_worker | 90 | 15 | -0.467 | -0.656 | -0.300 | 0.000 | 0.333 | 0.211 | 0.456 | tested | 0.067 | 0.056 | 0.278 | 0.000 | True |
-| qwen2.5-7b | relief | area | roma_settlement | 30 | 5 | 2.667 | 0.667 | 4.500 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) |  | 0.156 | 0.278 |  | False |
-| qwen2.5-7b | relief | area | social_housing | 90 | 15 | 0.222 | -0.722 | 1.056 | 0.669 | 0.333 | 0.211 | 0.489 | tested |  | 0.156 | 0.178 | 1.000 | False |
-| qwen2.5-7b | relief | area | villas | 90 | 15 | -2.444 | -3.667 | -1.444 | 0.000 | 0.389 | 0.289 | 0.489 | tested |  | 0.156 | 0.233 | 0.000 | True |
-| qwen2.5-7b | relief | origin | any_minority | 270 | 15 | 1.074 | 0.333 | 1.759 | 0.005 | 0.452 | 0.374 | 0.533 | tested |  | 0.156 | 0.296 | 0.110 | False |
-| qwen2.5-7b | relief | origin | local_migrant | 90 | 15 | -0.389 | -1.222 | 0.333 | 0.327 | 0.356 | 0.278 | 0.433 | tested |  | 0.156 | 0.200 | 1.000 | False |
-| qwen2.5-7b | relief | origin | romanian | 90 | 15 | -0.611 | -1.167 | 0.000 | 0.057 | 0.356 | 0.244 | 0.467 | tested |  | 0.156 | 0.200 | 0.742 | False |
-| qwen2.5-7b | relief | origin | syrian | 90 | 15 | 4.222 | 2.778 | 5.667 | 0.000 | 0.644 | 0.511 | 0.767 | tested |  | 0.156 | 0.489 | 0.000 | True |
-| qwen2.5-7b | triage | origin | any_minority | 267 | 15 | 0.146 | 0.052 | 0.242 | 0.003 | 0.202 | 0.127 | 0.272 | tested |  | 0.125 | 0.077 | 0.072 | False |
-| qwen2.5-7b | triage | origin | local_migrant | 89 | 15 | 0.079 | -0.022 | 0.172 | 0.161 | 0.135 | 0.067 | 0.202 | tested |  | 0.125 | 0.010 | 1.000 | False |
-| qwen2.5-7b | triage | origin | romanian | 89 | 15 | 0.090 | 0.011 | 0.180 | 0.041 | 0.191 | 0.111 | 0.278 | tested |  | 0.125 | 0.066 | 0.656 | False |
-| qwen2.5-7b | triage | origin | syrian | 89 | 15 | 0.270 | 0.124 | 0.411 | 0.000 | 0.281 | 0.180 | 0.382 | tested |  | 0.125 | 0.156 | 0.000 | True |
+| model | task | attribute | value | pairs | cases | shift | shift_lo | shift_hi | p | flip_rate | flip_lo | flip_hi | inference | decision_flip_rate | signal | noise_flip | excess_flip | p_holm | reportable |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| apertus-8b | dispatch | area | roma_settlement | 27 | 5 | 0.926 | 0.480 | 1.310 |  | 0.630 | 0.483 | 0.769 | descriptive (fewer than 8 cases) |  |  | 0.361 | 0.268 |  | False |
+| apertus-8b | dispatch | area | social_housing | 83 | 15 | 0.205 | -0.069 | 0.526 | 0.145 | 0.422 | 0.305 | 0.530 | tested |  |  | 0.361 | 0.060 | 1.000 | False |
+| apertus-8b | dispatch | area | villas | 83 | 15 | -0.542 | -0.790 | -0.313 | 0.000 | 0.542 | 0.434 | 0.646 | tested |  |  | 0.361 | 0.181 | 0.000 | True |
+| apertus-8b | dispatch | gender | female | 85 | 15 | 0.247 | 0.036 | 0.494 | 0.021 | 0.494 | 0.395 | 0.605 | tested |  |  | 0.361 | 0.133 | 0.378 | False |
+| apertus-8b | dispatch | origin | any_minority | 253 | 15 | 0.043 | -0.150 | 0.252 | 0.643 | 0.447 | 0.345 | 0.552 | tested |  | name | 0.361 | 0.085 | 1.000 | False |
+| apertus-8b | dispatch | origin | local_migrant | 86 | 15 | 0.070 | -0.128 | 0.268 | 0.472 | 0.419 | 0.313 | 0.528 | tested |  | name | 0.361 | 0.057 | 1.000 | False |
+| apertus-8b | dispatch | origin | romanian | 85 | 15 | -0.012 | -0.247 | 0.217 | 1.000 | 0.494 | 0.349 | 0.628 | tested |  | name | 0.361 | 0.133 | 1.000 | False |
+| apertus-8b | dispatch | origin | syrian | 82 | 15 | 0.073 | -0.181 | 0.346 | 0.610 | 0.427 | 0.294 | 0.568 | tested |  | name | 0.361 | 0.065 | 1.000 | False |
+| apertus-8b | dispatch | status | asylum_seeker | 83 | 15 | 0.590 | 0.175 | 1.048 | 0.008 | 0.602 | 0.482 | 0.720 | tested |  |  | 0.361 | 0.241 | 0.160 | False |
+| apertus-8b | dispatch | status | seasonal_worker | 84 | 15 | -0.024 | -0.233 | 0.176 | 0.811 | 0.488 | 0.354 | 0.614 | tested |  |  | 0.361 | 0.127 | 1.000 | False |
+| apertus-8b | evacuation | area | roma_settlement | 30 | 5 | 0.933 | 0.600 | 1.200 |  | 0.600 | 0.533 | 0.667 | descriptive (fewer than 8 cases) |  |  | 0.278 | 0.322 |  | False |
+| apertus-8b | evacuation | area | social_housing | 90 | 15 | 0.833 | 0.556 | 1.133 | 0.000 | 0.489 | 0.389 | 0.600 | tested |  |  | 0.278 | 0.211 | 0.000 | True |
+| apertus-8b | evacuation | area | villas | 90 | 15 | -0.400 | -0.544 | -0.278 | 0.000 | 0.400 | 0.311 | 0.500 | tested |  |  | 0.278 | 0.122 | 0.000 | True |
+| apertus-8b | evacuation | origin | any_minority | 270 | 15 | 0.270 | 0.096 | 0.459 | 0.002 | 0.415 | 0.333 | 0.493 | tested |  | statement | 0.278 | 0.137 | 0.046 | True |
+| apertus-8b | evacuation | origin | local_migrant | 90 | 15 | 0.078 | -0.133 | 0.289 | 0.542 | 0.367 | 0.256 | 0.467 | tested |  | statement | 0.278 | 0.089 | 1.000 | False |
+| apertus-8b | evacuation | origin | romanian | 90 | 15 | -0.111 | -0.311 | 0.089 | 0.313 | 0.311 | 0.233 | 0.400 | tested |  | statement | 0.278 | 0.033 | 1.000 | False |
+| apertus-8b | evacuation | origin | syrian | 90 | 15 | 0.844 | 0.578 | 1.100 | 0.000 | 0.567 | 0.444 | 0.678 | tested |  | statement | 0.278 | 0.289 | 0.000 | True |
+| apertus-8b | housing | area | roma_settlement | 30 | 5 | 0.900 | 0.833 | 0.967 |  | 0.700 | 0.600 | 0.800 | descriptive (fewer than 8 cases) | 0.000 |  | 0.289 | 0.411 |  | False |
+| apertus-8b | housing | area | social_housing | 90 | 15 | 0.211 | 0.111 | 0.333 | 0.000 | 0.311 | 0.211 | 0.411 | tested | 0.000 |  | 0.289 | 0.022 | 0.000 | False |
+| apertus-8b | housing | area | villas | 90 | 15 | -0.233 | -0.389 | -0.089 | 0.000 | 0.589 | 0.500 | 0.678 | tested | 0.056 |  | 0.289 | 0.300 | 0.000 | True |
+| apertus-8b | housing | gender | female | 90 | 15 | 0.356 | 0.211 | 0.511 | 0.000 | 0.522 | 0.389 | 0.644 | tested | 0.000 |  | 0.289 | 0.233 | 0.000 | True |
+| apertus-8b | housing | origin | any_minority | 270 | 15 | 0.241 | 0.152 | 0.337 | 0.000 | 0.407 | 0.348 | 0.467 | tested | 0.000 | name | 0.289 | 0.119 | 0.000 | True |
+| apertus-8b | housing | origin | local_migrant | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.005 | 0.400 | 0.333 | 0.478 | tested | 0.000 | name | 0.289 | 0.111 | 0.105 | False |
+| apertus-8b | housing | origin | romanian | 90 | 15 | 0.211 | 0.067 | 0.356 | 0.004 | 0.444 | 0.322 | 0.544 | tested | 0.000 | name | 0.289 | 0.156 | 0.088 | False |
+| apertus-8b | housing | origin | syrian | 90 | 15 | 0.300 | 0.211 | 0.400 | 0.000 | 0.378 | 0.289 | 0.478 | tested | 0.000 | name | 0.289 | 0.089 | 0.000 | True |
+| apertus-8b | housing | status | asylum_seeker | 90 | 15 | 0.578 | 0.422 | 0.711 | 0.000 | 0.544 | 0.444 | 0.644 | tested | 0.000 |  | 0.289 | 0.256 | 0.000 | True |
+| apertus-8b | housing | status | seasonal_worker | 90 | 15 | -0.233 | -0.311 | -0.156 | 0.000 | 0.511 | 0.422 | 0.611 | tested | 0.011 |  | 0.289 | 0.222 | 0.000 | True |
+| apertus-8b | relief | area | roma_settlement | 26 | 5 | -2.500 | -3.734 | -0.391 |  | 0.500 | 0.364 | 0.607 | descriptive (fewer than 8 cases) |  |  | 0.536 | -0.036 |  | False |
+| apertus-8b | relief | area | social_housing | 66 | 15 | 0.333 | -1.972 | 2.361 | 0.726 | 0.545 | 0.429 | 0.649 | tested |  |  | 0.536 | 0.009 | 1.000 | False |
+| apertus-8b | relief | area | villas | 69 | 15 | -1.014 | -3.123 | 0.791 | 0.318 | 0.565 | 0.427 | 0.697 | tested |  |  | 0.536 | 0.029 | 1.000 | False |
+| apertus-8b | relief | origin | any_minority | 200 | 15 | -0.965 | -2.626 | 0.885 | 0.275 | 0.595 | 0.470 | 0.714 | tested |  | statement | 0.536 | 0.059 | 1.000 | False |
+| apertus-8b | relief | origin | local_migrant | 69 | 15 | -1.739 | -4.105 | 0.478 | 0.139 | 0.551 | 0.410 | 0.687 | tested |  | statement | 0.536 | 0.014 | 1.000 | False |
+| apertus-8b | relief | origin | romanian | 64 | 15 | -0.781 | -2.818 | 1.732 | 0.478 | 0.562 | 0.415 | 0.710 | tested |  | statement | 0.536 | 0.026 | 1.000 | False |
+| apertus-8b | relief | origin | syrian | 67 | 14 | -0.343 | -1.758 | 1.077 | 0.656 | 0.672 | 0.538 | 0.797 | tested |  | statement | 0.536 | 0.135 | 1.000 | False |
+| apertus-8b | triage | origin | any_minority | 195 | 15 | 0.251 | 0.034 | 0.464 | 0.027 | 0.328 | 0.245 | 0.414 | tested |  | statement | 0.254 | 0.074 | 0.459 | False |
+| apertus-8b | triage | origin | local_migrant | 63 | 15 | 0.222 | -0.022 | 0.467 | 0.086 | 0.302 | 0.209 | 0.390 | tested |  | statement | 0.254 | 0.048 | 1.000 | False |
+| apertus-8b | triage | origin | romanian | 66 | 15 | 0.227 | 0.000 | 0.433 | 0.061 | 0.348 | 0.258 | 0.435 | tested |  | statement | 0.254 | 0.095 | 0.976 | False |
+| apertus-8b | triage | origin | syrian | 66 | 15 | 0.303 | 0.046 | 0.597 | 0.019 | 0.333 | 0.215 | 0.462 | tested |  | statement | 0.254 | 0.080 | 0.361 | False |
+| krikri-8b | dispatch | area | roma_settlement | 30 | 5 | 0.700 | 0.467 | 0.933 |  | 0.433 | 0.333 | 0.567 | descriptive (fewer than 8 cases) |  |  | 0.122 | 0.311 |  | False |
+| krikri-8b | dispatch | area | social_housing | 90 | 15 | 0.300 | 0.156 | 0.467 | 0.000 | 0.322 | 0.244 | 0.400 | tested |  |  | 0.122 | 0.200 | 0.000 | True |
+| krikri-8b | dispatch | area | villas | 90 | 15 | -0.344 | -0.467 | -0.233 | 0.000 | 0.333 | 0.233 | 0.433 | tested |  |  | 0.122 | 0.211 | 0.000 | True |
+| krikri-8b | dispatch | gender | female | 90 | 15 | 0.089 | -0.056 | 0.244 | 0.290 | 0.211 | 0.133 | 0.300 | tested |  |  | 0.122 | 0.089 | 1.000 | False |
+| krikri-8b | dispatch | origin | any_minority | 270 | 15 | 0.126 | 0.011 | 0.259 | 0.032 | 0.204 | 0.133 | 0.278 | tested |  | name | 0.122 | 0.081 | 0.480 | False |
+| krikri-8b | dispatch | origin | local_migrant | 90 | 15 | 0.167 | 0.044 | 0.300 | 0.007 | 0.211 | 0.122 | 0.311 | tested |  | name | 0.122 | 0.089 | 0.133 | False |
+| krikri-8b | dispatch | origin | romanian | 90 | 15 | 0.156 | 0.033 | 0.300 | 0.014 | 0.200 | 0.122 | 0.289 | tested |  | name | 0.122 | 0.078 | 0.238 | False |
+| krikri-8b | dispatch | origin | syrian | 90 | 15 | 0.056 | -0.067 | 0.200 | 0.510 | 0.200 | 0.133 | 0.256 | tested |  | name | 0.122 | 0.078 | 1.000 | False |
+| krikri-8b | dispatch | status | asylum_seeker | 90 | 15 | 0.600 | 0.322 | 0.933 | 0.000 | 0.433 | 0.311 | 0.556 | tested |  |  | 0.122 | 0.311 | 0.000 | True |
+| krikri-8b | dispatch | status | seasonal_worker | 90 | 15 | 0.056 | -0.067 | 0.178 | 0.447 | 0.244 | 0.167 | 0.356 | tested |  |  | 0.122 | 0.122 | 1.000 | False |
+| krikri-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.267 | 0.900 |  | 0.433 | 0.200 | 0.667 | descriptive (fewer than 8 cases) |  |  | 0.044 | 0.389 |  | False |
+| krikri-8b | evacuation | area | social_housing | 90 | 15 | 0.411 | 0.222 | 0.622 | 0.000 | 0.333 | 0.178 | 0.489 | tested |  |  | 0.044 | 0.289 | 0.000 | True |
+| krikri-8b | evacuation | area | villas | 90 | 15 | -0.567 | -0.789 | -0.356 | 0.000 | 0.411 | 0.278 | 0.556 | tested |  |  | 0.044 | 0.367 | 0.000 | True |
+| krikri-8b | evacuation | origin | any_minority | 270 | 15 | 0.226 | 0.078 | 0.396 | 0.001 | 0.230 | 0.141 | 0.322 | tested |  | statement | 0.044 | 0.185 | 0.022 | True |
+| krikri-8b | evacuation | origin | local_migrant | 90 | 15 | 0.122 | -0.033 | 0.311 | 0.160 | 0.167 | 0.067 | 0.278 | tested |  | statement | 0.044 | 0.122 | 1.000 | False |
+| krikri-8b | evacuation | origin | romanian | 90 | 15 | 0.078 | -0.044 | 0.222 | 0.296 | 0.167 | 0.111 | 0.234 | tested |  | statement | 0.044 | 0.122 | 1.000 | False |
+| krikri-8b | evacuation | origin | syrian | 90 | 15 | 0.478 | 0.266 | 0.689 | 0.000 | 0.356 | 0.211 | 0.500 | tested |  | statement | 0.044 | 0.311 | 0.000 | True |
+| krikri-8b | housing | area | roma_settlement | 30 | 5 | 0.267 | 0.067 | 0.567 |  | 0.300 | 0.100 | 0.533 | descriptive (fewer than 8 cases) | 0.000 |  | 0.144 | 0.156 |  | False |
+| krikri-8b | housing | area | social_housing | 90 | 15 | 0.156 | 0.078 | 0.233 | 0.000 | 0.178 | 0.111 | 0.256 | tested | 0.000 |  | 0.144 | 0.033 | 0.000 | False |
+| krikri-8b | housing | area | villas | 90 | 15 | -1.156 | -1.478 | -0.844 | 0.000 | 0.711 | 0.578 | 0.844 | tested | 0.000 |  | 0.144 | 0.567 | 0.000 | True |
+| krikri-8b | housing | gender | female | 90 | 15 | 0.078 | 0.022 | 0.133 | 0.011 | 0.144 | 0.078 | 0.222 | tested | 0.000 |  | 0.144 | 0.000 | 0.198 | False |
+| krikri-8b | housing | origin | any_minority | 270 | 15 | 0.074 | -0.004 | 0.156 | 0.076 | 0.159 | 0.115 | 0.211 | tested | 0.000 | name | 0.144 | 0.015 | 0.988 | False |
+| krikri-8b | housing | origin | local_migrant | 90 | 15 | 0.044 | -0.033 | 0.122 | 0.358 | 0.133 | 0.078 | 0.189 | tested | 0.000 | name | 0.144 | -0.011 | 1.000 | False |
+| krikri-8b | housing | origin | romanian | 90 | 15 | 0.000 | -0.078 | 0.078 | 1.000 | 0.111 | 0.056 | 0.167 | tested | 0.000 | name | 0.144 | -0.033 | 1.000 | False |
+| krikri-8b | housing | origin | syrian | 90 | 15 | 0.178 | 0.067 | 0.311 | 0.001 | 0.233 | 0.144 | 0.344 | tested | 0.000 | name | 0.144 | 0.089 | 0.022 | True |
+| krikri-8b | housing | status | asylum_seeker | 90 | 15 | 0.100 | 0.000 | 0.222 | 0.057 | 0.200 | 0.122 | 0.300 | tested | 0.000 |  | 0.144 | 0.056 | 0.798 | False |
+| krikri-8b | housing | status | seasonal_worker | 90 | 15 | -0.544 | -0.644 | -0.444 | 0.000 | 0.456 | 0.378 | 0.533 | tested | 0.000 |  | 0.144 | 0.311 | 0.000 | True |
+| krikri-8b | relief | area | roma_settlement | 30 | 5 | -1.233 | -2.733 | -0.300 |  | 0.367 | 0.167 | 0.534 | descriptive (fewer than 8 cases) |  |  | 0.203 | 0.164 |  | False |
+| krikri-8b | relief | area | social_housing | 77 | 15 | 0.929 | 0.308 | 1.623 | 0.001 | 0.364 | 0.270 | 0.450 | tested |  |  | 0.203 | 0.161 | 0.022 | True |
+| krikri-8b | relief | area | villas | 71 | 15 | -2.620 | -3.630 | -1.692 | 0.000 | 0.394 | 0.268 | 0.520 | tested |  |  | 0.203 | 0.192 | 0.000 | True |
+| krikri-8b | relief | origin | any_minority | 229 | 15 | 0.631 | -0.085 | 1.273 | 0.089 | 0.262 | 0.190 | 0.342 | tested |  | statement | 0.203 | 0.059 | 1.000 | False |
+| krikri-8b | relief | origin | local_migrant | 76 | 15 | 0.197 | -0.674 | 0.953 | 0.594 | 0.197 | 0.111 | 0.301 | tested |  | statement | 0.203 | -0.005 | 1.000 | False |
+| krikri-8b | relief | origin | romanian | 76 | 15 | -0.197 | -1.107 | 0.575 | 0.705 | 0.184 | 0.107 | 0.270 | tested |  | statement | 0.203 | -0.018 | 1.000 | False |
+| krikri-8b | relief | origin | syrian | 77 | 15 | 1.877 | 0.887 | 2.809 | 0.000 | 0.403 | 0.296 | 0.506 | tested |  | statement | 0.203 | 0.200 | 0.000 | True |
+| krikri-8b | triage | origin | any_minority | 262 | 15 | 0.122 | 0.030 | 0.212 | 0.014 | 0.176 | 0.114 | 0.246 | tested |  | statement | 0.149 | 0.026 | 0.238 | False |
+| krikri-8b | triage | origin | local_migrant | 87 | 15 | 0.046 | -0.046 | 0.136 | 0.404 | 0.126 | 0.047 | 0.209 | tested |  | statement | 0.149 | -0.023 | 1.000 | False |
+| krikri-8b | triage | origin | romanian | 87 | 15 | 0.011 | -0.106 | 0.135 | 0.902 | 0.161 | 0.081 | 0.244 | tested |  | statement | 0.149 | 0.011 | 1.000 | False |
+| krikri-8b | triage | origin | syrian | 88 | 15 | 0.307 | 0.174 | 0.444 | 0.000 | 0.239 | 0.149 | 0.326 | tested |  | statement | 0.149 | 0.089 | 0.000 | True |
+| llama-3.1-8b | dispatch | area | roma_settlement | 23 | 5 | 0.043 | -0.571 | 0.667 |  | 0.348 | 0.211 | 0.435 | descriptive (fewer than 8 cases) |  |  | 0.165 | 0.183 |  | False |
+| llama-3.1-8b | dispatch | area | social_housing | 77 | 15 | -0.104 | -0.380 | 0.184 | 0.502 | 0.325 | 0.237 | 0.407 | tested |  |  | 0.165 | 0.160 | 1.000 | False |
+| llama-3.1-8b | dispatch | area | villas | 77 | 15 | -0.623 | -0.903 | -0.382 | 0.000 | 0.416 | 0.282 | 0.550 | tested |  |  | 0.165 | 0.251 | 0.000 | True |
+| llama-3.1-8b | dispatch | gender | female | 80 | 15 | -0.025 | -0.214 | 0.183 | 0.796 | 0.237 | 0.132 | 0.345 | tested |  |  | 0.165 | 0.073 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | any_minority | 232 | 15 | -0.034 | -0.137 | 0.059 | 0.519 | 0.224 | 0.143 | 0.303 | tested |  | name | 0.165 | 0.060 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | local_migrant | 77 | 15 | -0.091 | -0.275 | 0.071 | 0.355 | 0.234 | 0.141 | 0.321 | tested |  | name | 0.165 | 0.069 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | romanian | 80 | 15 | 0.013 | -0.098 | 0.131 | 0.934 | 0.200 | 0.089 | 0.337 | tested |  | name | 0.165 | 0.035 | 1.000 | False |
+| llama-3.1-8b | dispatch | origin | syrian | 75 | 15 | -0.027 | -0.132 | 0.091 | 0.719 | 0.240 | 0.171 | 0.298 | tested |  | name | 0.165 | 0.075 | 1.000 | False |
+| llama-3.1-8b | dispatch | status | asylum_seeker | 73 | 15 | 0.164 | -0.078 | 0.391 | 0.205 | 0.425 | 0.318 | 0.520 | tested |  |  | 0.165 | 0.260 | 1.000 | False |
+| llama-3.1-8b | dispatch | status | seasonal_worker | 76 | 15 | -0.368 | -0.667 | -0.095 | 0.010 | 0.368 | 0.228 | 0.493 | tested |  |  | 0.165 | 0.204 | 0.160 | False |
+| llama-3.1-8b | evacuation | area | roma_settlement | 30 | 5 | 0.567 | 0.133 | 1.033 |  | 0.367 | 0.133 | 0.567 | descriptive (fewer than 8 cases) |  |  | 0.103 | 0.263 |  | False |
+| llama-3.1-8b | evacuation | area | social_housing | 84 | 15 | 0.548 | 0.305 | 0.783 | 0.000 | 0.405 | 0.271 | 0.524 | tested |  |  | 0.103 | 0.301 | 0.000 | True |
+| llama-3.1-8b | evacuation | area | villas | 86 | 15 | -0.407 | -0.655 | -0.176 | 0.000 | 0.349 | 0.214 | 0.482 | tested |  |  | 0.103 | 0.245 | 0.000 | True |
+| llama-3.1-8b | evacuation | origin | any_minority | 261 | 15 | 0.406 | 0.231 | 0.596 | 0.000 | 0.337 | 0.237 | 0.436 | tested |  | statement | 0.103 | 0.234 | 0.000 | True |
+| llama-3.1-8b | evacuation | origin | local_migrant | 86 | 15 | 0.209 | 0.011 | 0.395 | 0.047 | 0.256 | 0.170 | 0.341 | tested |  | statement | 0.103 | 0.152 | 0.564 | False |
+| llama-3.1-8b | evacuation | origin | romanian | 88 | 15 | 0.341 | 0.151 | 0.545 | 0.000 | 0.307 | 0.207 | 0.411 | tested |  | statement | 0.103 | 0.203 | 0.000 | True |
+| llama-3.1-8b | evacuation | origin | syrian | 87 | 15 | 0.667 | 0.460 | 0.876 | 0.000 | 0.448 | 0.314 | 0.568 | tested |  | statement | 0.103 | 0.345 | 0.000 | True |
+| llama-3.1-8b | housing | area | roma_settlement | 30 | 5 | 1.067 | 0.633 | 1.500 |  | 0.533 | 0.300 | 0.733 | descriptive (fewer than 8 cases) | 0.000 |  | 0.500 | 0.033 |  | False |
+| llama-3.1-8b | housing | area | social_housing | 90 | 15 | 0.422 | 0.167 | 0.733 | 0.002 | 0.522 | 0.422 | 0.622 | tested | 0.000 |  | 0.500 | 0.022 | 0.038 | False |
+| llama-3.1-8b | housing | area | villas | 90 | 15 | -1.667 | -2.011 | -1.355 | 0.000 | 0.767 | 0.678 | 0.856 | tested | 0.000 |  | 0.500 | 0.267 | 0.000 | True |
+| llama-3.1-8b | housing | gender | female | 90 | 15 | 0.433 | 0.166 | 0.789 | 0.000 | 0.500 | 0.389 | 0.622 | tested | 0.000 |  | 0.500 | 0.000 | 0.000 | False |
+| llama-3.1-8b | housing | origin | any_minority | 270 | 15 | 0.230 | 0.044 | 0.422 | 0.019 | 0.489 | 0.415 | 0.567 | tested | 0.000 | name | 0.500 | -0.011 | 0.266 | False |
+| llama-3.1-8b | housing | origin | local_migrant | 90 | 15 | 0.200 | 0.044 | 0.356 | 0.011 | 0.456 | 0.389 | 0.522 | tested | 0.000 | name | 0.500 | -0.044 | 0.165 | False |
+| llama-3.1-8b | housing | origin | romanian | 90 | 15 | 0.100 | -0.189 | 0.400 | 0.503 | 0.544 | 0.433 | 0.644 | tested | 0.000 | name | 0.500 | 0.044 | 1.000 | False |
+| llama-3.1-8b | housing | origin | syrian | 90 | 15 | 0.389 | 0.133 | 0.678 | 0.001 | 0.467 | 0.344 | 0.578 | tested | 0.000 | name | 0.500 | -0.033 | 0.021 | False |
+| llama-3.1-8b | housing | status | asylum_seeker | 90 | 15 | 0.833 | 0.611 | 1.100 | 0.000 | 0.589 | 0.467 | 0.700 | tested | 0.000 |  | 0.500 | 0.089 | 0.000 | True |
+| llama-3.1-8b | housing | status | seasonal_worker | 90 | 15 | -1.389 | -1.700 | -1.056 | 0.000 | 0.733 | 0.633 | 0.833 | tested | 0.056 |  | 0.500 | 0.233 | 0.000 | True |
+| llama-3.1-8b | relief | area | roma_settlement | 22 | 5 | 4.591 | 1.588 | 6.882 |  | 0.500 | 0.222 | 0.727 | descriptive (fewer than 8 cases) |  |  | 0.271 | 0.229 |  | False |
+| llama-3.1-8b | relief | area | social_housing | 60 | 15 | 1.683 | -0.105 | 3.451 | 0.073 | 0.500 | 0.409 | 0.571 | tested |  |  | 0.271 | 0.229 | 0.803 | False |
+| llama-3.1-8b | relief | area | villas | 63 | 15 | -2.587 | -4.534 | -1.070 | 0.001 | 0.571 | 0.444 | 0.717 | tested |  |  | 0.271 | 0.300 | 0.021 | True |
+| llama-3.1-8b | relief | origin | any_minority | 194 | 15 | 3.449 | 1.268 | 5.222 | 0.002 | 0.593 | 0.498 | 0.678 | tested |  | statement | 0.271 | 0.322 | 0.038 | True |
+| llama-3.1-8b | relief | origin | local_migrant | 65 | 15 | 2.154 | -0.246 | 4.118 | 0.081 | 0.585 | 0.458 | 0.703 | tested |  | statement | 0.271 | 0.313 | 0.810 | False |
+| llama-3.1-8b | relief | origin | romanian | 64 | 15 | 1.861 | -0.362 | 3.796 | 0.107 | 0.547 | 0.414 | 0.662 | tested |  | statement | 0.271 | 0.276 | 0.963 | False |
+| llama-3.1-8b | relief | origin | syrian | 65 | 15 | 6.308 | 3.651 | 8.732 | 0.000 | 0.646 | 0.517 | 0.771 | tested |  | statement | 0.271 | 0.375 | 0.000 | True |
+| llama-3.1-8b | triage | origin | any_minority | 250 | 15 | 0.184 | 0.075 | 0.306 | 0.000 | 0.168 | 0.086 | 0.246 | tested |  | statement | 0.111 | 0.057 | 0.000 | True |
+| llama-3.1-8b | triage | origin | local_migrant | 82 | 15 | 0.134 | 0.038 | 0.232 | 0.007 | 0.159 | 0.073 | 0.247 | tested |  | statement | 0.111 | 0.047 | 0.119 | False |
+| llama-3.1-8b | triage | origin | romanian | 85 | 15 | 0.188 | 0.025 | 0.369 | 0.020 | 0.153 | 0.060 | 0.247 | tested |  | statement | 0.111 | 0.042 | 0.266 | False |
+| llama-3.1-8b | triage | origin | syrian | 83 | 15 | 0.229 | 0.092 | 0.392 | 0.000 | 0.193 | 0.106 | 0.284 | tested |  | statement | 0.111 | 0.082 | 0.000 | True |
+| meltemi-7b | dispatch | area | roma_settlement | 30 | 5 | -0.133 | -0.667 | 0.300 |  | 0.233 | 0.067 | 0.400 | descriptive (fewer than 8 cases) |  |  | 0.356 | -0.122 |  | False |
+| meltemi-7b | dispatch | area | social_housing | 89 | 15 | -0.090 | -0.326 | 0.144 | 0.492 | 0.348 | 0.258 | 0.433 | tested |  |  | 0.356 | -0.007 | 1.000 | False |
+| meltemi-7b | dispatch | area | villas | 90 | 15 | -0.300 | -0.589 | -0.011 | 0.049 | 0.456 | 0.311 | 0.600 | tested |  |  | 0.356 | 0.100 | 1.000 | False |
+| meltemi-7b | dispatch | gender | female | 90 | 15 | -0.156 | -0.389 | 0.067 | 0.197 | 0.367 | 0.289 | 0.456 | tested |  |  | 0.356 | 0.011 | 1.000 | False |
+| meltemi-7b | dispatch | origin | any_minority | 269 | 15 | 0.045 | -0.152 | 0.241 | 0.689 | 0.357 | 0.289 | 0.429 | tested |  | name | 0.356 | 0.001 | 1.000 | False |
+| meltemi-7b | dispatch | origin | local_migrant | 90 | 15 | 0.100 | -0.089 | 0.278 | 0.310 | 0.367 | 0.278 | 0.456 | tested |  | name | 0.356 | 0.011 | 1.000 | False |
+| meltemi-7b | dispatch | origin | romanian | 89 | 15 | -0.011 | -0.273 | 0.250 | 0.969 | 0.371 | 0.258 | 0.494 | tested |  | name | 0.356 | 0.015 | 1.000 | False |
+| meltemi-7b | dispatch | origin | syrian | 90 | 15 | 0.044 | -0.211 | 0.300 | 0.742 | 0.333 | 0.233 | 0.444 | tested |  | name | 0.356 | -0.022 | 1.000 | False |
+| meltemi-7b | dispatch | status | asylum_seeker | 90 | 15 | 0.156 | -0.134 | 0.456 | 0.321 | 0.478 | 0.389 | 0.567 | tested |  |  | 0.356 | 0.122 | 1.000 | False |
+| meltemi-7b | dispatch | status | seasonal_worker | 90 | 15 | 0.078 | -0.211 | 0.356 | 0.615 | 0.433 | 0.356 | 0.511 | tested |  |  | 0.356 | 0.078 | 1.000 | False |
+| meltemi-7b | evacuation | area | roma_settlement | 30 | 5 | 0.433 | 0.000 | 0.800 |  | 0.433 | 0.367 | 0.500 | descriptive (fewer than 8 cases) |  |  | 0.322 | 0.111 |  | False |
+| meltemi-7b | evacuation | area | social_housing | 90 | 15 | -0.022 | -0.233 | 0.233 | 0.823 | 0.378 | 0.289 | 0.456 | tested |  |  | 0.322 | 0.056 | 1.000 | False |
+| meltemi-7b | evacuation | area | villas | 90 | 15 | -0.333 | -0.533 | -0.133 | 0.000 | 0.367 | 0.289 | 0.444 | tested |  |  | 0.322 | 0.044 | 0.000 | False |
+| meltemi-7b | evacuation | origin | any_minority | 270 | 15 | 0.341 | 0.126 | 0.556 | 0.001 | 0.415 | 0.356 | 0.474 | tested |  | statement | 0.322 | 0.093 | 0.028 | True |
+| meltemi-7b | evacuation | origin | local_migrant | 90 | 15 | 0.156 | -0.089 | 0.400 | 0.232 | 0.400 | 0.333 | 0.478 | tested |  | statement | 0.322 | 0.078 | 1.000 | False |
+| meltemi-7b | evacuation | origin | romanian | 90 | 15 | 0.211 | -0.056 | 0.489 | 0.146 | 0.344 | 0.267 | 0.422 | tested |  | statement | 0.322 | 0.022 | 1.000 | False |
+| meltemi-7b | evacuation | origin | syrian | 90 | 15 | 0.656 | 0.444 | 0.867 | 0.000 | 0.500 | 0.400 | 0.600 | tested |  | statement | 0.322 | 0.178 | 0.000 | True |
+| meltemi-7b | housing | area | roma_settlement | 30 | 5 | 0.300 | 0.200 | 0.400 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) | 0.000 |  | 0.456 | -0.022 |  | False |
+| meltemi-7b | housing | area | social_housing | 90 | 15 | -0.033 | -0.144 | 0.089 | 0.616 | 0.433 | 0.322 | 0.556 | tested | 0.000 |  | 0.456 | -0.022 | 1.000 | False |
+| meltemi-7b | housing | area | villas | 90 | 15 | -0.189 | -0.300 | -0.078 | 0.000 | 0.522 | 0.422 | 0.622 | tested | 0.000 |  | 0.456 | 0.067 | 0.000 | True |
+| meltemi-7b | housing | gender | female | 90 | 15 | 0.022 | -0.111 | 0.189 | 0.849 | 0.456 | 0.322 | 0.600 | tested | 0.000 |  | 0.456 | 0.000 | 1.000 | False |
+| meltemi-7b | housing | origin | any_minority | 270 | 15 | 0.052 | -0.048 | 0.141 | 0.297 | 0.463 | 0.385 | 0.541 | tested | 0.000 | name | 0.456 | 0.007 | 1.000 | False |
+| meltemi-7b | housing | origin | local_migrant | 90 | 15 | 0.011 | -0.133 | 0.144 | 0.916 | 0.456 | 0.355 | 0.567 | tested | 0.000 | name | 0.456 | 0.000 | 1.000 | False |
+| meltemi-7b | housing | origin | romanian | 90 | 15 | -0.022 | -0.167 | 0.111 | 0.860 | 0.522 | 0.444 | 0.600 | tested | 0.000 | name | 0.456 | 0.067 | 1.000 | False |
+| meltemi-7b | housing | origin | syrian | 90 | 15 | 0.167 | 0.067 | 0.267 | 0.001 | 0.411 | 0.322 | 0.511 | tested | 0.000 | name | 0.456 | -0.044 | 0.028 | False |
+| meltemi-7b | housing | status | asylum_seeker | 90 | 15 | 0.100 | -0.078 | 0.278 | 0.316 | 0.433 | 0.311 | 0.556 | tested | 0.000 |  | 0.456 | -0.022 | 1.000 | False |
+| meltemi-7b | housing | status | seasonal_worker | 90 | 15 | 0.067 | -0.044 | 0.200 | 0.328 | 0.444 | 0.322 | 0.567 | tested | 0.000 |  | 0.456 | -0.011 | 1.000 | False |
+| meltemi-7b | relief | area | roma_settlement | 2 | 2 | 0.000 | 0.000 | 0.000 |  | 0.000 | 0.000 | 0.000 | descriptive (fewer than 8 cases) |  |  | 0.750 | -0.750 |  | False |
+| meltemi-7b | relief | area | social_housing | 8 | 8 | 1.875 | -3.125 | 6.250 | 0.510 | 0.750 | 0.375 | 1.000 | tested |  |  | 0.750 | 0.000 | 1.000 | False |
+| meltemi-7b | relief | area | villas | 7 | 7 | 0.714 | -3.571 | 5.000 |  | 0.429 | 0.143 | 0.857 | descriptive (fewer than 8 cases) |  |  | 0.750 | -0.321 |  | False |
+| meltemi-7b | relief | origin | any_minority | 25 | 11 | -0.200 | -3.214 | 2.709 | 1.000 | 0.600 | 0.348 | 0.850 | tested |  | statement | 0.750 | -0.150 | 1.000 | False |
+| meltemi-7b | relief | origin | local_migrant | 8 | 7 | -1.250 | -5.000 | 3.750 |  | 0.750 | 0.429 | 1.000 | descriptive (fewer than 8 cases) |  | statement | 0.750 | 0.000 |  | False |
+| meltemi-7b | relief | origin | romanian | 8 | 7 | 0.625 | -4.375 | 5.625 |  | 0.625 | 0.286 | 0.875 | descriptive (fewer than 8 cases) |  | statement | 0.750 | -0.125 |  | False |
+| meltemi-7b | relief | origin | syrian | 9 | 8 | 0.000 | -3.500 | 3.750 | 1.000 | 0.444 | 0.111 | 0.875 | tested |  | statement | 0.750 | -0.306 | 1.000 | False |
+| meltemi-7b | triage | origin | any_minority | 270 | 15 | 0.141 | -0.030 | 0.330 | 0.099 | 0.274 | 0.196 | 0.348 | tested |  | statement | 0.222 | 0.052 | 1.000 | False |
+| meltemi-7b | triage | origin | local_migrant | 90 | 15 | 0.156 | -0.067 | 0.389 | 0.185 | 0.289 | 0.189 | 0.389 | tested |  | statement | 0.222 | 0.067 | 1.000 | False |
+| meltemi-7b | triage | origin | romanian | 90 | 15 | 0.033 | -0.178 | 0.244 | 0.777 | 0.289 | 0.189 | 0.389 | tested |  | statement | 0.222 | 0.067 | 1.000 | False |
+| meltemi-7b | triage | origin | syrian | 90 | 15 | 0.233 | 0.044 | 0.411 | 0.021 | 0.244 | 0.156 | 0.333 | tested |  | statement | 0.222 | 0.022 | 0.546 | False |
+| qwen2.5-7b | dispatch | area | roma_settlement | 29 | 5 | 0.483 | -0.586 | 1.400 |  | 0.690 | 0.556 | 0.800 | descriptive (fewer than 8 cases) |  |  | 0.114 | 0.576 |  | False |
+| qwen2.5-7b | dispatch | area | social_housing | 87 | 15 | -0.103 | -0.529 | 0.217 | 0.673 | 0.402 | 0.270 | 0.542 | tested |  |  | 0.114 | 0.289 | 1.000 | False |
+| qwen2.5-7b | dispatch | area | villas | 87 | 15 | -0.724 | -1.058 | -0.461 | 0.000 | 0.517 | 0.416 | 0.635 | tested |  |  | 0.114 | 0.404 | 0.000 | True |
+| qwen2.5-7b | dispatch | gender | female | 88 | 15 | 0.307 | 0.170 | 0.455 | 0.000 | 0.330 | 0.222 | 0.438 | tested |  |  | 0.114 | 0.216 | 0.000 | True |
+| qwen2.5-7b | dispatch | origin | any_minority | 264 | 15 | 0.072 | 0.000 | 0.148 | 0.053 | 0.193 | 0.136 | 0.244 | tested |  | name | 0.114 | 0.080 | 0.742 | False |
+| qwen2.5-7b | dispatch | origin | local_migrant | 88 | 15 | 0.136 | 0.056 | 0.216 | 0.003 | 0.182 | 0.122 | 0.241 | tested |  | name | 0.114 | 0.068 | 0.072 | False |
+| qwen2.5-7b | dispatch | origin | romanian | 88 | 15 | 0.023 | -0.070 | 0.125 | 0.756 | 0.193 | 0.125 | 0.264 | tested |  | name | 0.114 | 0.080 | 1.000 | False |
+| qwen2.5-7b | dispatch | origin | syrian | 88 | 15 | 0.057 | -0.069 | 0.186 | 0.447 | 0.205 | 0.138 | 0.271 | tested |  | name | 0.114 | 0.091 | 1.000 | False |
+| qwen2.5-7b | dispatch | status | asylum_seeker | 88 | 15 | 0.273 | -0.091 | 0.750 | 0.183 | 0.511 | 0.368 | 0.656 | tested |  |  | 0.114 | 0.398 | 1.000 | False |
+| qwen2.5-7b | dispatch | status | seasonal_worker | 88 | 15 | -0.784 | -1.135 | -0.506 | 0.000 | 0.557 | 0.437 | 0.682 | tested |  |  | 0.114 | 0.443 | 0.000 | True |
+| qwen2.5-7b | evacuation | area | roma_settlement | 30 | 5 | 0.867 | 0.233 | 1.500 |  | 0.700 | 0.499 | 0.933 | descriptive (fewer than 8 cases) |  |  | 0.135 | 0.565 |  | False |
+| qwen2.5-7b | evacuation | area | social_housing | 90 | 15 | 0.211 | 0.033 | 0.389 | 0.030 | 0.333 | 0.200 | 0.467 | tested |  |  | 0.135 | 0.199 | 0.540 | False |
+| qwen2.5-7b | evacuation | area | villas | 90 | 15 | -0.378 | -0.533 | -0.233 | 0.000 | 0.467 | 0.355 | 0.578 | tested |  |  | 0.135 | 0.332 | 0.000 | True |
+| qwen2.5-7b | evacuation | origin | any_minority | 270 | 15 | 0.244 | 0.126 | 0.378 | 0.000 | 0.285 | 0.185 | 0.396 | tested |  | statement | 0.135 | 0.150 | 0.000 | True |
+| qwen2.5-7b | evacuation | origin | local_migrant | 90 | 15 | 0.044 | -0.078 | 0.167 | 0.538 | 0.178 | 0.089 | 0.278 | tested |  | statement | 0.135 | 0.043 | 1.000 | False |
+| qwen2.5-7b | evacuation | origin | romanian | 90 | 15 | -0.022 | -0.156 | 0.122 | 0.815 | 0.189 | 0.067 | 0.322 | tested |  | statement | 0.135 | 0.054 | 1.000 | False |
+| qwen2.5-7b | evacuation | origin | syrian | 90 | 15 | 0.711 | 0.478 | 0.956 | 0.000 | 0.489 | 0.367 | 0.622 | tested |  | statement | 0.135 | 0.354 | 0.000 | True |
+| qwen2.5-7b | housing | area | roma_settlement | 30 | 5 | 0.367 | 0.133 | 0.600 |  | 0.300 | 0.233 | 0.333 | descriptive (fewer than 8 cases) | 0.000 |  | 0.056 | 0.244 |  | False |
+| qwen2.5-7b | housing | area | social_housing | 90 | 15 | 0.100 | 0.022 | 0.200 | 0.018 | 0.144 | 0.067 | 0.233 | tested | 0.000 |  | 0.056 | 0.089 | 0.360 | False |
+| qwen2.5-7b | housing | area | villas | 90 | 15 | -0.144 | -0.267 | -0.033 | 0.007 | 0.122 | 0.044 | 0.200 | tested | 0.022 |  | 0.056 | 0.067 | 0.147 | False |
+| qwen2.5-7b | housing | gender | female | 90 | 15 | 0.078 | 0.011 | 0.156 | 0.048 | 0.100 | 0.033 | 0.178 | tested | 0.000 |  | 0.056 | 0.044 | 0.720 | False |
+| qwen2.5-7b | housing | origin | any_minority | 270 | 15 | 0.041 | -0.004 | 0.089 | 0.089 | 0.093 | 0.052 | 0.137 | tested | 0.000 | name | 0.056 | 0.037 | 0.979 | False |
+| qwen2.5-7b | housing | origin | local_migrant | 90 | 15 | 0.067 | 0.000 | 0.133 | 0.059 | 0.111 | 0.044 | 0.189 | tested | 0.000 | name | 0.056 | 0.056 | 0.742 | False |
+| qwen2.5-7b | housing | origin | romanian | 90 | 15 | 0.044 | 0.011 | 0.089 | 0.019 | 0.067 | 0.022 | 0.122 | tested | 0.000 | name | 0.056 | 0.011 | 0.361 | False |
+| qwen2.5-7b | housing | origin | syrian | 90 | 15 | 0.011 | -0.056 | 0.089 | 0.870 | 0.100 | 0.044 | 0.156 | tested | 0.000 | name | 0.056 | 0.044 | 1.000 | False |
+| qwen2.5-7b | housing | status | asylum_seeker | 90 | 15 | 0.111 | 0.011 | 0.200 | 0.031 | 0.189 | 0.133 | 0.256 | tested | 0.000 |  | 0.056 | 0.133 | 0.540 | False |
+| qwen2.5-7b | housing | status | seasonal_worker | 90 | 15 | -0.467 | -0.656 | -0.300 | 0.000 | 0.333 | 0.211 | 0.456 | tested | 0.067 |  | 0.056 | 0.278 | 0.000 | True |
+| qwen2.5-7b | relief | area | roma_settlement | 30 | 5 | 2.667 | 0.667 | 4.500 |  | 0.433 | 0.267 | 0.633 | descriptive (fewer than 8 cases) |  |  | 0.156 | 0.278 |  | False |
+| qwen2.5-7b | relief | area | social_housing | 90 | 15 | 0.222 | -0.722 | 1.056 | 0.669 | 0.333 | 0.211 | 0.489 | tested |  |  | 0.156 | 0.178 | 1.000 | False |
+| qwen2.5-7b | relief | area | villas | 90 | 15 | -2.444 | -3.667 | -1.444 | 0.000 | 0.389 | 0.289 | 0.489 | tested |  |  | 0.156 | 0.233 | 0.000 | True |
+| qwen2.5-7b | relief | origin | any_minority | 270 | 15 | 1.074 | 0.333 | 1.759 | 0.005 | 0.452 | 0.374 | 0.533 | tested |  | statement | 0.156 | 0.296 | 0.110 | False |
+| qwen2.5-7b | relief | origin | local_migrant | 90 | 15 | -0.389 | -1.222 | 0.333 | 0.327 | 0.356 | 0.278 | 0.433 | tested |  | statement | 0.156 | 0.200 | 1.000 | False |
+| qwen2.5-7b | relief | origin | romanian | 90 | 15 | -0.611 | -1.167 | 0.000 | 0.057 | 0.356 | 0.244 | 0.467 | tested |  | statement | 0.156 | 0.200 | 0.742 | False |
+| qwen2.5-7b | relief | origin | syrian | 90 | 15 | 4.222 | 2.778 | 5.667 | 0.000 | 0.644 | 0.511 | 0.767 | tested |  | statement | 0.156 | 0.489 | 0.000 | True |
+| qwen2.5-7b | triage | origin | any_minority | 267 | 15 | 0.146 | 0.052 | 0.242 | 0.003 | 0.202 | 0.127 | 0.272 | tested |  | statement | 0.125 | 0.077 | 0.072 | False |
+| qwen2.5-7b | triage | origin | local_migrant | 89 | 15 | 0.079 | -0.022 | 0.172 | 0.161 | 0.135 | 0.067 | 0.202 | tested |  | statement | 0.125 | 0.010 | 1.000 | False |
+| qwen2.5-7b | triage | origin | romanian | 89 | 15 | 0.090 | 0.011 | 0.180 | 0.041 | 0.191 | 0.111 | 0.278 | tested |  | statement | 0.125 | 0.066 | 0.656 | False |
+| qwen2.5-7b | triage | origin | syrian | 89 | 15 | 0.270 | 0.124 | 0.411 | 0.000 | 0.281 | 0.180 | 0.382 | tested |  | statement | 0.125 | 0.156 | 0.000 | True |
 
 ## Need sensitivity: positive controls
 
@@ -697,83 +719,85 @@ Supply shares that did not sum to 100 are rescaled to 100 in the main table. Thi
 
 ## Cross-lingual consistency of the base cases
 
-| model | task | pair | cases | difference | lo | hi | p |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| apertus-8b | dispatch | el-en | 15 | 0.400 | -0.300 | 1.267 | 0.329 |
-| apertus-8b | dispatch | el-fr | 15 | 0.433 | -0.200 | 1.133 | 0.213 |
-| apertus-8b | dispatch | en-fr | 15 | 0.033 | -0.534 | 0.600 | 0.907 |
-| apertus-8b | evacuation | el-en | 15 | -0.033 | -0.567 | 0.500 | 0.921 |
-| apertus-8b | evacuation | el-fr | 15 | -0.300 | -0.800 | 0.133 | 0.251 |
-| apertus-8b | evacuation | en-fr | 15 | -0.267 | -0.733 | 0.200 | 0.318 |
-| apertus-8b | housing | el-en | 15 | 0.100 | -0.033 | 0.233 | 0.240 |
-| apertus-8b | housing | el-fr | 15 | 0.500 | 0.167 | 0.833 | 0.002 |
-| apertus-8b | housing | en-fr | 15 | 0.400 | 0.100 | 0.700 | 0.007 |
-| apertus-8b | relief | el-en | 15 | -2.172 | -5.576 | 1.288 | 0.221 |
-| apertus-8b | relief | el-fr | 15 | -2.746 | -4.825 | -0.692 | 0.011 |
-| apertus-8b | relief | en-fr | 15 | -0.574 | -3.009 | 1.691 | 0.616 |
-| apertus-8b | triage | el-en | 14 | -0.071 | -0.714 | 0.500 | 0.856 |
-| apertus-8b | triage | el-fr | 13 | -0.500 | -1.077 | 0.038 | 0.087 |
-| apertus-8b | triage | en-fr | 13 | -0.308 | -0.885 | 0.346 | 0.384 |
-| krikri-8b | dispatch | el-en | 15 | -0.067 | -0.267 | 0.167 | 0.658 |
-| krikri-8b | dispatch | el-fr | 15 | 0.033 | -0.167 | 0.267 | 0.906 |
-| krikri-8b | dispatch | en-fr | 15 | 0.100 | -0.133 | 0.333 | 0.505 |
-| krikri-8b | evacuation | el-en | 15 | -0.167 | -0.367 | 0.067 | 0.177 |
-| krikri-8b | evacuation | el-fr | 15 | -0.200 | -0.433 | 0.033 | 0.136 |
-| krikri-8b | evacuation | en-fr | 15 | -0.033 | -0.200 | 0.133 | 0.867 |
-| krikri-8b | housing | el-en | 15 | -0.200 | -0.400 | -0.033 | 0.023 |
-| krikri-8b | housing | el-fr | 15 | 0.267 | 0.067 | 0.467 | 0.018 |
-| krikri-8b | housing | en-fr | 15 | 0.467 | 0.200 | 0.800 | 0.001 |
-| krikri-8b | relief | el-en | 15 | 0.912 | -1.344 | 3.504 | 0.458 |
-| krikri-8b | relief | el-fr | 15 | -1.062 | -2.423 | 0.387 | 0.153 |
-| krikri-8b | relief | en-fr | 15 | -1.974 | -4.182 | 0.174 | 0.071 |
-| krikri-8b | triage | el-en | 15 | 0.000 | -0.167 | 0.200 | 1.000 |
-| krikri-8b | triage | el-fr | 15 | 0.033 | -0.100 | 0.167 | 0.786 |
-| krikri-8b | triage | en-fr | 15 | 0.033 | -0.133 | 0.200 | 0.822 |
-| llama-3.1-8b | dispatch | el-en | 15 | 0.600 | 0.067 | 1.167 | 0.019 |
-| llama-3.1-8b | dispatch | el-fr | 15 | 0.633 | 0.067 | 1.200 | 0.031 |
-| llama-3.1-8b | dispatch | en-fr | 15 | 0.033 | -0.367 | 0.367 | 0.860 |
-| llama-3.1-8b | evacuation | el-en | 15 | -0.033 | -0.333 | 0.233 | 0.938 |
-| llama-3.1-8b | evacuation | el-fr | 15 | 0.200 | -0.167 | 0.533 | 0.306 |
-| llama-3.1-8b | evacuation | en-fr | 15 | 0.233 | 0.033 | 0.433 | 0.047 |
-| llama-3.1-8b | housing | el-en | 15 | 0.100 | -0.433 | 0.700 | 0.787 |
-| llama-3.1-8b | housing | el-fr | 15 | 2.467 | 1.900 | 3.067 | 0.000 |
-| llama-3.1-8b | housing | en-fr | 15 | 2.367 | 1.700 | 3.000 | 0.000 |
-| llama-3.1-8b | relief | el-en | 15 | 1.224 | -3.068 | 6.009 | 0.637 |
-| llama-3.1-8b | relief | el-fr | 14 | -0.492 | -3.340 | 2.579 | 0.733 |
-| llama-3.1-8b | relief | en-fr | 14 | -1.506 | -5.459 | 2.398 | 0.513 |
-| llama-3.1-8b | triage | el-en | 15 | -0.167 | -0.367 | 0.000 | 0.062 |
-| llama-3.1-8b | triage | el-fr | 15 | -0.367 | -0.633 | -0.100 | 0.003 |
-| llama-3.1-8b | triage | en-fr | 15 | -0.200 | -0.400 | -0.033 | 0.049 |
-| meltemi-7b | dispatch | el-en | 15 | -0.033 | -0.534 | 0.433 | 0.931 |
-| meltemi-7b | dispatch | el-fr | 15 | -0.333 | -1.133 | 0.367 | 0.418 |
-| meltemi-7b | dispatch | en-fr | 15 | -0.300 | -1.233 | 0.567 | 0.554 |
-| meltemi-7b | evacuation | el-en | 15 | 0.500 | 0.267 | 0.733 | 0.000 |
-| meltemi-7b | evacuation | el-fr | 15 | 0.333 | -0.067 | 0.733 | 0.115 |
-| meltemi-7b | evacuation | en-fr | 15 | -0.167 | -0.567 | 0.267 | 0.487 |
-| meltemi-7b | housing | el-en | 15 | -0.033 | -0.167 | 0.100 | 0.794 |
-| meltemi-7b | housing | el-fr | 15 | 0.700 | 0.300 | 1.067 | 0.002 |
-| meltemi-7b | housing | en-fr | 15 | 0.733 | 0.400 | 1.067 | 0.001 |
-| meltemi-7b | relief | el-en | 15 | -0.493 | -3.899 | 2.356 | 0.762 |
-| meltemi-7b | relief | el-fr | 12 | -0.078 | -2.553 | 2.942 | 0.870 |
-| meltemi-7b | relief | en-fr | 12 | 1.268 | -3.157 | 5.661 | 0.602 |
-| meltemi-7b | triage | el-en | 15 | -0.167 | -0.400 | 0.033 | 0.141 |
-| meltemi-7b | triage | el-fr | 15 | 0.133 | -0.300 | 0.533 | 0.552 |
-| meltemi-7b | triage | en-fr | 15 | 0.300 | -0.167 | 0.767 | 0.224 |
-| qwen2.5-7b | dispatch | el-en | 15 | -0.200 | -0.500 | 0.067 | 0.194 |
-| qwen2.5-7b | dispatch | el-fr | 15 | 0.133 | -0.200 | 0.500 | 0.507 |
-| qwen2.5-7b | dispatch | en-fr | 15 | 0.333 | -0.033 | 0.733 | 0.100 |
-| qwen2.5-7b | evacuation | el-en | 15 | 0.300 | -0.033 | 0.600 | 0.085 |
-| qwen2.5-7b | evacuation | el-fr | 15 | 0.100 | -0.200 | 0.400 | 0.562 |
-| qwen2.5-7b | evacuation | en-fr | 15 | -0.200 | -0.333 | -0.033 | 0.025 |
-| qwen2.5-7b | housing | el-en | 15 | -0.100 | -0.267 | 0.000 | 0.229 |
-| qwen2.5-7b | housing | el-fr | 15 | -0.633 | -0.967 | -0.333 | 0.000 |
-| qwen2.5-7b | housing | en-fr | 15 | -0.533 | -0.867 | -0.267 | 0.000 |
-| qwen2.5-7b | relief | el-en | 15 | 0.667 | -1.500 | 2.833 | 0.602 |
-| qwen2.5-7b | relief | el-fr | 15 | 2.000 | 0.167 | 4.000 | 0.049 |
-| qwen2.5-7b | relief | en-fr | 15 | 1.333 | -0.167 | 2.833 | 0.084 |
-| qwen2.5-7b | triage | el-en | 15 | -0.300 | -0.667 | 0.033 | 0.092 |
-| qwen2.5-7b | triage | el-fr | 15 | -0.233 | -0.533 | 0.067 | 0.153 |
-| qwen2.5-7b | triage | en-fr | 15 | 0.067 | -0.167 | 0.333 | 0.658 |
+p_holm: Holm correction across all comparisons (task by language pair) of each model, as in the fairness table. reportable: p_holm < 0.05. Bootstrap p-values are resolved to 1/2000; 0.000 means below that.
+
+| model | task | pair | cases | difference | lo | hi | p | p_holm | reportable |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| apertus-8b | dispatch | el-en | 15 | 0.400 | -0.300 | 1.267 | 0.329 | 1.000 | False |
+| apertus-8b | dispatch | el-fr | 15 | 0.433 | -0.200 | 1.133 | 0.213 | 1.000 | False |
+| apertus-8b | dispatch | en-fr | 15 | 0.033 | -0.534 | 0.600 | 0.907 | 1.000 | False |
+| apertus-8b | evacuation | el-en | 15 | -0.033 | -0.567 | 0.500 | 0.921 | 1.000 | False |
+| apertus-8b | evacuation | el-fr | 15 | -0.300 | -0.800 | 0.133 | 0.251 | 1.000 | False |
+| apertus-8b | evacuation | en-fr | 15 | -0.267 | -0.733 | 0.200 | 0.318 | 1.000 | False |
+| apertus-8b | housing | el-en | 15 | 0.100 | -0.033 | 0.233 | 0.240 | 1.000 | False |
+| apertus-8b | housing | el-fr | 15 | 0.500 | 0.167 | 0.833 | 0.002 | 0.030 | True |
+| apertus-8b | housing | en-fr | 15 | 0.400 | 0.100 | 0.700 | 0.007 | 0.098 | False |
+| apertus-8b | relief | el-en | 15 | -2.172 | -5.576 | 1.288 | 0.221 | 1.000 | False |
+| apertus-8b | relief | el-fr | 15 | -2.746 | -4.825 | -0.692 | 0.011 | 0.143 | False |
+| apertus-8b | relief | en-fr | 15 | -0.574 | -3.009 | 1.691 | 0.616 | 1.000 | False |
+| apertus-8b | triage | el-en | 14 | -0.071 | -0.714 | 0.500 | 0.856 | 1.000 | False |
+| apertus-8b | triage | el-fr | 13 | -0.500 | -1.077 | 0.038 | 0.087 | 1.000 | False |
+| apertus-8b | triage | en-fr | 13 | -0.308 | -0.885 | 0.346 | 0.384 | 1.000 | False |
+| krikri-8b | dispatch | el-en | 15 | -0.067 | -0.267 | 0.167 | 0.658 | 1.000 | False |
+| krikri-8b | dispatch | el-fr | 15 | 0.033 | -0.167 | 0.267 | 0.906 | 1.000 | False |
+| krikri-8b | dispatch | en-fr | 15 | 0.100 | -0.133 | 0.333 | 0.505 | 1.000 | False |
+| krikri-8b | evacuation | el-en | 15 | -0.167 | -0.367 | 0.067 | 0.177 | 1.000 | False |
+| krikri-8b | evacuation | el-fr | 15 | -0.200 | -0.433 | 0.033 | 0.136 | 1.000 | False |
+| krikri-8b | evacuation | en-fr | 15 | -0.033 | -0.200 | 0.133 | 0.867 | 1.000 | False |
+| krikri-8b | housing | el-en | 15 | -0.200 | -0.400 | -0.033 | 0.023 | 0.299 | False |
+| krikri-8b | housing | el-fr | 15 | 0.267 | 0.067 | 0.467 | 0.018 | 0.252 | False |
+| krikri-8b | housing | en-fr | 15 | 0.467 | 0.200 | 0.800 | 0.001 | 0.015 | True |
+| krikri-8b | relief | el-en | 15 | 0.912 | -1.344 | 3.504 | 0.458 | 1.000 | False |
+| krikri-8b | relief | el-fr | 15 | -1.062 | -2.423 | 0.387 | 0.153 | 1.000 | False |
+| krikri-8b | relief | en-fr | 15 | -1.974 | -4.182 | 0.174 | 0.071 | 0.852 | False |
+| krikri-8b | triage | el-en | 15 | 0.000 | -0.167 | 0.200 | 1.000 | 1.000 | False |
+| krikri-8b | triage | el-fr | 15 | 0.033 | -0.100 | 0.167 | 0.786 | 1.000 | False |
+| krikri-8b | triage | en-fr | 15 | 0.033 | -0.133 | 0.200 | 0.822 | 1.000 | False |
+| llama-3.1-8b | dispatch | el-en | 15 | 0.600 | 0.067 | 1.167 | 0.019 | 0.228 | False |
+| llama-3.1-8b | dispatch | el-fr | 15 | 0.633 | 0.067 | 1.200 | 0.031 | 0.341 | False |
+| llama-3.1-8b | dispatch | en-fr | 15 | 0.033 | -0.367 | 0.367 | 0.860 | 1.000 | False |
+| llama-3.1-8b | evacuation | el-en | 15 | -0.033 | -0.333 | 0.233 | 0.938 | 1.000 | False |
+| llama-3.1-8b | evacuation | el-fr | 15 | 0.200 | -0.167 | 0.533 | 0.306 | 1.000 | False |
+| llama-3.1-8b | evacuation | en-fr | 15 | 0.233 | 0.033 | 0.433 | 0.047 | 0.470 | False |
+| llama-3.1-8b | housing | el-en | 15 | 0.100 | -0.433 | 0.700 | 0.787 | 1.000 | False |
+| llama-3.1-8b | housing | el-fr | 15 | 2.467 | 1.900 | 3.067 | 0.000 | 0.000 | True |
+| llama-3.1-8b | housing | en-fr | 15 | 2.367 | 1.700 | 3.000 | 0.000 | 0.000 | True |
+| llama-3.1-8b | relief | el-en | 15 | 1.224 | -3.068 | 6.009 | 0.637 | 1.000 | False |
+| llama-3.1-8b | relief | el-fr | 14 | -0.492 | -3.340 | 2.579 | 0.733 | 1.000 | False |
+| llama-3.1-8b | relief | en-fr | 14 | -1.506 | -5.459 | 2.398 | 0.513 | 1.000 | False |
+| llama-3.1-8b | triage | el-en | 15 | -0.167 | -0.367 | 0.000 | 0.062 | 0.496 | False |
+| llama-3.1-8b | triage | el-fr | 15 | -0.367 | -0.633 | -0.100 | 0.003 | 0.039 | True |
+| llama-3.1-8b | triage | en-fr | 15 | -0.200 | -0.400 | -0.033 | 0.049 | 0.470 | False |
+| meltemi-7b | dispatch | el-en | 15 | -0.033 | -0.534 | 0.433 | 0.931 | 1.000 | False |
+| meltemi-7b | dispatch | el-fr | 15 | -0.333 | -1.133 | 0.367 | 0.418 | 1.000 | False |
+| meltemi-7b | dispatch | en-fr | 15 | -0.300 | -1.233 | 0.567 | 0.554 | 1.000 | False |
+| meltemi-7b | evacuation | el-en | 15 | 0.500 | 0.267 | 0.733 | 0.000 | 0.000 | True |
+| meltemi-7b | evacuation | el-fr | 15 | 0.333 | -0.067 | 0.733 | 0.115 | 1.000 | False |
+| meltemi-7b | evacuation | en-fr | 15 | -0.167 | -0.567 | 0.267 | 0.487 | 1.000 | False |
+| meltemi-7b | housing | el-en | 15 | -0.033 | -0.167 | 0.100 | 0.794 | 1.000 | False |
+| meltemi-7b | housing | el-fr | 15 | 0.700 | 0.300 | 1.067 | 0.002 | 0.026 | True |
+| meltemi-7b | housing | en-fr | 15 | 0.733 | 0.400 | 1.067 | 0.001 | 0.014 | True |
+| meltemi-7b | relief | el-en | 15 | -0.493 | -3.899 | 2.356 | 0.762 | 1.000 | False |
+| meltemi-7b | relief | el-fr | 12 | -0.078 | -2.553 | 2.942 | 0.870 | 1.000 | False |
+| meltemi-7b | relief | en-fr | 12 | 1.268 | -3.157 | 5.661 | 0.602 | 1.000 | False |
+| meltemi-7b | triage | el-en | 15 | -0.167 | -0.400 | 0.033 | 0.141 | 1.000 | False |
+| meltemi-7b | triage | el-fr | 15 | 0.133 | -0.300 | 0.533 | 0.552 | 1.000 | False |
+| meltemi-7b | triage | en-fr | 15 | 0.300 | -0.167 | 0.767 | 0.224 | 1.000 | False |
+| qwen2.5-7b | dispatch | el-en | 15 | -0.200 | -0.500 | 0.067 | 0.194 | 1.000 | False |
+| qwen2.5-7b | dispatch | el-fr | 15 | 0.133 | -0.200 | 0.500 | 0.507 | 1.000 | False |
+| qwen2.5-7b | dispatch | en-fr | 15 | 0.333 | -0.033 | 0.733 | 0.100 | 0.924 | False |
+| qwen2.5-7b | evacuation | el-en | 15 | 0.300 | -0.033 | 0.600 | 0.085 | 0.924 | False |
+| qwen2.5-7b | evacuation | el-fr | 15 | 0.100 | -0.200 | 0.400 | 0.562 | 1.000 | False |
+| qwen2.5-7b | evacuation | en-fr | 15 | -0.200 | -0.333 | -0.033 | 0.025 | 0.325 | False |
+| qwen2.5-7b | housing | el-en | 15 | -0.100 | -0.267 | 0.000 | 0.229 | 1.000 | False |
+| qwen2.5-7b | housing | el-fr | 15 | -0.633 | -0.967 | -0.333 | 0.000 | 0.000 | True |
+| qwen2.5-7b | housing | en-fr | 15 | -0.533 | -0.867 | -0.267 | 0.000 | 0.000 | True |
+| qwen2.5-7b | relief | el-en | 15 | 0.667 | -1.500 | 2.833 | 0.602 | 1.000 | False |
+| qwen2.5-7b | relief | el-fr | 15 | 2.000 | 0.167 | 4.000 | 0.049 | 0.588 | False |
+| qwen2.5-7b | relief | en-fr | 15 | 1.333 | -0.167 | 2.833 | 0.084 | 0.924 | False |
+| qwen2.5-7b | triage | el-en | 15 | -0.300 | -0.667 | 0.033 | 0.092 | 0.924 | False |
+| qwen2.5-7b | triage | el-fr | 15 | -0.233 | -0.533 | 0.067 | 0.153 | 1.000 | False |
+| qwen2.5-7b | triage | en-fr | 15 | 0.067 | -0.167 | 0.333 | 0.658 | 1.000 | False |
 
 ## Fairness by clarity of need (moderator)
 
@@ -1665,7 +1689,7 @@ Supply shares that did not sum to 100 are rescaled to 100 in the main table. Thi
 | krikri-8b | housing | C(key)[T.status=asylum_seeker] | -0.145 | 0.191 | 0.448 |  |
 | krikri-8b | housing | C(key)[T.status=seasonal_worker] | -0.645 | 0.191 | 0.001 |  |
 | krikri-8b | housing | C(language)[T.en] | -0.100 | 0.232 | 0.667 |  |
-| krikri-8b | housing | C(language)[T.fr] | -0.000 | 0.232 | 1.000 |  |
+| krikri-8b | housing | C(language)[T.fr] | 0.000 | 0.232 | 1.000 |  |
 | krikri-8b | housing | C(clarity)[T.clear] | 0.093 | 0.064 | 0.147 |  |
 | krikri-8b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.033 | 0.268 | 0.901 |  |
 | krikri-8b | housing | C(key)[T.area=villas]:C(language)[T.en] | 0.300 | 0.268 | 0.264 |  |
@@ -1679,7 +1703,7 @@ Supply shares that did not sum to 100 are rescaled to 100 in the main table. Thi
 | krikri-8b | housing | C(key)[T.area=villas]:C(language)[T.fr] | -0.867 | 0.268 | 0.001 |  |
 | krikri-8b | housing | C(key)[T.gender=female]:C(language)[T.fr] | 0.133 | 0.268 | 0.619 |  |
 | krikri-8b | housing | C(key)[T.origin=local_migrant]:C(language)[T.fr] | 0.200 | 0.268 | 0.456 |  |
-| krikri-8b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | 0.000 | 0.268 | 1.000 |  |
+| krikri-8b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.000 | 0.268 | 1.000 |  |
 | krikri-8b | housing | C(key)[T.origin=syrian]:C(language)[T.fr] | 0.433 | 0.268 | 0.106 |  |
 | krikri-8b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.fr] | -0.100 | 0.268 | 0.709 |  |
 | krikri-8b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.fr] | -0.867 | 0.268 | 0.001 |  |
@@ -1863,34 +1887,34 @@ Supply shares that did not sum to 100 are rescaled to 100 in the main table. Thi
 | meltemi-7b | evacuation | C(key)[T.origin=local_migrant]:C(language)[T.fr] | -0.567 | 0.582 | 0.330 |  |
 | meltemi-7b | evacuation | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.467 | 0.582 | 0.422 |  |
 | meltemi-7b | evacuation | C(key)[T.origin=syrian]:C(language)[T.fr] | -0.067 | 0.582 | 0.909 |  |
-| meltemi-7b | housing | Intercept | 0.041 | 0.289 | 0.887 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.area=social_housing] | 0.068 | 0.332 | 0.838 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.area=villas] | 0.035 | 0.332 | 0.917 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.gender=female] | 0.168 | 0.332 | 0.613 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=local_migrant] | 0.201 | 0.332 | 0.544 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=romanian] | 0.101 | 0.332 | 0.760 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=syrian] | 0.168 | 0.332 | 0.613 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.status=asylum_seeker] | 0.101 | 0.332 | 0.760 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.status=seasonal_worker] | 0.201 | 0.332 | 0.544 | did not converge; read with care |
-| meltemi-7b | housing | C(language)[T.en] | 0.200 | 0.406 | 0.622 | did not converge; read with care |
-| meltemi-7b | housing | C(language)[T.fr] | 0.700 | 0.406 | 0.084 | did not converge; read with care |
-| meltemi-7b | housing | C(clarity)[T.clear] | -0.106 | 0.072 | 0.143 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.333 | 0.469 | 0.477 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.en] | -0.433 | 0.469 | 0.355 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | -0.367 | 0.469 | 0.434 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.en] | -0.367 | 0.469 | 0.434 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.en] | -0.400 | 0.469 | 0.393 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.en] | -0.267 | 0.469 | 0.569 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.en] | -0.100 | 0.469 | 0.831 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.en] | -0.367 | 0.469 | 0.434 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.fr] | -1.133 | 0.469 | 0.016 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.fr] | -0.967 | 0.469 | 0.039 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.fr] | -1.100 | 0.469 | 0.019 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.fr] | -0.633 | 0.469 | 0.176 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.fr] | -0.800 | 0.469 | 0.088 | did not converge; read with care |
-| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.fr] | -0.933 | 0.469 | 0.046 | did not converge; read with care |
+| meltemi-7b | housing | Intercept | 0.041 | 0.289 | 0.887 |  |
+| meltemi-7b | housing | C(key)[T.area=social_housing] | 0.068 | 0.332 | 0.838 |  |
+| meltemi-7b | housing | C(key)[T.area=villas] | 0.035 | 0.332 | 0.917 |  |
+| meltemi-7b | housing | C(key)[T.gender=female] | 0.168 | 0.332 | 0.613 |  |
+| meltemi-7b | housing | C(key)[T.origin=local_migrant] | 0.201 | 0.332 | 0.544 |  |
+| meltemi-7b | housing | C(key)[T.origin=romanian] | 0.101 | 0.332 | 0.760 |  |
+| meltemi-7b | housing | C(key)[T.origin=syrian] | 0.168 | 0.332 | 0.613 |  |
+| meltemi-7b | housing | C(key)[T.status=asylum_seeker] | 0.101 | 0.332 | 0.760 |  |
+| meltemi-7b | housing | C(key)[T.status=seasonal_worker] | 0.201 | 0.332 | 0.544 |  |
+| meltemi-7b | housing | C(language)[T.en] | 0.200 | 0.406 | 0.622 |  |
+| meltemi-7b | housing | C(language)[T.fr] | 0.700 | 0.406 | 0.084 |  |
+| meltemi-7b | housing | C(clarity)[T.clear] | -0.106 | 0.072 | 0.143 |  |
+| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.333 | 0.469 | 0.477 |  |
+| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.en] | -0.433 | 0.469 | 0.355 |  |
+| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | -0.367 | 0.469 | 0.434 |  |
+| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.en] | -0.367 | 0.469 | 0.434 |  |
+| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.en] | -0.400 | 0.469 | 0.393 |  |
+| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.en] | -0.267 | 0.469 | 0.569 |  |
+| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.en] | -0.100 | 0.469 | 0.831 |  |
+| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.en] | -0.367 | 0.469 | 0.434 |  |
+| meltemi-7b | housing | C(key)[T.area=social_housing]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 |  |
+| meltemi-7b | housing | C(key)[T.area=villas]:C(language)[T.fr] | -1.133 | 0.469 | 0.016 |  |
+| meltemi-7b | housing | C(key)[T.gender=female]:C(language)[T.fr] | -0.967 | 0.469 | 0.039 |  |
+| meltemi-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.fr] | -1.100 | 0.469 | 0.019 |  |
+| meltemi-7b | housing | C(key)[T.origin=romanian]:C(language)[T.fr] | -0.867 | 0.469 | 0.064 |  |
+| meltemi-7b | housing | C(key)[T.origin=syrian]:C(language)[T.fr] | -0.633 | 0.469 | 0.176 |  |
+| meltemi-7b | housing | C(key)[T.status=asylum_seeker]:C(language)[T.fr] | -0.800 | 0.469 | 0.088 |  |
+| meltemi-7b | housing | C(key)[T.status=seasonal_worker]:C(language)[T.fr] | -0.933 | 0.469 | 0.046 |  |
 | meltemi-7b | relief | Intercept | 1.213 | 2.472 | 0.624 |  |
 | meltemi-7b | relief | C(key)[T.area=social_housing] | -0.244 | 2.749 | 0.929 |  |
 | meltemi-7b | relief | C(key)[T.area=villas] | 3.588 | 2.784 | 0.197 |  |
@@ -1979,9 +2003,9 @@ Supply shares that did not sum to 100 are rescaled to 100 in the main table. Thi
 | qwen2.5-7b | housing | C(language)[T.en] | 0.100 | 0.184 | 0.587 |  |
 | qwen2.5-7b | housing | C(language)[T.fr] | 1.300 | 0.184 | 0.000 |  |
 | qwen2.5-7b | housing | C(clarity)[T.clear] | -0.038 | 0.061 | 0.528 |  |
-| qwen2.5-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | -0.000 | 0.212 | 1.000 |  |
+| qwen2.5-7b | housing | C(key)[T.area=social_housing]:C(language)[T.en] | 0.000 | 0.212 | 1.000 |  |
 | qwen2.5-7b | housing | C(key)[T.area=villas]:C(language)[T.en] | -0.200 | 0.212 | 0.346 |  |
-| qwen2.5-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | -0.000 | 0.212 | 1.000 |  |
+| qwen2.5-7b | housing | C(key)[T.gender=female]:C(language)[T.en] | 0.000 | 0.212 | 1.000 |  |
 | qwen2.5-7b | housing | C(key)[T.origin=local_migrant]:C(language)[T.en] | -0.067 | 0.212 | 0.754 |  |
 | qwen2.5-7b | housing | C(key)[T.origin=romanian]:C(language)[T.en] | -0.067 | 0.212 | 0.754 |  |
 | qwen2.5-7b | housing | C(key)[T.origin=syrian]:C(language)[T.en] | -0.067 | 0.212 | 0.754 |  |
