@@ -68,6 +68,27 @@ def cmd_analyze(args) -> int:
     return 0
 
 
+def cmd_compare(args) -> int:
+    from .compare import compare
+    compare(Path(args.config))
+    return 0
+
+
+def cmd_review_sheet(args) -> int:
+    from .review import make_sheet
+    ids = make_sheet(load_config(args.config), Path(args.out), per_task=args.per_task)
+    print(f"wrote {args.out} with {len(ids)} cases")
+    return 0
+
+
+def cmd_review_agreement(args) -> int:
+    from .review import agreement
+    paths = sorted(p for p in Path(args.dir).glob("*.xlsx") if not p.name.startswith(("~", "blank")))
+    out = agreement(load_config(args.config), paths, Path(args.dir) / "agreement.md")
+    print(f"wrote {out} from {len(paths)} sheet(s)")
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="whf", description="Who Gets Help First? Counterfactual audit of LLM decisions in flood response.")
     sub = ap.add_subparsers(dest="command", required=True)
@@ -97,6 +118,18 @@ def main(argv=None) -> int:
     a = sub.add_parser("analyze", help="compute the pre-registered measures")
     a.add_argument("--config", required=True)
     a.set_defaults(func=cmd_analyze)
+    cp = sub.add_parser("compare", help="compare a replication with its reference study")
+    cp.add_argument("--config", required=True)
+    cp.set_defaults(func=cmd_compare)
+    rs = sub.add_parser("review-sheet", help="write the Excel sheet for the expert review of the cases")
+    rs.add_argument("--config", required=True)
+    rs.add_argument("--out", required=True)
+    rs.add_argument("--per-task", type=int, default=3)
+    rs.set_defaults(func=cmd_review_sheet)
+    ra = sub.add_parser("review-agreement", help="summarise the filled expert sheets")
+    ra.add_argument("--config", required=True)
+    ra.add_argument("--dir", default="reviews")
+    ra.set_defaults(func=cmd_review_agreement)
     args = ap.parse_args(argv)
     try:
         return args.func(args)

@@ -48,6 +48,14 @@ class Attributes:
                     out.append(f"{sname}.origin.{oname}")
         return out
 
+    def unsourced_origins(self) -> list:
+        out = set()
+        for s in self.settings.values():
+            for oname, o in s["origin"].items():
+                if str(o.get("source", "")).strip().lower().startswith("no official list"):
+                    out.add(oname)
+        return sorted(out)
+
     def name(self, setting: str, identity: dict, lang: str) -> str:
         names = self.setting(setting)["origin"][identity["origin"]]["person"][identity["gender"]]
         return names[identity.get("name", 0)][lang]

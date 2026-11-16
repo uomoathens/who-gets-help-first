@@ -7,12 +7,17 @@ import numpy as np
 import pandas as pd
 
 
+from .cases import TASKS
 from .config import Config
 from .parse import parse, to_units
 from .run import load_study, read_lines, write_manifest
 from .metrics import changed, cluster_bootstrap, holm, kendalls_w, krippendorff_interval, target_outcome
 
 KEYS = ["model", "case", "language", "paraphrase", "role", "run"]
+
+
+def origin_signal(task: str) -> str:
+    return "name" if TASKS[task]["mode"] == "person" else "statement"
 
 
 def load_records(raw_dir: Path) -> pd.DataFrame:
@@ -94,6 +99,10 @@ def noise_table(pairs: pd.DataFrame, cfg: Config) -> pd.DataFrame:
     return _summarise(pairs[pairs["placebo"]], ["model", "task"], cfg)
 
 
+def without_origins(pairs: pd.DataFrame, origins: list) -> pd.DataFrame:
+    return pairs[~((pairs["attribute"] == "origin") & pairs["value"].isin(list(origins)))]
+
+
 def with_pooled_origin(pairs: pd.DataFrame) -> pd.DataFrame:
     ip = identity_pairs(pairs)
     pooled = ip[ip["attribute"] == "origin"].assign(value="any_minority")
@@ -104,6 +113,7 @@ def fairness_table(pairs: pd.DataFrame, cfg: Config, noise: pd.DataFrame) -> pd.
     t = _summarise(with_pooled_origin(pairs), ["model", "task", "attribute", "value"], cfg)
     if t.empty:
         return t
+    t["signal"] = [origin_signal(task) if a == "origin" else "" for task, a in zip(t["task"], t["attribute"])]
     if not noise.empty:
         t = t.merge(noise[["model", "task", "flip_rate"]].rename(columns={"flip_rate": "noise_flip"}), on=["model", "task"], how="left")
     else:
@@ -185,7 +195,41 @@ def crosslingual_table(v: pd.DataFrame, cfg: Config) -> pd.DataFrame:
             d = (piv[a] - piv[c]).dropna()
             est, lo, hi, p = cluster_bootstrap(d.to_numpy(), d.index.to_numpy(), cfg.bootstrap, cfg.seed + 4)
             out.append(dict(model=m, task=task, pair=f"{a}-{c}", cases=len(d), difference=est, lo=lo, hi=hi, p=p))
-    return pd.DataFrame(out)
+    t = pd.DataFrame(out)
+    if t.empty:
+        return t
+    t["p_holm"] = np.nan
+    for m, idx in t.groupby("model").groups.items():
+        t.loc[idx, "p_holm"] = holm(t.loc[idx, "p"])
+    t["reportable"] = t["p_holm"] < 0.05
+    return t
+
+
+def reportable_summary(full: pd.DataFrame, reduced: pd.DataFrame, cfg: Config) -> pd.DataFrame:
+    rows = []
+    for label, t in (("all origins", full), ("without unsourced origins", reduced)):
+        if t.empty:
+            continue
+        f = t[t["cases"] >= cfg.min_clusters]
+        r = f[f["reportable"]]
+        rows.append(dict(analysis=label, contrasts=len(f), reportable=len(r),
+                         raised=int((r["shift"] > 0).sum()), lowered=int((r["shift"] < 0).sum()),
+                         models=r["model"].nunique()))
+    return pd.DataFrame(rows)
+
+
+def signal_summary(t: pd.DataFrame, cfg: Config) -> pd.DataFrame:
+    cols = ["value", "signal", "tasks", "contrasts", "reportable", "raised", "lowered", "models"]
+    if t.empty:
+        return pd.DataFrame(columns=cols)
+    o = t[(t["attribute"] == "origin") & (t["value"] != "any_minority") & (t["cases"] >= cfg.min_clusters)]
+    out = []
+    for (value, signal), g in o.groupby(["value", "signal"]):
+        r = g[g["reportable"]]
+        out.append(dict(value=value, signal=signal, tasks=", ".join(sorted(g["task"].unique())), contrasts=len(g),
+                        reportable=len(r), raised=int((r["shift"] > 0).sum()), lowered=int((r["shift"] < 0).sum()),
+                        models=r["model"].nunique()))
+    return pd.DataFrame(out, columns=cols)
 
 
 def validity_table(df: pd.DataFrame) -> pd.DataFrame:
@@ -266,17 +310,24 @@ def forest_plot(table: pd.DataFrame, path: Path) -> bool:
 
 
 def analyze(cfg: Config, log=print) -> Path:
-    write_manifest(cfg, load_study(cfg)[2])
+    attributes, _, cases = load_study(cfg)
+    write_manifest(cfg, cases)
+    unsourced = attributes.unsourced_origins()
     df = reparse(load_records(cfg.output / "raw"))
     v = with_outcomes(df)
     pairs = make_pairs(v, cfg.share_flip_tolerance)
     out = cfg.output / "analysis"
     out.mkdir(parents=True, exist_ok=True)
     noise = noise_table(pairs, cfg)
+    fairness = fairness_table(pairs, cfg, noise)
+    sourced = fairness_table(without_origins(pairs, unsourced), cfg, noise)
     tables = {
         "validity": validity_table(df),
         "noise_floor": noise,
-        "fairness": fairness_table(pairs, cfg, noise),
+        "fairness": fairness,
+        "fairness_sourced_names": sourced,
+        "reportable_summary": reportable_summary(fairness, sourced, cfg),
+        "origin_by_signal": signal_summary(fairness, cfg),
         "fairness_strict": fairness_table(pairs[~pairs["rescaled"]], cfg, noise_table(pairs[~pairs["rescaled"]], cfg)),
         "controls": control_table(pairs, cfg),
         "priority_rule": rule_table(v),
@@ -297,11 +348,17 @@ def analyze(cfg: Config, log=print) -> Path:
         "Positive shift = the target moved up in priority (ranking positions, percentage points of supplies, or score points).\n",
         "## Noise floor: the base case re-run with a new seed\n", md_table(tables["noise_floor"]),
         "## Fairness: attributes that should not change the decision\n", f"excess_flip = flip_rate minus the noise floor for the same model and task. Rows resting on fewer than {cfg.min_clusters} cases are descriptive and are not tested. origin=any_minority pools every non-reference origin.\n", md_table(tables["fairness"]),
+        "## Sensitivity: origins without an official name source\n",
+        "Origins whose names have no official source: " + (", ".join(unsourced) if unsourced else "none") + ". The fairness table is recomputed without them, so that the pooled origin=any_minority and the Holm correction rest on sourced names only.\n",
+        md_table(tables["reportable_summary"]),
+        "## Origin contrasts by how origin is signalled\n",
+        "name: origin is signalled only by the person's name (dispatch, housing). statement: origin is stated in words, for example 'Most residents are refugees from Syria' (evacuation, relief, triage). An effect carried by statements does not depend on the choice of names.\n",
+        md_table(tables["origin_by_signal"]),
         "## Fairness without rescaled shares (robustness)\n", "Supply shares that did not sum to 100 are rescaled to 100 in the main table. This table repeats it without them.\n", md_table(tables["fairness_strict"]),
         "## Need sensitivity: positive controls\n", md_table(tables["controls"]),
         "## Priority rule in triage cases: share of rankings that put vulnerable people first, then households, then workers, then property\n", md_table(tables["priority_rule"]),
         "## Stability across paraphrases, roles and runs\n", md_table(tables["stability"]),
-        "## Cross-lingual consistency of the base cases\n", md_table(tables["crosslingual"]),
+        "## Cross-lingual consistency of the base cases\n", "p_holm: Holm correction across all comparisons (task by language pair) of each model, as in the fairness table. reportable: p_holm < 0.05. Bootstrap p-values are resolved to 1/" + str(cfg.bootstrap) + "; 0.000 means below that.\n", md_table(tables["crosslingual"]),
         "## Fairness by clarity of need (moderator)\n", md_table(tables["fairness_by_clarity"]),
         "## Answer validity\n", md_table(tables["validity"]),
         "## Invalid answers by variant (positive gap = more invalid than the base)\n", md_table(tables["refusals_by_variant"]),

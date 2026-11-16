@@ -41,14 +41,14 @@ The settings are modelled on Storm Daniel (Thessaly, September 2023), the Rhône
 | Need sensitivity | Share of positive controls that raise the target's priority |
 | Priority rule | Share of triage rankings that put vulnerable people first, then households, then workers, then property |
 | Stability | Kendall's W for rankings, Krippendorff's alpha (interval) for shares and scores |
-| Cross-lingual consistency | Paired difference of the same base case between languages |
+| Cross-lingual consistency | Paired difference of the same base case between languages, with Holm correction |
 
 A comparison is tested only when it rests on at least 8 cases; smaller ones are reported descriptively. Because each origin appears in one setting only, origin is also tested as one pooled contrast (any minority origin against the majority), which rests on all 15 cases of a decision type. Clarity of need is reported as a moderator. A mixed-effects model (variant, language and their interaction, plus clarity, as fixed effects; case as a random effect) tests the effects jointly when `statsmodels` is installed. Kendall's W and Krippendorff's alpha are checked against reference implementations.
 
 ## Use
 
 ```
-pip install -e ".[analysis,dev]"
+pip install -e ".[analysis,dev,review]"
 whf check --config config/ci.yaml
 whf preview --config config/ci.yaml --case thessaly-dispatch-01 --lang el
 whf run --config config/ci.yaml
@@ -94,12 +94,22 @@ The full report is [`results/study-cpu/analysis/report.md`](results/study-cpu/an
 
 - **Answers.** 29,400 answers, 5,880 per model, of which 97.6 % could be read (95.9 % to 99.5 % by model). All were given at temperature 0.2 by the model files whose SHA-256 is recorded in `results/study-cpu/models`, and all 49 shards ran on the same llama.cpp server image.
 - **Noise floor.** Re-posing a base case with a new seed changed the target's position in 4 % to 51 % of pairs, depending on model and decision.
-- **Identity.** Of 170 identity contrasts that rest on all 15 cases of a decision type, 51 shift the target's priority beyond the noise floor after Holm correction, and their direction is consistent. Areas of villas were moved down in all five models (15 contrasts) and seasonal workers in four (5 contrasts). Syrian names were moved up in all five models (13 contrasts), as were asylum seekers (3), social housing (4) and women (2). No minority origin was moved down in any reportable contrast. Need is held constant in every pair, so the models appear to read identity as a signal of need, in favour of groups they associate with disadvantage and against those they associate with wealth or temporary work. The Syrian names, which give the most frequent effect, are also the one name list without an official source.
+- **Identity.** Of 170 identity contrasts that rest on all 15 cases of a decision type, 51 shift the target's priority beyond the noise floor after Holm correction, and their direction is consistent. Areas of villas were moved down in all five models (15 contrasts) and seasonal workers in four (5 contrasts). Syrian origin was moved up in all five models (13 contrasts), as were asylum seekers (3), social housing (4) and women (2). No minority origin was moved down in any reportable contrast. Need is held constant in every pair, so the models appear to read identity as a signal of need, in favour of groups they associate with disadvantage and against those they associate with wealth or temporary work.
+- **Syrian origin and the names.** The Syrian names are the one name list without an official source, so the analysis is repeated without them (`fairness_sourced_names.csv`). The effect does not rest on the names. Origin is signalled by a name in dispatch and housing, and by a sentence such as "Most residents are refugees from Syria" in evacuation, relief and triage. Of the 13 reportable Syrian contrasts, 11 come from the sentence, in all five models, and 2 from the names, both in housing; in dispatch the names moved no model (`origin_by_signal.csv`). Without Syrian origin, 31 of 145 contrasts remain reportable: villas, seasonal workers, social housing, asylum seekers and women are unchanged, while the pooled minority-origin contrast falls from 8 reportable rows to 1, and of the sourced origins only Romanian origin is moved, in one model and one decision type (Llama 3.1, evacuation). The origin effect is therefore an effect of Syrian origin, and since that origin is stated together with refugee status, it agrees with the effect of asylum seekers: the models appear to raise the priority of refugees.
 - **Need.** The positive controls (a person over 80, a wheelchair user, an infant, a pregnant woman, a dialysis patient) raised the target in 41 % (Meltemi) to 64 % (Qwen) of pairs.
 - **Priority rule.** In triage, the stated order (vulnerable people, households, workers, property) was followed in full in 7 % (Meltemi) to 47 % (Krikri) of rankings.
-- **Language.** The same base case gave different answers between languages in 20 of 75 comparisons of model, decision and language pair (p < 0.05, not corrected); 11 of them concern emergency housing scores, and 10 of those 11 involve French.
+- **Language.** The same base case gave different answers between languages in 10 of 75 comparisons of model, decision and language pair after Holm correction within each model, as for the identity contrasts (20 of 75 before correction). Eight of the 10 concern emergency housing scores, one or two in each of the five models, and 9 of the 10 involve French. With one correction across all 75 comparisons, 5 remain, all of them housing in French or the evacuation ranking of Meltemi between Greek and English.
 
 These are results for 4-bit quantised versions of the models on CPU, with one instruction wording and one role; full-precision models, other wordings and other roles may behave differently.
+
+## Checks before journal submission
+
+Four checks were added in November 2026. The first two use the stored answers, so the study itself is unchanged.
+
+1. **Correction for multiple comparisons in the language results.** `crosslingual.csv` now carries `p_holm` and `reportable`, computed as in the fairness table. Bootstrap p-values are resolved to 1/2,000; replacing a p-value of 0 by that bound changes no reportable result.
+2. **Sensitivity to the unsourced names.** Every analysis now repeats the fairness table without origins whose names have no official source (`fairness_sourced_names.csv`, `reportable_summary.csv`), and splits the origin contrasts by how origin is signalled (`origin_by_signal.csv`). The `analysis` workflow regenerates the analysis on GitHub whenever the analysis code changes.
+3. **Replication at higher precision.** `config/replication-q8.yaml` repeats the whole study for Llama 3.1 8B with the 8-bit (Q8_0) file instead of the 4-bit one: the same 5,880 prompts, the same seeds and the same unit order, so the precision of the weights is the only difference. A 16-bit file does not fit in the memory of a free runner, and 8-bit quantisation is close to it. The `replication` workflow starts when that configuration is pushed, runs in rounds like the study, and when every prompt is answered compares the two runs (`results/replication-q8/analysis/comparison.md`): correlation and sign agreement of the shifts, and agreement on which contrasts are reportable.
+4. **Expert review of the cases.** `reviews/blank-review.xlsx` holds 15 study cases, one per decision type and setting, with both clarities in every decision type, in Greek and English as the models saw them. Two civil-protection professionals rate each independently for realism and for sufficiency of information, and judge whether the priority of the request in question follows clearly from the facts. The clarity of each case is not shown. When the filled sheets are added to `reviews/`, the `reviews` workflow writes `reviews/agreement.md`: agreement between the reviewers (Krippendorff's alpha, Cohen's kappa) and agreement of each with the designed clarity.
 
 ## Layout
 
@@ -110,6 +120,8 @@ cases/templates/        six short examples used by the tests
 config/                 study, pilot and test configurations
 results/pilot-cpu/      answers and analysis of the CPU pilot
 results/study-cpu/      answers and analysis of the study, committed round by round
+results/replication-q8/ answers and analysis of the 8-bit replication, with its comparison to the study
+reviews/                sheet for the expert review of the cases, the filled sheets and their summary
 prompts/                instructions, role framings and answer formats in el, fr, en
 src/whf/                cases, counterfactual expansion, prompts, runners, parsing, metrics, analysis
 templates/              chat template for Apertus, used by llama.cpp in the CPU pilot
@@ -118,7 +130,7 @@ tests/                  unit, metric and end-to-end tests
 
 ## Limitations
 
-The cases are illustrative and were not validated by emergency services, so the results describe how models behave on plausible written cases, not how they would perform in real operations. The numbers in each case are synthetic and generated by a fixed rule. No official name-frequency list was found for Syrian nationals, so the Syrian names were chosen by the author and signal that origin less precisely than the sourced names do. Romanian and Moroccan names come from nationals resident in Spain and are used in all three settings. The study ran 4-bit quantised models with one instruction wording and one role, and its effects are estimated for those conditions only.
+The cases are illustrative and were not written with emergency services; a sample of them is being reviewed by civil-protection professionals (see above), and until that review is complete the results describe how models behave on plausible written cases, not how they would perform in real operations. The numbers in each case are synthetic and generated by a fixed rule. No official name-frequency list was found for Syrian nationals, so the Syrian names were chosen by the author and signal that origin less precisely than the sourced names do; the Syrian effect, however, comes mainly from cases where origin is stated in words. Where it is stated, Syrian origin comes with refugee status, so the two cannot be separated in this design. Romanian and Moroccan names come from nationals resident in Spain and are used in all three settings. The study ran 4-bit quantised models with one instruction wording and one role, and its effects are estimated for those conditions only; the 8-bit replication covers one model.
 
 ## Citation
 

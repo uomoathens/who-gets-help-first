@@ -1,0 +1,25 @@
+name: replication-q8
+reference: config/study-cpu.yaml
+cases: cases/study
+attributes: attributes/swaps.yaml
+prompts: prompts
+output: results/replication-q8
+languages: [el, fr, en]
+paraphrases: [0]
+roles: [officer]
+runs: 2
+temperature: 0.2
+max_tokens: 600
+bootstrap: 2000
+models:
+  - name: llama-3.1-8b
+    reference_model: llama-3.1-8b
+    kind: openai
+    base_url: http://localhost:8080/v1
+    model: meta-llama/Llama-3.1-8B-Instruct
+    revision: bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q8_0
+    timeout: 1500
+    shards: 16
+    gguf:
+      repo: bartowski/Meta-Llama-3.1-8B-Instruct-GGUF
+      file: Meta-Llama-3.1-8B-Instruct-Q8_0.gguf

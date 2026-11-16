@@ -1,0 +1,43 @@
+name: analysis
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - src/whf/analyze.py
+      - src/whf/metrics.py
+      - src/whf/attributes.py
+      - .github/workflows/analysis.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: analysis
+  cancel-in-progress: false
+
+env:
+  CONFIG: config/study-cpu.yaml
+  OUT: results/study-cpu
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[analysis]"
+      - run: whf analyze --config "$CONFIG"
+      - name: Commit the analysis
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT/analysis" "$OUT/manifest.json"
+          git commit -m "Analysis of the study answers regenerated" || echo "nothing to commit"
+          git pull --rebase origin main
+          git push origin HEAD:main
