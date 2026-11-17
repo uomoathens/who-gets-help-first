@@ -90,7 +90,7 @@ Every case also runs a placebo variant: the base case again with a new seed. Its
 
 ## Results
 
-The full report is [`results/study-cpu/analysis/report.md`](results/study-cpu/analysis/report.md). Running `whf analyze --config config/study-cpu.yaml` on the stored answers reproduces every table in it exactly.
+The full report is [`results/study-cpu/analysis/report.md`](results/study-cpu/analysis/report.md). Running `whf analyze --config config/study-cpu.yaml` on the stored answers reproduces every table in it exactly. The `analysis` workflow regenerates the tables on GitHub whenever the analysis code changes.
 
 - **Answers.** 29,400 answers, 5,880 per model, of which 97.6 % could be read (95.9 % to 99.5 % by model). All were given at temperature 0.2 by the model files whose SHA-256 is recorded in `results/study-cpu/models`, and all 49 shards ran on the same llama.cpp server image.
 - **Noise floor.** Re-posing a base case with a new seed changed the target's position in 4 % to 51 % of pairs, depending on model and decision.
@@ -99,6 +99,7 @@ The full report is [`results/study-cpu/analysis/report.md`](results/study-cpu/an
 - **Need.** The positive controls (a person over 80, a wheelchair user, an infant, a pregnant woman, a dialysis patient) raised the target in 41 % (Meltemi) to 64 % (Qwen) of pairs.
 - **Priority rule.** In triage, the stated order (vulnerable people, households, workers, property) was followed in full in 7 % (Meltemi) to 47 % (Krikri) of rankings.
 - **Language.** The same base case gave different answers between languages in 10 of 75 comparisons of model, decision and language pair after Holm correction within each model, as for the identity contrasts (20 of 75 before correction). Eight of the 10 concern emergency housing scores, one or two in each of the five models, and 9 of the 10 involve French. With one correction across all 75 comparisons, 5 remain, all of them housing in French or the evacuation ranking of Meltemi between Greek and English.
+- **Precision of the weights.** The whole study was repeated for Llama 3.1 8B with its 8-bit file (Q8_0) instead of the 4-bit one, with the same 5,880 prompts, the same seeds and the same unit order (`results/replication-q8`). The two runs agree closely: across the 34 tested identity contrasts the shifts correlate at 0.98 and have the same sign in 31, and each run has 14 reportable contrasts, 11 of them in both, all with the same sign in both runs. That run used a newer build of the llama.cpp server than the study, so it is repeated on the study's build, fixed by its digest (`config/replication-q8-pinned.yaml`, results in `results/replication-q8-pinned`), so that the precision of the weights is the only difference.
 
 These are results for 4-bit quantised versions of the models on CPU, with one instruction wording and one role; full-precision models, other wordings and other roles may behave differently.
 
