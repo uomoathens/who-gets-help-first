@@ -1,0 +1,105 @@
+model,task,term,estimate,se,p,note
+llama-3.1-8b,dispatch,Intercept,-0.1648907338876759,0.32428154031804896,0.611116639898811,
+llama-3.1-8b,dispatch,C(key)[T.area=social_housing],0.14696779289076262,0.3554730427436358,0.6792821753846887,
+llama-3.1-8b,dispatch,C(key)[T.area=villas],-0.39316484707159155,0.35720928676546393,0.27104603444834363,
+llama-3.1-8b,dispatch,C(key)[T.gender=female],0.14967304573526544,0.3571395338886873,0.6751515077510775,
+llama-3.1-8b,dispatch,C(key)[T.origin=local_migrant],0.38687217154661235,0.3540487256353958,0.27452165815282126,
+llama-3.1-8b,dispatch,C(key)[T.origin=romanian],0.3672867834378418,0.35548702958983713,0.30151349215934165,
+llama-3.1-8b,dispatch,C(key)[T.origin=syrian],0.06400036663349068,0.3571838416981095,0.8577960026285918,
+llama-3.1-8b,dispatch,C(key)[T.status=asylum_seeker],-0.05652389513971311,0.35717563191304635,0.8742579275639625,
+llama-3.1-8b,dispatch,C(key)[T.status=seasonal_worker],-0.15115360730740074,0.35554777052292325,0.6707427631239822,
+llama-3.1-8b,dispatch,C(language)[T.en],-0.000829175742521154,0.4205847488108971,0.9984269850572308,
+llama-3.1-8b,dispatch,C(language)[T.fr],0.0063121520836071,0.4317648325294227,0.988335804777195,
+llama-3.1-8b,dispatch,C(clarity)[T.clear],0.16512792612493796,0.170130232736994,0.33174890495374587,
+llama-3.1-8b,dispatch,C(key)[T.area=social_housing]:C(language)[T.en],-0.3234297147304886,0.49429288153481965,0.512900455334838,
+llama-3.1-8b,dispatch,C(key)[T.area=villas]:C(language)[T.en],-0.25062292405223197,0.5015464395198541,0.6172860962800752,
+llama-3.1-8b,dispatch,C(key)[T.gender=female]:C(language)[T.en],-0.002804021678646564,0.49593072607158983,0.9954887375038718,
+llama-3.1-8b,dispatch,C(key)[T.origin=local_migrant]:C(language)[T.en],-0.29022000320373653,0.4933458878427109,0.5563518707544375,
+llama-3.1-8b,dispatch,C(key)[T.origin=romanian]:C(language)[T.en],-0.23582073521500277,0.4928785942713636,0.6323256630216346,
+llama-3.1-8b,dispatch,C(key)[T.origin=syrian]:C(language)[T.en],-0.14620491323269497,0.49572212455629905,0.7680449083519967,
+llama-3.1-8b,dispatch,C(key)[T.status=asylum_seeker]:C(language)[T.en],0.910049594792523,0.5014577917151859,0.06955342586130997,
+llama-3.1-8b,dispatch,C(key)[T.status=seasonal_worker]:C(language)[T.en],-0.3193414483090174,0.5001763093587906,0.523175739124434,
+llama-3.1-8b,dispatch,C(key)[T.area=social_housing]:C(language)[T.fr],-0.18146094439762328,0.502258839940099,0.7178828944736575,
+llama-3.1-8b,dispatch,C(key)[T.area=villas]:C(language)[T.fr],-0.042681144160233865,0.50691115444204,0.9328986338018632,
+llama-3.1-8b,dispatch,C(key)[T.gender=female]:C(language)[T.fr],0.09836184917044394,0.5021875641000614,0.84471445797426,
+llama-3.1-8b,dispatch,C(key)[T.origin=local_migrant]:C(language)[T.fr],-0.3249081004456166,0.5046909747099831,0.5197204887525664,
+llama-3.1-8b,dispatch,C(key)[T.origin=romanian]:C(language)[T.fr],-0.2685708872316125,0.5040003383316192,0.5941177674451433,
+llama-3.1-8b,dispatch,C(key)[T.origin=syrian]:C(language)[T.fr],-0.15137271458571921,0.5034187106955069,0.7636512850797754,
+llama-3.1-8b,dispatch,C(key)[T.status=asylum_seeker]:C(language)[T.fr],0.34880470398331187,0.5035692193040583,0.4885198949278654,
+llama-3.1-8b,dispatch,C(key)[T.status=seasonal_worker]:C(language)[T.fr],-0.3746503629781872,0.5008177604682951,0.45441357547995787,
+llama-3.1-8b,evacuation,Intercept,0.5520800392215524,0.273680208788943,0.043669949665912346,
+llama-3.1-8b,evacuation,C(key)[T.area=social_housing],0.04106149196703298,0.2942699315599191,0.8890259583556374,
+llama-3.1-8b,evacuation,C(key)[T.area=villas],-1.0963398980391184,0.30412007914065137,0.00031220426120851744,
+llama-3.1-8b,evacuation,C(key)[T.origin=local_migrant],-0.040267766469448386,0.29026092514671353,0.8896638692424312,
+llama-3.1-8b,evacuation,C(key)[T.origin=romanian],-0.00924644503275602,0.294237901395866,0.9749305524309946,
+llama-3.1-8b,evacuation,C(key)[T.origin=syrian],0.1720121686635984,0.29189575066448625,0.5556646339518219,
+llama-3.1-8b,evacuation,C(language)[T.en],0.40000000000000024,0.338050010830651,0.23670735774952456,
+llama-3.1-8b,evacuation,C(language)[T.fr],0.30000000000000104,0.33805001083065156,0.3748406257681147,
+llama-3.1-8b,evacuation,C(clarity)[T.clear],-0.2832179329601195,0.2081941221639845,0.17371758420971894,
+llama-3.1-8b,evacuation,C(key)[T.area=social_housing]:C(language)[T.en],-0.3428736369212627,0.4038482076588181,0.3958723244395447,
+llama-3.1-8b,evacuation,C(key)[T.area=villas]:C(language)[T.en],-0.20548251182203817,0.4140594131856949,0.6197086199524138,
+llama-3.1-8b,evacuation,C(key)[T.origin=local_migrant]:C(language)[T.en],-0.5424477066295866,0.4045248364049601,0.17993658473245588,
+llama-3.1-8b,evacuation,C(key)[T.origin=romanian]:C(language)[T.en],-0.5494794643136297,0.4067836099655459,0.17676252972850048,
+llama-3.1-8b,evacuation,C(key)[T.origin=syrian]:C(language)[T.en],-0.2085754038577928,0.4083465707661832,0.6095048709109508,
+llama-3.1-8b,evacuation,C(key)[T.area=social_housing]:C(language)[T.fr],-0.3231209508172549,0.4086337075988618,0.42909868163098486,
+llama-3.1-8b,evacuation,C(key)[T.area=villas]:C(language)[T.fr],-0.12436279999348211,0.41657811935034555,0.765295506193671,
+llama-3.1-8b,evacuation,C(key)[T.origin=local_migrant]:C(language)[T.fr],-0.42305885514268804,0.4074638173475832,0.2991427750694794,
+llama-3.1-8b,evacuation,C(key)[T.origin=romanian]:C(language)[T.fr],-0.6245730452617294,0.4119219384158302,0.1294583546730129,
+llama-3.1-8b,evacuation,C(key)[T.origin=syrian]:C(language)[T.fr],-0.21880182321793779,0.40752112436624116,0.5913303656904929,
+llama-3.1-8b,housing,Intercept,-0.05034020182656351,0.4825820052135181,0.9169199337488949,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.area=social_housing],-0.6305220818206445,0.5100264410320707,0.21636427034297945,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.area=villas],-1.9602671255232504,0.5076289243371865,0.00011264028207896224,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.gender=female],0.07273360828356035,0.5049369021601687,0.8854649787408888,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=local_migrant],0.14690920866652366,0.50759577364152,0.7722587257816109,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=romanian],0.16545372435189373,0.5048554701379887,0.7431196509639125,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=syrian],0.6654537243518925,0.5048554701379888,0.1874677021478175,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.status=asylum_seeker],0.46515215566224805,0.510201510999339,0.36192517979591965,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.status=seasonal_worker],-2.5500254912968594,0.5103618988977067,5.837883341528403e-07,did not converge; read with care
+llama-3.1-8b,housing,C(language)[T.en],0.4999999999999943,0.6012754910284669,0.40565419950580783,did not converge; read with care
+llama-3.1-8b,housing,C(language)[T.fr],2.399999999999994,0.6012754910284672,6.565260013401975e-05,did not converge; read with care
+llama-3.1-8b,housing,C(clarity)[T.clear],0.03447595677817282,0.3549121250858649,0.9226156789316968,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.area=social_housing]:C(language)[T.en],0.45852647826009624,0.7183468259907265,0.5232732484425323,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.area=villas]:C(language)[T.en],-0.7726950741753407,0.7121702851565925,0.2779276786126462,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.gender=female]:C(language)[T.en],-0.3421247286932187,0.7096886349559047,0.6297510871513259,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=local_migrant]:C(language)[T.en],-0.7322222560456574,0.7162495010036609,0.3066386748379192,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=romanian]:C(language)[T.en],-0.8819968527911823,0.7076678838455565,0.2126385291766606,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=syrian]:C(language)[T.en],-1.141521442948945,0.7117521361451455,0.10875400367233623,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.status=asylum_seeker]:C(language)[T.en],0.3919848583675532,0.7162295201802586,0.5841798924507244,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.status=seasonal_worker]:C(language)[T.en],1.2434395316471458,0.7186698154412837,0.08359528970265229,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.area=social_housing]:C(language)[T.fr],-0.0844007068643023,0.7161079744001546,0.9061783431218258,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.area=villas]:C(language)[T.fr],-1.364898821537952,0.7190911129361519,0.057684379093384405,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.gender=female]:C(language)[T.fr],-0.7214365227092006,0.7121502617752977,0.31104117499791994,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=local_migrant]:C(language)[T.fr],-1.5994910932019104,0.7142183513649341,0.02512348364595042,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=romanian]:C(language)[T.fr],-1.5347022755539472,0.7121612742078256,0.031162413338624854,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.origin=syrian]:C(language)[T.fr],-1.5224899721108662,0.7123357075870537,0.032571902773069955,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.status=asylum_seeker]:C(language)[T.fr],-2.138408277680528,0.7163689435170275,0.002835175306316706,did not converge; read with care
+llama-3.1-8b,housing,C(key)[T.status=seasonal_worker]:C(language)[T.fr],0.23465591020455256,0.7165450160396817,0.7433030222869577,did not converge; read with care
+llama-3.1-8b,relief,Intercept,1.0202670648552667,3.2430417828656406,0.7530639461684162,
+llama-3.1-8b,relief,C(key)[T.area=social_housing],0.8078985459538375,3.597203394991752,0.8222976750046977,
+llama-3.1-8b,relief,C(key)[T.area=villas],-2.7567067072345326,3.5925009079211048,0.44287326003820704,
+llama-3.1-8b,relief,C(key)[T.origin=local_migrant],3.670500852730421,3.571045191348945,0.30402012187501437,
+llama-3.1-8b,relief,C(key)[T.origin=romanian],1.3870356682819083,3.5485774682774895,0.6958926647796031,
+llama-3.1-8b,relief,C(key)[T.origin=syrian],5.867463824983347,3.621664148867131,0.10521045718572926,
+llama-3.1-8b,relief,C(language)[T.en],3.120463109000257,4.148379779545076,0.45192327998466475,
+llama-3.1-8b,relief,C(language)[T.fr],5.095260634601012,4.279784236194238,0.23383363897633036,
+llama-3.1-8b,relief,C(clarity)[T.clear],1.9091984536786921,2.1798631356829348,0.3811202326479043,
+llama-3.1-8b,relief,C(key)[T.area=social_housing]:C(language)[T.en],-1.1102939941051435,5.141786293760007,0.8290380551623139,
+llama-3.1-8b,relief,C(key)[T.area=villas]:C(language)[T.en],-1.2333910720292496,5.109942755942133,0.8092677266853068,
+llama-3.1-8b,relief,C(key)[T.origin=local_migrant]:C(language)[T.en],-4.1254073902201585,5.032584745775011,0.412364753077068,
+llama-3.1-8b,relief,C(key)[T.origin=romanian]:C(language)[T.en],-1.369935809156663,5.0039059048741175,0.7842588470472411,
+llama-3.1-8b,relief,C(key)[T.origin=syrian]:C(language)[T.en],-5.110861236150256,5.083371367348331,0.314700524282584,
+llama-3.1-8b,relief,C(key)[T.area=social_housing]:C(language)[T.fr],-3.3170994986479942,5.213121738273792,0.5245821379244257,
+llama-3.1-8b,relief,C(key)[T.area=villas]:C(language)[T.fr],-6.801549638062008,5.211225544352511,0.19183402676174544,
+llama-3.1-8b,relief,C(key)[T.origin=local_migrant]:C(language)[T.fr],-9.384016424396913,5.170816207383921,0.06955408044252678,
+llama-3.1-8b,relief,C(key)[T.origin=romanian]:C(language)[T.fr],-6.478702500452601,5.153281518049123,0.2086814357465867,
+llama-3.1-8b,relief,C(key)[T.origin=syrian]:C(language)[T.fr],-7.9591306571540406,5.2047634231680435,0.12621456441790962,
+llama-3.1-8b,triage,Intercept,0.15429481700918163,0.18327501338727809,0.39985742096990773,did not converge; read with care
+llama-3.1-8b,triage,C(key)[T.origin=romanian],0.11824506450990009,0.2022993006690003,0.5588802306738785,did not converge; read with care
+llama-3.1-8b,triage,C(key)[T.origin=syrian],0.24369422232502358,0.20197430820980766,0.22760144643053404,did not converge; read with care
+llama-3.1-8b,triage,C(language)[T.en],-0.07137104016213854,0.21098318465692684,0.7351534494588812,did not converge; read with care
+llama-3.1-8b,triage,C(language)[T.fr],0.024243009636472048,0.21379363328292697,0.9097178463519618,did not converge; read with care
+llama-3.1-8b,triage,C(clarity)[T.clear],-0.09693954455977281,0.1999745457256652,0.6278470121507966,did not converge; read with care
+llama-3.1-8b,triage,C(key)[T.origin=romanian]:C(language)[T.en],-0.0071339533987890376,0.2971309747808295,0.9808450651895497,did not converge; read with care
+llama-3.1-8b,triage,C(key)[T.origin=syrian]:C(language)[T.en],-0.2436942223250237,0.2969098016231018,0.41177812551529214,did not converge; read with care
+llama-3.1-8b,triage,C(key)[T.origin=romanian]:C(language)[T.fr],-0.11233350822733422,0.29546406826754407,0.7038018090325283,did not converge; read with care
+llama-3.1-8b,triage,C(key)[T.origin=syrian]:C(language)[T.fr],0.4094077812224874,0.2964616567429092,0.16728494164690844,did not converge; read with care

@@ -1,0 +1,16 @@
+model,task,language,measure,value,cases,records
+llama-3.1-8b,dispatch,el,kendall_w,0.6076923076923076,15,28
+llama-3.1-8b,dispatch,en,kendall_w,0.7227272727272727,15,26
+llama-3.1-8b,dispatch,fr,kendall_w,0.7875,15,27
+llama-3.1-8b,evacuation,el,kendall_w,0.6272727272727273,14,25
+llama-3.1-8b,evacuation,en,kendall_w,0.7230769230769231,14,27
+llama-3.1-8b,evacuation,fr,kendall_w,0.7545454545454546,13,24
+llama-3.1-8b,housing,el,krippendorff_alpha,0.2897727272727272,15,28
+llama-3.1-8b,housing,en,krippendorff_alpha,0.5967503692762186,15,26
+llama-3.1-8b,housing,fr,krippendorff_alpha,0.5700934579439252,13,25
+llama-3.1-8b,relief,el,krippendorff_alpha,0.36202593617721773,12,21
+llama-3.1-8b,relief,en,krippendorff_alpha,0.5088344890918206,14,23
+llama-3.1-8b,relief,fr,krippendorff_alpha,0.2829909214884146,11,18
+llama-3.1-8b,triage,el,kendall_w,0.6499999999999999,12,23
+llama-3.1-8b,triage,en,kendall_w,0.8444444444444446,10,19
+llama-3.1-8b,triage,fr,kendall_w,0.7777777777777778,14,23
