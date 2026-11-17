@@ -11,6 +11,7 @@ on:
     branches: [main]
     paths:
       - config/replication-q8.yaml
+      - config/replication-q8-pinned.yaml
       - .github/workflows/replication.yml
 
 permissions:
@@ -22,8 +23,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  CONFIG: config/replication-q8.yaml
-  OUT: results/replication-q8
+  CONFIG: config/replication-q8-pinned.yaml
+  OUT: results/replication-q8-pinned
+  IMAGE: ghcr.io/ggml-org/llama.cpp@sha256:8c74db29f1a2bef3f0a331b52c4d6214601dfceed4bee0b94cc48b3b23ff257d
   ROUND: ${{ inputs.round || '1' }}
   MAX_ROUNDS: "6"
 
@@ -81,14 +83,14 @@ jobs:
         run: |
           EXTRA=""
           if [ -n "${{ matrix.template }}" ]; then EXTRA="--chat-template-file /tpl/${{ matrix.template }}"; fi
-          docker run -d --name llm -v "$PWD/models:/models" -v "$PWD/templates:/tpl" -p 8080:8080 ghcr.io/ggml-org/llama.cpp:server -m /models/model.gguf --host 0.0.0.0 --port 8080 -c 4096 -t 4 --jinja $EXTRA
+          docker run -d --name llm -v "$PWD/models:/models" -v "$PWD/templates:/tpl" -p 8080:8080 "$IMAGE" -m /models/model.gguf --host 0.0.0.0 --port 8080 -c 4096 -t 4 --jinja $EXTRA
           for i in $(seq 1 120); do
             curl -sf http://localhost:8080/health && break
             if [ "$(docker inspect -f '{{.State.Running}}' llm)" != "true" ]; then docker logs llm 2>&1 | tail -n 40; exit 1; fi
             sleep 5
           done
           curl -sf http://localhost:8080/health
-          docker image inspect --format '{{index .RepoDigests 0}}' ghcr.io/ggml-org/llama.cpp:server > "$OUT/models/${{ matrix.tag }}.server"
+          docker image inspect --format '{{index .RepoDigests 0}}' "$IMAGE" > "$OUT/models/${{ matrix.tag }}.server"
           cat "$OUT/models/${{ matrix.tag }}.server"
       - name: Run this shard
         id: shard
