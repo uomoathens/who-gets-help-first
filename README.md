@@ -102,14 +102,6 @@ The full report is [`results/study-cpu/analysis/report.md`](results/study-cpu/an
 
 These are results for 4-bit quantised versions of the models on CPU, with one instruction wording and one role; full-precision models, other wordings and other roles may behave differently.
 
-## Checks before journal submission
-
-Three checks were added in November 2026. The first two use the stored answers, so the study itself is unchanged.
-
-1. **Correction for multiple comparisons in the language results.** `crosslingual.csv` now carries `p_holm` and `reportable`, computed as in the fairness table. Bootstrap p-values are resolved to 1/2,000; replacing a p-value of 0 by that bound changes no reportable result.
-2. **Sensitivity to the unsourced names.** Every analysis now repeats the fairness table without origins whose names have no official source (`fairness_sourced_names.csv`, `reportable_summary.csv`), and splits the origin contrasts by how origin is signalled (`origin_by_signal.csv`). The `analysis` workflow regenerates the analysis on GitHub whenever the analysis code changes.
-3. **Replication at higher precision.** `config/replication-q8.yaml` repeats the whole study for Llama 3.1 8B with the 8-bit (Q8_0) file instead of the 4-bit one: the same 5,880 prompts, the same seeds and the same unit order, so the precision of the weights is the only difference. A 16-bit file does not fit in the memory of a free runner, and 8-bit quantisation is close to it. The run is complete and its comparison with the study is in `results/replication-q8/analysis/comparison.md`. The two runs agree closely: across the 34 tested identity contrasts the shifts correlate at 0.98 and have the same sign in 31; each run has 14 reportable contrasts, 11 of them in both, and every contrast reportable in either run has the same sign in both. The positive controls raised the target in 64.0 % of pairs, against 63.4 % with 4-bit weights. Both workflows had used the current build of the llama.cpp server at the time they ran, so this replication, made three weeks after the study, also ran on a newer build (its digest is in `results/replication-q8/models`). The workflows now use the study's build, fixed by its digest, and the `replication` workflow repeats the 8-bit run on it (`config/replication-q8-pinned.yaml`, results in `results/replication-q8-pinned`), so that the precision of the weights is the only difference.
-
 ## Layout
 
 ```
