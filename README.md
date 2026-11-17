@@ -1,6 +1,6 @@
 # Who Gets Help First?
 
-**Dimitrios Sargiotis** · National Technical University of Athens · [users.ntua.gr/dims](https://users.ntua.gr/dims/) · [uomoathens.github.io](https://uomoathens.github.io/)
+**Dimitrios Sargiotis** · National Technical University of Athens · [users.ntua.gr/dims](https://users.ntua.gr/dims/) · 
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23684889.svg)](https://doi.org/10.5281/zenodo.23684889)
 
