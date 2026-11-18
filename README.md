@@ -48,7 +48,7 @@ A comparison is tested only when it rests on at least 8 cases; smaller ones are 
 ## Use
 
 ```
-pip install -e ".[analysis,dev,review]"
+pip install -e ".[analysis,dev]"
 whf check --config config/ci.yaml
 whf preview --config config/ci.yaml --case thessaly-dispatch-01 --lang el
 whf run --config config/ci.yaml

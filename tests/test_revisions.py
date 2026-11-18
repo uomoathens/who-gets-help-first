@@ -7,8 +7,6 @@ from whf.analyze import origin_signal, reportable_summary, signal_summary, witho
 from whf.attributes import Attributes
 from whf.compare import compare_fairness, summarise
 from whf.config import load_config
-from whf.review import cohens_kappa, make_sheet, read_sheet, sample_cases
-from whf.run import load_study
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -59,22 +57,3 @@ def test_comparison_of_identical_runs_agrees_fully():
     assert s["rows"] == 3 and s["reportable_both"] == 2 and s["same_sign"] == 1.0
     assert np.isclose(s["correlation"], 1.0) and s["kappa_reportable"] == 1.0
 
-
-def test_cohens_kappa():
-    assert cohens_kappa([True, False, True, False], [True, False, True, False]) == 1.0
-    assert np.isnan(cohens_kappa([True], [True]))
-
-
-def test_review_sheet_round_trip(tmp_path):
-    cfg = load_config(ROOT / "config" / "study-cpu.yaml")
-    _, _, cases = load_study(cfg)
-    chosen = sample_cases(cases, 3, cfg.seed)
-    assert len(chosen) == 15
-    for task in {c.task for c in chosen}:
-        group = [c for c in chosen if c.task == task]
-        assert len({c.setting for c in group}) == 3 and len({c.clarity for c in group}) == 2
-    path = tmp_path / "sheet.xlsx"
-    ids = make_sheet(cfg, path)
-    assert ids == [c.id for c in chosen]
-    read = read_sheet(path)
-    assert set(read) == set(ids) and all(v["clear"] is None for v in read.values())

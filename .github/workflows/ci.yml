@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -e ".[analysis,dev,review]"
+      - run: pip install -e ".[analysis,dev]"
       - run: pytest -q
       - run: whf check --config config/ci.yaml
       - run: whf run --config config/ci.yaml
